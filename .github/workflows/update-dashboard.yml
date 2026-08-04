@@ -1,0 +1,27 @@
+name: Atualizar Dashboard Farol
+
+on:
+  repository_dispatch:
+    types: [update-dashboard]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Atualizar dashboard.html
+        run: |
+          echo "${{ github.event.client_payload.html_base64 }}" | base64 -d > dashboard.html
+          echo "Dashboard atualizado em $(date '+%Y-%m-%d %H:%M')"
+
+      - name: Commit e push
+        run: |
+          git config user.name "Farol Bot"
+          git config user.email "bot@seliafullservice.com.br"
+          git add dashboard.html
+          git diff --staged --quiet || git commit -m "Dashboard atualizado - $(date '+%Y-%m-%d')"
+          git push
