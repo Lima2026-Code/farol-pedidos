@@ -189,6 +189,7 @@ a.rastreio:hover{text-decoration:underline}
   <button class="filter-btn" onclick="filtrar('ENTREGUE')">📦 Ag. Encerramento (19)</button>
   <button class="filter-btn" onclick="filtrar('EM_DEVOLUCAO')">↩ Em Devolução (114)</button>
   <input class="search-box" type="text" id="search" placeholder="🔍 Buscar pedido, cliente, transportadora..." oninput="aplicarFiltros()">
+  <button class="filter-btn" onclick="downloadCSV()" style="background:#0f172a;color:#f1f5f9;border:none;cursor:pointer">⬇️ Baixar CSV</button>
 </div>
 <div id="count-display"></div>
 <div class="table-wrap">
@@ -230,6 +231,7 @@ const NAO_MAPEADAS = {"CARRO PROPRIO": 4};
 
 let currentFilter = 'TODOS';
 let sortCol = -1, sortAsc = true;
+let currentFiltered = ROWS;   // mantém referência das linhas visíveis para o download
 
 function filtrar(cat) {
   currentFilter = cat;
@@ -257,8 +259,39 @@ function aplicarFiltros() {
       r.uf.toLowerCase().includes(search)
     );
   }
+  currentFiltered = filtered;
   renderTable(filtered);
   document.getElementById('count-display').textContent = `Exibindo ${filtered.length} pedidos`;
+}
+
+function downloadCSV() {
+  const cols = [
+    ['pedido',      'Pedido'],
+    ['cliente',     'Cliente'],
+    ['transp',      'Transportadora'],
+    ['uf',          'UF'],
+    ['status',      'Ultimo Status'],
+    ['despacho',    'Despacho'],
+    ['ultima_mov',  'Ultima Movim.'],
+    ['previsao',    'Prev. Entrega'],
+    ['prazo_sla',   'Prazo SLA'],
+    ['situacao',    'Situacao'],
+    ['situacao_mov','Sit. Movim.'],
+    ['rastreio',    'Rastreio'],
+  ];
+  const esc = v => '"' + String(v||'').replace(/"/g,'""') + '"';
+  const header = cols.map(c => esc(c[1])).join(',');
+  const linhas = currentFiltered.map(r => cols.map(c => esc(r[c[0]]||'')).join(','));
+  const csv = '﻿' + [header, ...linhas].join('
+');   // BOM para Excel reconhecer UTF-8
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  const filtro = currentFilter === 'TODOS' ? 'todos' : currentFilter.toLowerCase();
+  a.href     = url;
+  a.download = `farol_jbl_${filtro}_05082026.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 function badge(cls, text) {
