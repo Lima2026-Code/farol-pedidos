@@ -1,0 +1,163 @@
+{
+  "data_processamento": "08/08/2026",
+  "grupos": {
+    "GFL": [
+      {
+        "pedido": "JBL0377654-022",
+        "cliente": "MICARLA SILVA",
+        "uf": "RN",
+        "status": "Responsável de recebimento ausente",
+        "despacho": "2026-07-27",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-14",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19534942"
+      },
+      {
+        "pedido": "JBL0379363-022",
+        "cliente": "HUDSON ROSA RIOS",
+        "uf": "CE",
+        "status": "Responsável de recebimento ausente",
+        "despacho": "2026-07-30",
+        "ult_mov": "2026-08-08",
+        "prev_entrega": "2026-08-13",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19702989"
+      },
+      {
+        "pedido": "JBL0379920-022",
+        "cliente": "RICARDO GOMES",
+        "uf": "GO",
+        "status": "Responsável de recebimento ausente",
+        "despacho": "2026-08-03",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-11",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19777411"
+      },
+      {
+        "pedido": "JBL0379584-022",
+        "cliente": "ISADORA BERNARDES",
+        "uf": "SP",
+        "status": "Responsável de recebimento ausente",
+        "despacho": "2026-08-03",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-07",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19776391"
+      },
+      {
+        "pedido": "JBL0379630-022",
+        "cliente": "MARTA DOURADO RODRIGUES",
+        "uf": "DF",
+        "status": "Responsável de recebimento ausente",
+        "despacho": "2026-08-03",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-07",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19776412"
+      },
+      {
+        "pedido": "JBL0379559-022",
+        "cliente": "DANIEL NOVAES ARAUJO",
+        "uf": "SP",
+        "status": "Responsável de recebimento ausente",
+        "despacho": "2026-08-03",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-06",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19776492"
+      },
+      {
+        "pedido": "JBL0380987-022",
+        "cliente": "MATHEUS DE FREITAS SIQUERIA",
+        "uf": "GO",
+        "status": "Responsável de recebimento ausente",
+        "despacho": "2026-08-04",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-12",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19890528"
+      },
+      {
+        "pedido": "JBL0381062-022",
+        "cliente": "SUZANA DE OLIVEIRA",
+        "uf": "RJ",
+        "status": "Responsável de recebimento ausente",
+        "despacho": "2026-08-05",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-12",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19897912"
+      },
+      {
+        "pedido": "JBL0381121-022",
+        "cliente": "ANDREA BECHARA",
+        "uf": "MG",
+        "status": "Responsável de recebimento ausente",
+        "despacho": "2026-08-05",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-11",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19906704"
+      }
+    ],
+    "TRANSPORTES TRANSLOVATO LTDA": [
+      {
+        "pedido": "JBL0381025-022",
+        "cliente": "LAUREN CRISTINA SENDESKI",
+        "uf": "PR",
+        "status": "NÃO VISITADO",
+        "despacho": "2026-08-04",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-12",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19895888"
+      }
+    ],
+    "DISSUDES RESIDENCE TRANSPORTES E LOGISTICA INTEGRADA LTDA": [
+      {
+        "pedido": "JBL0381183-022",
+        "cliente": "YNGRID MENDES",
+        "uf": "SP",
+        "status": "ENDEREÇO NÃO LOCALIZADO",
+        "despacho": "2026-08-05",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-07",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19911534"
+      }
+    ],
+    "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS": [
+      {
+        "pedido": "JBL0381485-022",
+        "cliente": "MAISSA DE SA LOBATO",
+        "uf": "AP",
+        "status": "Objeto encaminhado para",
+        "despacho": "2026-08-06",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-20",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl19947874"
+      },
+      {
+        "pedido": "JBL0382106-022",
+        "cliente": "ANGELA DO ESPIRITO SANTO",
+        "uf": "PA",
+        "status": "Objeto encaminhado para",
+        "despacho": "2026-08-07",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-18",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl20012669"
+      },
+      {
+        "pedido": "JBL0382094-022",
+        "cliente": "JUNIELSON PEREIRA DA SILVA",
+        "uf": "PA",
+        "status": "Objeto encaminhado para",
+        "despacho": "2026-08-07",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-17",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl20010807"
+      },
+      {
+        "pedido": "JBL0382127-022",
+        "cliente": "JUNIELSON PEREIRA DA SILVA",
+        "uf": "PA",
+        "status": "Objeto encaminhado para",
+        "despacho": "2026-08-07",
+        "ult_mov": "2026-08-07",
+        "prev_entrega": "2026-08-17",
+        "rastreio": "https://rastreioo.com.br/#/tracking/jbl20012690"
+      }
+    ]
+  }
+}
