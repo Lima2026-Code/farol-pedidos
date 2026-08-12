@@ -171,9 +171,14 @@ a.rastreio:hover{text-decoration:underline}
     <div class="value">1925</div>
     <div class="note">Total − Encerramento − Devolução</div>
   </div>
-  <div class="kpi red">
+  <div class="kpi red" style="position:relative;padding-right:56px">
     <div class="label">Atrasados (prazo entrega)</div>
     <div class="value">116</div>
+    <div style="position:absolute;right:10px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:5px;align-items:flex-start">
+      <span style="color:#fca5a5;font-size:.72rem;font-weight:700;display:flex;align-items:center;gap:4px;white-space:nowrap" title="Insucessos entre os atrasados"><span style="color:#ef4444;font-size:.9rem;line-height:1">■</span>46 insuc.</span>
+      <span style="color:#fdba74;font-size:.72rem;font-weight:700;display:flex;align-items:center;gap:4px;white-space:nowrap" title="Atraso na movimentação entre os atrasados"><span style="color:#f97316;font-size:.9rem;line-height:1">■</span>45 mov.</span>
+      <span style="color:#fde68a;font-size:.72rem;font-weight:700;display:flex;align-items:center;gap:4px;white-space:nowrap" title="Sem 1ª movimentação entre os atrasados"><span style="color:#f59e0b;font-size:.9rem;line-height:1">■</span>8 s/mov.</span>
+    </div>
   </div>
   <div class="kpi green">
     <div class="label">No Prazo (entrega)</div>
@@ -246,23 +251,34 @@ a.rastreio:hover{text-decoration:underline}
 </div>
 
 <div class="section-title">📋 Tabela de Pedidos</div>
-<div class="filter-bar">
-  <button class="filter-btn active" onclick="filtrar('TODOS')">Todos (2064)</button>
-  <button class="filter-btn" onclick="filtrar('INSUCESSO')">🔴 Insucesso (99)</button>
-  
-  <button class="filter-btn" onclick="filtrar('ATRASADO_MOV')">🟠 Atrasado Mov. (247)</button>
-  <button class="filter-btn" onclick="filtrar('ATRASADO')">⚠️ Atrasado Entrega (116)</button>
-  <button class="filter-btn" onclick="filtrar('SEM_MOV')">🟡 Sem Mov. D2+ (14)</button>
-  <button class="filter-btn" onclick="filtrar('EM_TRATATIVA')" style="background:#713f12;border-color:#92400e;color:#fde68a">🟡 Em Tratativa (13)</button>
-  <button class="filter-btn" onclick="filtrar('PRAZO_VENCIDO')" style="background:#450a0a;border-color:#7f1d1d;color:#fca5a5">🔴 Prazo Vencido → Extravio (0)</button>
-  <button class="filter-btn" onclick="filtrar('AGUARD_MOV')">⏳ Aguard. Mov. (151)</button>
-  <button class="filter-btn" onclick="filtrar('NO_PRAZO')">✅ No Prazo Entrega (1805)</button>
-  <button class="filter-btn" onclick="filtrar('STATUS_NAO_MAPEADO')">❓ Status N.Mapeado</button>
-  <button class="filter-btn" onclick="filtrar('NAO_MAPEADA')">🚫 Transp. N.Mapeada</button>
-  <button class="filter-btn" onclick="filtrar('ENTREGUE')">📦 Ag. Encerramento (3)</button>
-  <button class="filter-btn" onclick="filtrar('EM_DEVOLUCAO')">↩ Em Devolução (136)</button>
-  <input class="search-box" type="text" id="search" placeholder="🔍 Buscar pedido, NF, cliente, transportadora..." oninput="aplicarFiltros()">
-  <button class="filter-btn" onclick="downloadCSV()" style="background:#0f172a;color:#f1f5f9;border:none;cursor:pointer">⬇️ Baixar CSV</button>
+<div class="filter-bar" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px">
+  <select id="filtro-select" onchange="filtrarSelect(this.value)"
+    style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:7px 12px;font-size:.82rem;cursor:pointer;min-width:240px;height:36px">
+    <option value="TODOS">Todos (2064)</option>
+    <optgroup label="── Alertas Operacionais ──">
+      <option value="INSUCESSO">🔴 Insucesso (99)</option>
+      <option value="ATRASADO_MOV">🟠 Atrasado Movim. (247)</option>
+      <option value="SEM_MOV">🟡 Sem Mov. D2+ (14)</option>
+      <option value="AGUARD_MOV">⏳ Aguard. Mov. (151)</option>
+    </optgroup>
+    <optgroup label="── Prazo de Entrega ──">
+      <option value="ATRASADO">⚠️ Atrasado Entrega (116)</option>
+      <option value="ATRASADOS_TORRE">🏗️ Atrasados Torre (17)</option>
+      <option value="NO_PRAZO">✅ No Prazo Entrega (1805)</option>
+    </optgroup>
+    <optgroup label="── Tratativas ──">
+      <option value="EM_TRATATIVA">🟡 Em Tratativa (13)</option>
+      <option value="PRAZO_VENCIDO">🔴 Prazo Vencido → Extravio (0)</option>
+    </optgroup>
+    <optgroup label="── Outros ──">
+      <option value="STATUS_NAO_MAPEADO">❓ Status N.Mapeado</option>
+      <option value="NAO_MAPEADA">🚫 Transp. N.Mapeada</option>
+      <option value="ENTREGUE">📦 Ag. Encerramento (3)</option>
+      <option value="EM_DEVOLUCAO">↩ Em Devolução (136)</option>
+    </optgroup>
+  </select>
+  <input class="search-box" type="text" id="search" placeholder="🔍 Buscar pedido, NF, cliente, transportadora..." oninput="aplicarFiltros()" style="flex:1;min-width:220px">
+  <button onclick="downloadCSV()" style="background:#0f172a;color:#f1f5f9;border:1px solid #334155;border-radius:8px;padding:7px 14px;font-size:.82rem;cursor:pointer;white-space:nowrap;height:36px">⬇️ Baixar CSV</button>
 </div>
 <div id="count-display"></div>
 <div class="table-wrap">
@@ -301,10 +317,8 @@ let currentFilter = 'TODOS';
 let sortCol = -1, sortAsc = true;
 let currentFiltered = ROWS;   // mantém referência das linhas visíveis para o download
 
-function filtrar(cat) {
+function filtrarSelect(cat) {
   currentFilter = cat;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
   aplicarFiltros();
 }
 
@@ -314,6 +328,8 @@ function aplicarFiltros() {
   if (currentFilter !== 'TODOS') {
     if (currentFilter === 'NOVO_INSUCESSO') {
       filtered = filtered.filter(r => r.novo && r.situacao_mov === 'INSUCESSO');
+    } else if (currentFilter === 'ATRASADOS_TORRE') {
+      filtered = filtered.filter(r => r.situacao === 'ATRASADO' && !['INSUCESSO','ATRASADO_MOV','SEM_MOV'].includes(r.situacao_mov));
     } else if (['ATRASADO','NO_PRAZO','SEM_PREVISAO','ENTREGUE','EM_DEVOLUCAO'].includes(currentFilter)) {
       filtered = filtered.filter(r => r.situacao === currentFilter);
     } else if (['EM_TRATATIVA','PRAZO_VENCIDO'].includes(currentFilter)) {
