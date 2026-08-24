@@ -303,7 +303,7 @@ a.rastreio:hover{text-decoration:underline}
   </div>
   <div class="kpi orange">
     <div class="label">Atrasado Movim. (SLA)</div>
-    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><div class="value">109</div><span style="display:inline-flex;align-items:center;gap:2px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;white-space:nowrap;background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(52,211,153,.25)">▼ 62.5%</span></div>
+    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><div class="value">91</div><span style="display:inline-flex;align-items:center;gap:2px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;white-space:nowrap;background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(52,211,153,.25)">▼ 62.5%</span></div>
   </div>
   <div class="kpi amber" style="position:relative;padding-right:52px">
     <div class="label">Sem 1ª Movim. (D2+)</div>
@@ -416,13 +416,13 @@ a.rastreio:hover{text-decoration:underline}
     <optgroup label="── Alertas Operacionais ──">
       <option value="INSUCESSO">🔴 Insucesso (78)</option>
       <option value="NOVO_INSUCESSO">★ Novos Insucessos Hoje (0)</option>
-      <option value="ATRASADO_MOV">🟠 Atrasado Movim. (109)</option>
+      <option value="ATRASADO_MOV">🟠 Atrasado Movim. (91)</option>
       <option value="SEM_MOV">🟡 Sem Mov. D2+ (3)</option>
       <option value="AGUARD_MOV">⏳ Aguard. Mov. (0)</option>
     </optgroup>
     <optgroup label="── Prazo de Entrega ──">
       <option value="ATRASADO">⚠️ Atrasado Entrega (70)</option>
-      <option value="ATRASADOS_TORRE">🏗️ Atrasados Torre (16)</option>
+      <option value="ATRASADOS_TORRE">🏗️ Atrasados Torre (34)</option>
       <option value="NO_PRAZO">✅ No Prazo Entrega (1205)</option>
     </optgroup>
     <optgroup label="── Tratativas ──">
@@ -524,11 +524,13 @@ function aplicarFiltros() {
     if (currentFilter === 'NOVO_INSUCESSO') {
       filtered = filtered.filter(r => r.novo && r.situacao_mov === 'INSUCESSO');
     } else if (currentFilter === 'ATRASADOS_TORRE') {
-      filtered = filtered.filter(r => r.situacao === 'ATRASADO' && !['INSUCESSO','ATRASADO_MOV','SEM_MOV'].includes(r.situacao_mov));
+      filtered = filtered.filter(r => r.situacao === 'ATRASADO' && !['INSUCESSO','SEM_MOV'].includes(r.situacao_mov));
     } else if (['ATRASADO','NO_PRAZO','SEM_PREVISAO','ENTREGUE','EM_DEVOLUCAO'].includes(currentFilter)) {
       filtered = filtered.filter(r => r.situacao === currentFilter);
     } else if (['EM_TRATATIVA','PRAZO_VENCIDO'].includes(currentFilter)) {
       filtered = filtered.filter(r => r.tratativa_status === currentFilter);
+    } else if (currentFilter === 'ATRASADO_MOV') {
+      filtered = filtered.filter(r => r.situacao_mov === 'ATRASADO_MOV' && r.situacao !== 'ATRASADO');
     } else {
       filtered = filtered.filter(r => r.situacao_mov === currentFilter);
     }
