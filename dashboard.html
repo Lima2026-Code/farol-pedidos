@@ -439,6 +439,28 @@ a.rastreio:hover{text-decoration:underline}
   <input class="search-box" type="text" id="search" placeholder="🔍 Buscar pedido, NF, cliente, transportadora..." oninput="aplicarFiltros()" style="flex:1;min-width:220px">
   <button onclick="downloadCSV()" style="background:#0f172a;color:#f1f5f9;border:1px solid #334155;border-radius:8px;padding:7px 14px;font-size:.82rem;cursor:pointer;white-space:nowrap;height:36px">⬇️ Baixar CSV</button>
 </div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:8px 0 4px 0;font-size:.8rem;color:#94a3b8">
+  <span style="font-weight:600;color:#64748b;white-space:nowrap">📅 Filtro por data:</span>
+  <label style="display:flex;align-items:center;gap:5px;white-space:nowrap">
+    🚚 Despacho de
+    <input type="date" id="f_desp_de" onchange="aplicarFiltros()" style="background:#1e293b;color:#e2e8f0;border:1px solid #475569;border-radius:6px;padding:3px 7px;font-size:.8rem">
+    até
+    <input type="date" id="f_desp_ate" onchange="aplicarFiltros()" style="background:#1e293b;color:#e2e8f0;border:1px solid #475569;border-radius:6px;padding:3px 7px;font-size:.8rem">
+  </label>
+  <label style="display:flex;align-items:center;gap:5px;white-space:nowrap">
+    📍 Últ. Movim. de
+    <input type="date" id="f_mov_de" onchange="aplicarFiltros()" style="background:#1e293b;color:#e2e8f0;border:1px solid #475569;border-radius:6px;padding:3px 7px;font-size:.8rem">
+    até
+    <input type="date" id="f_mov_ate" onchange="aplicarFiltros()" style="background:#1e293b;color:#e2e8f0;border:1px solid #475569;border-radius:6px;padding:3px 7px;font-size:.8rem">
+  </label>
+  <label style="display:flex;align-items:center;gap:5px;white-space:nowrap">
+    📆 Prev. Entrega de
+    <input type="date" id="f_prev_de" onchange="aplicarFiltros()" style="background:#1e293b;color:#e2e8f0;border:1px solid #475569;border-radius:6px;padding:3px 7px;font-size:.8rem">
+    até
+    <input type="date" id="f_prev_ate" onchange="aplicarFiltros()" style="background:#1e293b;color:#e2e8f0;border:1px solid #475569;border-radius:6px;padding:3px 7px;font-size:.8rem">
+  </label>
+  <button onclick="limparFiltrosData()" style="background:transparent;color:#64748b;border:1px solid #334155;border-radius:6px;padding:3px 10px;font-size:.78rem;cursor:pointer">✕ Limpar datas</button>
+</div>
 <div id="count-display"></div>
 <div class="table-wrap">
 <table id="tabela">
@@ -517,8 +539,20 @@ function filtrarSelect(cat) {
   aplicarFiltros();
 }
 
+function parseDateInput(val) {
+  // input type=date returns YYYY-MM-DD
+  return val ? new Date(val).getTime() : null;
+}
+
 function aplicarFiltros() {
   const search = document.getElementById('search').value.toLowerCase();
+  const fDespDe  = parseDateInput(document.getElementById('f_desp_de').value);
+  const fDespAte = parseDateInput(document.getElementById('f_desp_ate').value);
+  const fMovDe   = parseDateInput(document.getElementById('f_mov_de').value);
+  const fMovAte  = parseDateInput(document.getElementById('f_mov_ate').value);
+  const fPrevDe  = parseDateInput(document.getElementById('f_prev_de').value);
+  const fPrevAte = parseDateInput(document.getElementById('f_prev_ate').value);
+
   let filtered = ROWS;
   if (currentFilter !== 'TODOS') {
     if (currentFilter === 'NOVO_INSUCESSO') {
@@ -546,9 +580,44 @@ function aplicarFiltros() {
       r.uf.toLowerCase().includes(search)
     );
   }
+  // Filtros de data — compara timestamp do campo com o intervalo selecionado
+  if (fDespDe || fDespAte) {
+    filtered = filtered.filter(r => {
+      const t = parseDateBR(r.despacho);
+      if (!t) return false;
+      if (fDespDe && t < fDespDe) return false;
+      if (fDespAte && t > fDespAte + 86399999) return false; // inclusivo até fim do dia
+      return true;
+    });
+  }
+  if (fMovDe || fMovAte) {
+    filtered = filtered.filter(r => {
+      const t = parseDateBR(r.ultima_mov);
+      if (!t) return false;
+      if (fMovDe && t < fMovDe) return false;
+      if (fMovAte && t > fMovAte + 86399999) return false;
+      return true;
+    });
+  }
+  if (fPrevDe || fPrevAte) {
+    filtered = filtered.filter(r => {
+      const t = parseDateBR(r.previsao);
+      if (!t) return false;
+      if (fPrevDe && t < fPrevDe) return false;
+      if (fPrevAte && t > fPrevAte + 86399999) return false;
+      return true;
+    });
+  }
   currentFiltered = filtered;
   renderTable(filtered);
   document.getElementById('count-display').textContent = `Exibindo ${filtered.length} pedidos`;
+}
+
+function limparFiltrosData() {
+  ['f_desp_de','f_desp_ate','f_mov_de','f_mov_ate','f_prev_de','f_prev_ate'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  aplicarFiltros();
 }
 
 function downloadCSV() {
@@ -617,10 +686,23 @@ function renderTable(rows) {
   </tr>`).join('');
 }
 
+const DATE_COLS = new Set([7,8,9,10]); // despacho, ultima_mov, previsao, prazo_sla
+
+function parseDateBR(s) {
+  if (!s) return 0;
+  const [d,m,y] = s.split('/');
+  return y && m && d ? new Date(+y, +m-1, +d).getTime() : 0;
+}
+
 function sortTable(col) {
   if (sortCol === col) sortAsc = !sortAsc; else { sortCol = col; sortAsc = true; }
   const keys = ['pedido','nf','tracking_code','cliente','transp','uf','status','despacho','ultima_mov','previsao','prazo_sla','situacao','situacao_mov'];
+  const isDate = DATE_COLS.has(col);
   ROWS.sort((a,b) => {
+    if (isDate) {
+      const ta = parseDateBR(a[keys[col]]), tb = parseDateBR(b[keys[col]]);
+      return sortAsc ? ta - tb : tb - ta;
+    }
     let va = a[keys[col]]||'', vb = b[keys[col]]||'';
     return sortAsc ? va.localeCompare(vb,'pt-BR') : vb.localeCompare(va,'pt-BR');
   });
