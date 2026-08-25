@@ -25,26 +25,11 @@
       box-shadow: 0 32px 64px rgba(0,0,0,0.4);
       text-align: center;
     }
-    .logo {
-      font-size: 48px;
-      margin-bottom: 8px;
-    }
-    h1 {
-      color: #fff;
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .subtitle {
-      color: rgba(255,255,255,0.45);
-      font-size: 13px;
-      margin-bottom: 36px;
-    }
-    .field {
-      position: relative;
-      margin-bottom: 16px;
-    }
-    input[type="password"] {
+    .logo { font-size: 48px; margin-bottom: 8px; }
+    h1 { color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+    .subtitle { color: rgba(255,255,255,0.45); font-size: 13px; margin-bottom: 36px; }
+    .field { position: relative; margin-bottom: 16px; }
+    input[type="password"], input[type="text"] {
       width: 100%;
       padding: 14px 48px 14px 18px;
       border-radius: 12px;
@@ -56,50 +41,39 @@
       letter-spacing: 2px;
       transition: border 0.2s;
     }
-    input[type="password"]::placeholder { letter-spacing: 0; color: rgba(255,255,255,0.3); }
-    input[type="password"]:focus { border-color: rgba(59,130,246,0.7); }
+    input::placeholder { letter-spacing: 0; color: rgba(255,255,255,0.3); }
+    input:focus { border-color: rgba(59,130,246,0.7); }
+    input:disabled { opacity: 0.4; cursor: not-allowed; }
     .toggle-pwd {
-      position: absolute;
-      right: 14px;
-      top: 50%;
+      position: absolute; right: 14px; top: 50%;
       transform: translateY(-50%);
-      cursor: pointer;
-      color: rgba(255,255,255,0.4);
-      font-size: 18px;
-      user-select: none;
+      cursor: pointer; color: rgba(255,255,255,0.4);
+      font-size: 18px; user-select: none;
     }
     button {
-      width: 100%;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
+      width: 100%; padding: 14px; border-radius: 12px; border: none;
       background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-      color: #fff;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.1s;
-      margin-top: 4px;
+      color: #fff; font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: opacity 0.2s, transform 0.1s; margin-top: 4px;
     }
-    button:hover { opacity: 0.9; transform: translateY(-1px); }
-    button:active { transform: translateY(0); }
-    .error {
-      display: none;
-      color: #f87171;
-      font-size: 13px;
-      margin-top: 12px;
+    button:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+    button:active:not(:disabled) { transform: translateY(0); }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .msg {
+      display: none; font-size: 13px; margin-top: 12px;
       animation: shake 0.3s ease;
     }
+    .msg.erro { color: #f87171; }
+    .msg.bloq { color: #fbbf24; }
     @keyframes shake {
       0%,100%{transform:translateX(0)}
       25%{transform:translateX(-6px)}
       75%{transform:translateX(6px)}
     }
-    .footer {
-      color: rgba(255,255,255,0.2);
-      font-size: 11px;
-      margin-top: 36px;
+    .tentativas {
+      color: rgba(255,255,255,0.25); font-size: 11px; margin-top: 8px; min-height: 16px;
     }
+    .footer { color: rgba(255,255,255,0.2); font-size: 11px; margin-top: 36px; }
   </style>
 </head>
 <body>
@@ -109,31 +83,122 @@
     <p class="subtitle">Selia Full Service · Monitoramento Pós-Despacho</p>
 
     <div class="field">
-      <input type="password" id="pwd" placeholder="Senha de acesso" onkeydown="if(event.key==='Enter')entrar()">
+      <input type="password" id="pwd" placeholder="Senha de acesso"
+             onkeydown="if(event.key==='Enter')entrar()" autocomplete="current-password">
       <span class="toggle-pwd" onclick="togglePwd()">👁</span>
     </div>
-    <button onclick="entrar()">Acessar Dashboard</button>
-    <p class="error" id="erro">❌ Senha incorreta. Tente novamente.</p>
+    <button id="btn" onclick="entrar()">Acessar Dashboard</button>
+
+    <p class="msg erro" id="msg-erro">❌ Senha incorreta. Tente novamente.</p>
+    <p class="msg bloq" id="msg-bloq">🔒 Muitas tentativas. Aguarde <span id="countdown"></span>.</p>
+    <p class="tentativas" id="tent-info"></p>
 
     <p class="footer">Acesso restrito · Transportes Selia</p>
   </div>
 
   <script>
-    function entrar() {
-      const val = document.getElementById('pwd').value;
-      if (val === 'Transportes2026') {
+    // Hash SHA-256 da senha — a senha real não aparece no código
+    // Para gerar novo hash: python3 -c "import hashlib; print(hashlib.sha256('SUA_SENHA'.encode()).hexdigest())"
+    const _h = [
+      'ddbc6662', '0240bc06', '55e25b76', '73f8fbf8',
+      'efe58528', 'aa52ab08', 'c8913415', 'd78211e0'
+    ].join('');
+
+    const MAX_TENT  = 5;     // tentativas antes de bloquear
+    const BLOQ_MIN  = 30;    // minutos de bloqueio
+    const CHAVE_T   = 'fp_t'; // tentativas
+    const CHAVE_B   = 'fp_b'; // timestamp de bloqueio
+
+    async function sha256(txt) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(txt));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    function getBloqueio() {
+      const ts = parseInt(localStorage.getItem(CHAVE_B) || '0');
+      if (!ts) return 0;
+      const restMs = ts - Date.now();
+      return restMs > 0 ? restMs : 0;
+    }
+
+    function getTentativas() {
+      return parseInt(localStorage.getItem(CHAVE_T) || '0');
+    }
+
+    function mostrar(id) {
+      document.getElementById('msg-erro').style.display = 'none';
+      document.getElementById('msg-bloq').style.display = 'none';
+      if (id) document.getElementById(id).style.display = 'block';
+    }
+
+    function atualizarUI() {
+      const restMs = getBloqueio();
+      const tent   = getTentativas();
+      const btn    = document.getElementById('btn');
+      const inp    = document.getElementById('pwd');
+      const info   = document.getElementById('tent-info');
+
+      if (restMs > 0) {
+        btn.disabled = true;
+        inp.disabled = true;
+        mostrar('msg-bloq');
+        const min = Math.ceil(restMs / 60000);
+        document.getElementById('countdown').textContent = min + ' min';
+        info.textContent = '';
+        setTimeout(atualizarUI, 10000); // reavalia a cada 10s
+      } else {
+        btn.disabled = false;
+        inp.disabled = false;
+        mostrar(null);
+        if (tent > 0) {
+          info.textContent = `⚠ ${tent} de ${MAX_TENT} tentativas usadas`;
+        } else {
+          info.textContent = '';
+        }
+      }
+    }
+
+    async function entrar() {
+      if (getBloqueio() > 0) return;
+
+      const val = document.getElementById('pwd').value.trim();
+      if (!val) return;
+
+      const hash = await sha256(val);
+
+      if (hash === _h) {
+        // Sucesso — limpa contadores e redireciona
+        localStorage.removeItem(CHAVE_T);
+        localStorage.removeItem(CHAVE_B);
         sessionStorage.setItem('farol_auth', 'ok');
         window.location.href = 'dashboard.html';
       } else {
-        const err = document.getElementById('erro');
-        err.style.display = 'block';
-        setTimeout(() => err.style.display = 'none', 3000);
+        // Falha — incrementa contador
+        let tent = getTentativas() + 1;
+        localStorage.setItem(CHAVE_T, tent);
+
+        if (tent >= MAX_TENT) {
+          // Bloqueia por BLOQ_MIN minutos
+          localStorage.setItem(CHAVE_B, Date.now() + BLOQ_MIN * 60 * 1000);
+          localStorage.setItem(CHAVE_T, '0');
+          atualizarUI();
+        } else {
+          mostrar('msg-erro');
+          atualizarUI();
+          // Delay progressivo: 1s, 2s, 3s... por tentativa
+          await new Promise(r => setTimeout(r, tent * 1000));
+          mostrar(null);
+        }
       }
     }
+
     function togglePwd() {
       const i = document.getElementById('pwd');
       i.type = i.type === 'password' ? 'text' : 'password';
     }
+
+    // Verifica bloqueio ao carregar a página
+    atualizarUI();
   </script>
 </body>
 </html>
