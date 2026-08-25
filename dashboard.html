@@ -209,7 +209,7 @@ a.rastreio:hover{text-decoration:underline}
 .right-map .tt-alerta { color:#f97316 }
 .right-map .tt-pct { display:inline-block;padding:2px 6px;border-radius:4px;font-size:.68rem;font-weight:700;margin-left:4px }</style>
 </head>
-<script>if(!sessionStorage.getItem("farol_auth")){window.location.href="index.html";}</script>
+<script>if(!sessionStorage.getItem("farol_auth")||sessionStorage.getItem("farol_token")!=="sf_20260825b"){sessionStorage.clear();window.location.href="index.html";}</script>
 <body>
 <div class="header">
   <h1>🔦 Farol de Pedidos</h1>
