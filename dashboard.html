@@ -80,7 +80,290 @@ a.rastreio{color:#60a5fa;text-decoration:none;font-size:.75rem}
 .dist-pct{font-size:.7rem;font-weight:700;background:#f1f5f9;color:#475569;padding:3px 7px;border-radius:8px;white-space:nowrap;flex-shrink:0;align-self:center;border:1px solid #e2e8f0}
 .dist-check{background:#f8fafc;padding:3px 16px;font-size:.6rem;border-bottom:1px solid #e2e8f0}
 @media print{.btn-pdf{display:none!important}}
+
+/* ── SISTEMA DE ABAS ── */
+.tab-section-wrap {
+  background: #111827;
+  border-bottom: 1px solid #1e293b;
+}
+.tab-strip-outer {
+  display: flex;
+  gap: 0;
+  padding: 0;
+  border-bottom: 1px solid #1e293b;
+  background: #0f172a;
+}
+.tab-btn-outer {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 11px 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color .15s, border-color .15s;
+  white-space: nowrap;
+}
+.tab-btn-outer:hover { color: #94a3b8; }
+.tab-btn-outer.tab-active {
+  color: #60a5fa;
+  border-bottom-color: #3b82f6;
+}
+.tab-badge-outer {
+  background: rgba(239,68,68,.15);
+  color: #f87171;
+  border: 1px solid rgba(239,68,68,.3);
+  font-size: .68rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+.tab-panel-outer { display: none; }
+.tab-panel-outer.tab-panel-active { display: block; }
+
+/* ── TAB 2 — Atrasados Tratativas ── */
+.trat-summary-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 24px;
+  background: #1a2640;
+  border-bottom: 1px solid #1e293b;
+  flex-wrap: wrap;
+}
+.trat-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .78rem;
+  font-weight: 600;
+  padding: 5px 13px;
+  border-radius: 20px;
+}
+.tc-total  { background: rgba(99,102,241,.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,.25); }
+.tc-trat   { background: rgba(245,158,11,.12); color: #fbbf24; border: 1px solid rgba(245,158,11,.3); }
+.tc-sem    { background: rgba(239,68,68,.10);  color: #f87171; border: 1px solid rgba(239,68,68,.28); }
+.trat-summary-bar .sep { width:1px; height:22px; background:#334155; }
+
+.trat-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  background: #1e293b;
+  border-bottom: 1px solid #1e293b;
+  flex-wrap: wrap;
+}
+.trat-search {
+  flex: 1; min-width: 200px; max-width: 320px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 6px 12px 6px 30px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: .82rem;
+  color: #e2e8f0;
+  outline: none;
+}
+.trat-search::placeholder { color: #4b5563; }
+.trat-search:focus { border-color: #3b82f6; }
+.trat-filter-wrap { display: flex; gap: 6px; }
+.trat-filter-btn {
+  background: rgba(255,255,255,.04);
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 5px 13px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all .15s;
+}
+.trat-filter-btn:hover { background: rgba(255,255,255,.07); color: #94a3b8; }
+.trat-filter-btn.tf-active { background: rgba(59,130,246,.15); border-color: rgba(59,130,246,.4); color: #60a5fa; }
+.trat-filter-btn.tf-amb    { background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.3); color: #fbbf24; }
+.trat-filter-btn.tf-red    { background: rgba(239,68,68,.10);  border-color: rgba(239,68,68,.28); color: #f87171; }
+.trat-rowcount { margin-left: auto; font-size: .75rem; color: #475569; }
+
+.trat-legend {
+  display: flex; gap: 18px; align-items: center;
+  padding: 8px 24px;
+  background: #0f172a;
+}
+.trat-leg-item { display: flex; align-items: center; gap: 6px; font-size: .72rem; color: #64748b; }
+.trat-leg-stripe { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+.leg-amb { background: rgba(245,158,11,.25); border-left: 3px solid #f59e0b; }
+.leg-red { background: rgba(239,68,68,.15);  border-left: 3px solid #ef4444; }
+
+.trat-table-wrap { overflow-x: auto; padding: 0 0 32px; }
+.trat-table { width: 100%; border-collapse: collapse; font-size: .78rem; }
+.trat-table thead th {
+  background: #0f172a;
+  color: #64748b;
+  font-weight: 600;
+  padding: 9px 12px;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid #1e293b;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.trat-table thead th:hover { color: #94a3b8; }
+.trat-table tbody tr { border-top: 1px solid #0f172a22; transition: background .1s; }
+.trat-table tbody tr:hover { background: rgba(255,255,255,.02); }
+.trat-table tbody tr.tr-amb {
+  border-left: 3px solid #f59e0b;
+  background: rgba(245,158,11,.03);
+}
+.trat-table tbody tr.tr-amb:hover { background: rgba(245,158,11,.07); }
+.trat-table tbody tr.tr-red {
+  border-left: 3px solid #ef4444;
+  background: rgba(239,68,68,.02);
+}
+.trat-table tbody tr.tr-red:hover { background: rgba(239,68,68,.06); }
+.trat-table td {
+  padding: 8px 12px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255,255,255,.03);
+  color: #e2e8f0;
+  white-space: nowrap;
+}
+.trat-table td.tc-pedido { color: #60a5fa; font-size: .75rem; }
+.trat-table td.tc-mono   { color: #94a3b8; font-size: .73rem; font-family: monospace; }
+.trat-table td.tc-date   { color: #94a3b8; }
+.trat-table td.tc-venc   { color: #f87171; font-weight: 600; }
+.trat-table td.tc-cliente { max-width: 160px; overflow: hidden; text-overflow: ellipsis; }
+.trat-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: .7rem; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px;
+}
+.tb-em     { background: rgba(245,158,11,.15); color: #fbbf24; border: 1px solid rgba(245,158,11,.3); }
+.tb-sem    { background: rgba(100,116,139,.1);  color: #475569; border: 1px solid rgba(100,116,139,.2); }
+.tb-atm    { background: rgba(249,115,22,.18);  color: #fb923c; }
+.tb-npm    { background: rgba(34,197,94,.12);   color: #4ade80; }
+.tb-smn    { background: rgba(100,116,139,.15); color: #94a3b8; }
+.atuar-sim { background: rgba(239,68,68,.15); color: #f87171; border: 1px solid rgba(239,68,68,.3); font-size:.7rem; font-weight:700; padding:2px 8px; border-radius:4px; }
+.atuar-nao { background: rgba(34,197,94,.1);  color: #4ade80; border: 1px solid rgba(34,197,94,.25); font-size:.7rem; font-weight:700; padding:2px 8px; border-radius:4px; }
+.trat-link { color: #60a5fa; text-decoration: none; font-size: .73rem; padding: 2px 8px; border: 1px solid rgba(59,130,246,.25); border-radius: 5px; }
+.trat-link:hover { background: rgba(59,130,246,.1); }
+.trat-empty { text-align: center; padding: 40px; color: #475569; font-size: .82rem; }
+
 </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style id="map-v2-layout">
+/* === SPLIT LAYOUT === */
+.top-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: start;
+}
+.left-kpi { min-width: 0; }
+.right-map {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #7c3aed;
+  display: flex;
+  flex-direction: column;
+  /* maxHeight sincronizado via JS com left-kpi */
+}
+.right-map header {
+  flex-shrink: 0;
+  padding: 10px 14px !important;
+  background: linear-gradient(135deg,#1e3a5f,#0f2744) !important;
+}
+.right-map header h1 { font-size: .95rem !important; }
+.right-map header p  { font-size: .7rem  !important; }
+.right-map .container {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 8px 10px !important;
+  max-width: none !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+.right-map .metric-bar {
+  flex-shrink: 0;
+  margin-bottom: 6px !important;
+}
+.right-map .metric-btn {
+  padding: 4px 8px !important;
+  font-size: .72rem !important;
+}
+.right-map .layout {
+  flex: 1;
+  min-height: 0;
+  height: auto !important;
+}
+.right-map .map-card {
+  overflow: hidden;
+  min-height: 0;
+}
+.right-map #map-svg {
+  flex: 1;
+  min-height: 0;
+}
+.right-map .right-col {
+  overflow-y: auto;
+  min-height: 0;
+}
+/* compact region cards */
+.right-map .region-card  { padding: 6px 8px !important; }
+.right-map .region-name  { font-size: .6rem !important; margin-bottom: 4px !important; }
+.right-map .region-badge { font-size: .6rem !important; padding: 1px 5px !important; }
+.right-map .region-stats { grid-template-columns: repeat(3,1fr) !important; gap: 3px !important; }
+.right-map .rs   { padding: 3px 2px !important; }
+.right-map .rs-v { font-size: .78rem !important; }
+.right-map .rs-l { font-size: .52rem !important; }
+</style>
+<style id="map-v2-css">.right-map header { background:linear-gradient(135deg,#1e3a5f,#0f2744);padding:20px 28px;border-bottom:1px solid #1e3a5f }
+.right-map header h1 { font-size:1.2rem;font-weight:700;color:#f1f5f9 }
+.right-map header p { font-size:.8rem;color:#94a3b8;margin-top:3px }
+.right-map .container { max-width:1400px;margin:0 auto;padding:24px 28px }
+.right-map .metric-bar { display:flex;gap:6px;flex-wrap:nowrap;margin-bottom:8px;overflow-x:auto }
+.right-map .metric-btn { padding:5px 10px;border-radius:20px;border:1px solid #334155;background:#1e293b;color:#94a3b8;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.3px;position:relative;overflow:hidden }
+.right-map .metric-btn::after { content:'';position:absolute;bottom:0;left:0;height:3px;width:var(--progress,0%);background:#7c3aed;border-radius:0 0 20px 20px;transition:width .08s linear }
+.right-map .metric-btn:hover { border-color:#60a5fa;color:#60a5fa }
+.right-map .metric-btn.active { border-color:#7c3aed;background:#2e1065;color:#c4b5fd }
+.right-map .layout { display:grid;grid-template-columns:1fr 220px;gap:10px;align-items:stretch;height:calc(100% - 44px) }
+.right-map .map-card { background:#eff6ff;border-radius:10px;border:1px solid #bfdbfe;padding:12px;position:relative;display:flex;flex-direction:column }
+.right-map .map-title { font-size:.68rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#1e3a5f;margin-bottom:6px }
+#map-svg { width:100%;flex:1;display:block;min-height:0 }
+.right-map .legend-row { display:flex;align-items:center;gap:8px;margin-top:8px }
+.right-map .legend-label { font-size:.72rem;color:#64748b }
+.right-map .legend-bar { flex:1;height:10px;border-radius:5px;background:linear-gradient(to right,var(--l-from,#1e3a5f),var(--l-to,#ef4444)) }
+.right-map .right-col { display:flex;flex-direction:column;gap:6px;overflow-y:auto;height:100% }
+.right-map .region-card { background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;padding:10px 12px }
+.right-map .region-name { font-size:.65rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center }
+.right-map .region-badge { font-size:.68rem;padding:2px 8px;border-radius:10px;font-weight:600 }
+.right-map .region-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:4px }
+.right-map .rs { text-align:center;background:#dbeafe;border-radius:5px;padding:4px 3px }
+.right-map .rs-v { font-size:.9rem;font-weight:700;line-height:1;color:#1e293b }
+.right-map .rs-l { font-size:.58rem;color:#475569;margin-top:1px }
+#tooltip { position:fixed;background:#1e293b;border:1px solid #475569;border-radius:10px;padding:12px 14px;font-size:.78rem;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.5);min-width:200px;z-index:999;transition:opacity .15s }
+#tooltip.hidden { opacity:0 }
+.right-map .tt-uf { font-size:1rem;font-weight:700;color:#f1f5f9;margin-bottom:6px }
+.right-map .tt-row { display:flex;justify-content:space-between;gap:16px;margin-top:3px;font-size:.75rem }
+.right-map .tt-key { color:#94a3b8 }
+.right-map .tt-val { font-weight:600;color:#e2e8f0 }
+.right-map .tt-alerta { color:#f97316 }
+.right-map .tt-pct { display:inline-block;padding:2px 6px;border-radius:4px;font-size:.68rem;font-weight:700;margin-left:4px }</style>
 </head>
 <script>if(!sessionStorage.getItem("farol_auth")||sessionStorage.getItem("farol_token")!=="sf_20260825b"){sessionStorage.clear();window.location.href="index.html";}</script>
 <body>
@@ -139,7 +422,8 @@ a.rastreio{color:#60a5fa;text-decoration:none;font-size:.75rem}
 </div>
 
 <main>
-
+<div class="top-split">
+  <div class="left-kpi">
 <div class="section-title">📅 Prazo de Entrega ao Cliente</div>
 <div class="kpi-strip cols-4">
   <div class="kpi white">
@@ -210,6 +494,45 @@ a.rastreio{color:#60a5fa;text-decoration:none;font-size:.75rem}
     <div class="val" style="color:#2dd4bf">160</div>
   </div>
 </div>
+  </div><!-- /left-kpi -->
+<div class="right-map" id="right-map">
+<header>
+  <h1>🗺 Distribuição Regional de Pedidos</h1>
+  <p>Farol JBL · 01/09/2026 · 1,726 pedidos · Todas as UFs</p>
+</header>
+
+<div class="container">
+  <!-- Metric selector -->
+  <div class="metric-bar" id="metric-bar">
+    <button class="metric-btn active" data-metric="pct_alerta" data-accent="#f97316" data-bg="#431407">% em Alerta</button>
+    <button class="metric-btn" data-metric="last_mile" data-accent="#a78bfa" data-bg="#1e3a5f">Last Mile</button>
+    <button class="metric-btn" data-metric="insucesso" data-accent="#ef4444" data-bg="#450a0a">Insucessos</button>
+    <button class="metric-btn" data-metric="atrasado_mov" data-accent="#f59e0b" data-bg="#451a03">Atrasado Mov.</button>
+    <button class="metric-btn" data-metric="atrasado" data-accent="#fb7185" data-bg="#4c0519">Atrasado Entrega</button>
+  </div>
+
+  <div class="layout">
+    <!-- Map -->
+    <div class="map-card">
+      <div class="map-title" id="map-title">% de Pedidos em Alerta por UF</div>
+      <svg id="map-svg"></svg>
+      <div class="legend-row">
+        <span class="legend-label" id="leg-min" style="color:#64748b">0%</span>
+        <div class="legend-bar" id="leg-bar" style="--l-from:#ede9fe;--l-to:#4c1d95"></div>
+        <span class="legend-label" id="leg-max" style="color:#64748b">71%</span>
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div class="right-col" id="right-col">
+      <!-- Region cards inserted by JS -->
+    </div>
+  </div>
+</div>
+
+<div id="tooltip" class="hidden"></div>
+</div>
+</div><!-- /top-split -->
 
 <div class="devol-section">
   <h2>↩ Pedidos em Devolução (160)</h2>
@@ -233,6 +556,22 @@ a.rastreio{color:#60a5fa;text-decoration:none;font-size:.75rem}
   <div id="nao-mapeadas-list"></div>
 </div>
 
+
+<div class="tab-section-wrap">
+  <div style="padding:8px 24px 0">
+    <div class="section-title" style="margin-bottom:10px">📋 Tabela de Pedidos</div>
+    <div class="tab-strip-outer">
+      <button class="tab-btn-outer tab-active" id="tab-obtn-1" onclick="switchTabOuter(1)">
+        Tabela de Pedidos
+      </button>
+      <button class="tab-btn-outer" id="tab-obtn-2" onclick="switchTabOuter(2)">
+        Pedidos Atrasados · Tratativas <span class="tab-badge-outer">7 sem tratativa</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="tab-panel-outer tab-panel-active" id="tab-outer-1">
 <div class="section-title">📋 Tabela de Pedidos</div>
 <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px">
   <select id="filtro-select" onchange="filtrarSelect(this.value)"
@@ -294,6 +633,65 @@ a.rastreio{color:#60a5fa;text-decoration:none;font-size:.75rem}
 </tr></thead>
 <tbody id="tbody"></tbody>
 </table>
+</div>
+
+</div>
+
+<div class="tab-panel-outer" id="tab-outer-2">
+
+<div class="trat-summary-bar">
+  <div class="trat-chip tc-total">🚨 <span id="t2-cnt-total">50</span> atrasados torre</div>
+  <div class="sep"></div>
+  <div class="trat-chip tc-trat">🟡 <span id="t2-cnt-trat">43</span> em tratativa</div>
+  <div class="trat-chip tc-sem">🔴 <span id="t2-cnt-sem">7</span> sem tratativa</div>
+  <span style="margin-left:auto;font-size:.72rem;color:#475569">
+    Atrasados Torre = situacao=ATRASADO excl. INSUCESSO e SEM_MOV
+  </span>
+</div>
+
+<div class="trat-toolbar">
+  <div style="position:relative">
+    <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#4b5563;font-size:.75rem">🔍</span>
+    <input class="trat-search" type="text" id="trat-search" placeholder="Buscar pedido, cliente, transportadora…" oninput="t2Filtrar()">
+  </div>
+  <div class="trat-filter-wrap">
+    <button class="trat-filter-btn tf-active" id="tf-todos"   onclick="t2SetFilter('todos')">Todos (50)</button>
+    <button class="trat-filter-btn"           id="tf-trat"    onclick="t2SetFilter('trat')">🟡 Em tratativa (43)</button>
+    <button class="trat-filter-btn"           id="tf-sem"     onclick="t2SetFilter('sem')">🔴 Sem tratativa (7)</button>
+  </div>
+  <div class="trat-rowcount" id="t2-rowcount">Exibindo 50 pedidos</div>
+</div>
+
+<div class="trat-legend">
+  <div class="trat-leg-item"><div class="trat-leg-stripe leg-amb"></div>Em tratativa — time acompanhando</div>
+  <div class="trat-leg-item"><div class="trat-leg-stripe leg-red"></div>Sem tratativa registrada</div>
+</div>
+
+<div class="trat-table-wrap">
+  <table class="trat-table" id="trat-table">
+    <thead>
+      <tr>
+        <th onclick="t2Sort('pedido')">Pedido ↕</th>
+        <th onclick="t2Sort('nf')">NF ↕</th>
+        <th onclick="t2Sort('tracking')">Tracking ↕</th>
+        <th onclick="t2Sort('cliente')">Cliente ↕</th>
+        <th onclick="t2Sort('transp')">Transportadora ↕</th>
+        <th onclick="t2Sort('uf')">UF ↕</th>
+        <th onclick="t2Sort('sit_mov')">Sit. Movim. ↕</th>
+        <th onclick="t2Sort('despacho')">Despacho ↕</th>
+        <th onclick="t2Sort('previsao')">Prev. Entrega ↕</th>
+        <th onclick="t2Sort('trat')">🚦 Tratativa ↕</th>
+        <th onclick="t2Sort('atuacao')">Data Atuação ↕</th>
+        <th onclick="t2Sort('informada')">Prev. Solução ↕</th>
+        <th onclick="t2Sort('trat_prazo')">Atuar Novamente ↕</th>
+        <th>Rastreio</th>
+      </tr>
+    </thead>
+    <tbody id="trat-tbody"></tbody>
+  </table>
+  <div class="trat-empty" id="trat-empty" style="display:none">Nenhum pedido encontrado.</div>
+</div>
+
 </div>
 </main>
 
@@ -416,6 +814,400 @@ function renderNaoMapeadas() {
 }
 
 aplicarFiltros(); renderTranspAlerts(); renderDevolucoes(); renderNaoMapeadas();
+</script>
+
+<script id="map-v2-script">
+// ── Mapa Regional v2 ──
+
+const GEO = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"sigla":"AC","nome":"Acre"},"geometry":{"type":"Polygon","coordinates":[[[-73.803699,-7.111057],[-72.658816,-7.624607],[-70.368997,-8.141024],[-66.626959,-9.935258],[-67.047783,-10.27537],[-67.406348,-10.373624],[-67.707391,-10.708131],[-68.054241,-10.669845],[-68.237692,-10.956333],[-68.542816,-11.108756],[-69.423511,-10.926513],[-69.935091,-10.92091],[-70.311421,-11.069586],[-70.531044,-10.934591],[-70.621576,-10.999458],[-70.622653,-9.821404],[-70.493979,-9.426199],[-71.212348,-9.966583],[-72.180409,-9.99979],[-72.150676,-9.799055],[-72.356853,-9.493771],[-73.214815,-9.410931],[-72.936769,-8.98833],[-73.290566,-8.614645],[-73.279806,-8.47484],[-73.536741,-8.345494],[-73.771247,-7.90571],[-73.683598,-7.776067],[-73.987573,-7.554907],[-73.961742,-7.345469],[-73.700266,-7.305066],[-73.803699,-7.111057]]]}},{"type":"Feature","properties":{"sigla":"AL","nome":"Alagoas"},"geometry":{"type":"Polygon","coordinates":[[[-35.465161,-8.825492],[-35.152043,-8.912951],[-35.301144,-9.184662],[-35.353576,-9.255001],[-36.391006,-10.50069],[-36.991601,-9.976776],[-38.237084,-9.329271],[-37.759906,-8.857214],[-36.952008,-9.38212],[-36.867795,-9.268107],[-36.603786,-9.340622],[-36.224498,-9.170589],[-36.063478,-8.914917],[-35.465161,-8.825492]],[[-35.290981,-9.148233],[-35.289244,-9.148],[-35.291033,-9.146075],[-35.290981,-9.148233]]]}},{"type":"Feature","properties":{"sigla":"AM","nome":"Amazonas"},"geometry":{"type":"Polygon","coordinates":[[[-67.406873,2.246621],[-67.096812,1.733011],[-67.08759,1.167322],[-66.856352,1.230626],[-66.317916,0.755435],[-65.584982,1.009292],[-65.539922,0.64926],[-65.328523,0.931928],[-65.181275,0.923526],[-65.102503,1.157025],[-64.809914,1.314744],[-64.745882,1.225626],[-64.396853,1.527208],[-64.337406,1.363963],[-64.094647,1.617491],[-63.995785,1.979573],[-63.371834,2.212058],[-63.14098,2.172756],[-63.023254,2.014976],[-62.705501,1.940031],[-62.803914,1.590666],[-62.445258,0.977169],[-62.53248,0.509141],[-62.18784,-0.330494],[-62.290344,-0.64633],[-62.509707,-0.75864],[-62.039147,-1.118076],[-61.896094,-1.395022],[-61.474144,-1.578632],[-61.618591,-1.394467],[-61.584703,-0.93669],[-61.46414,-0.664471],[-61.216365,-0.49975],[-60.920256,-0.555036],[-60.667481,-0.894188],[-60.309142,-0.724475],[-60.399423,-0.509759],[-60.037434,0.263837],[-58.89489,0.263852],[-58.871545,-0.342665],[-58.322768,-1.142963],[-58.162129,-1.229325],[-58.01703,-1.105819],[-57.959836,-1.40124],[-57.392176,-1.722738],[-57.16439,-1.720534],[-57.036699,-1.911216],[-56.734026,-2.021675],[-56.678565,-2.212225],[-56.098136,-2.026721],[-56.46509,-2.422775],[-58.262031,-6.468555],[-58.477949,-6.699242],[-58.136365,-7.356093],[-58.382425,-7.838707],[-58.286495,-8.128132],[-58.394898,-8.779819],[-61.582423,-8.79831],[-61.712737,-8.687474],[-61.984687,-8.878228],[-62.844524,-7.986158],[-63.620267,-7.968921],[-63.77299,-8.320355],[-63.943608,-8.330811],[-63.924056,-8.575147],[-64.13036,-8.721781],[-64.148942,-8.958555],[-64.838837,-8.993728],[-65.097373,-9.43213],[-65.246189,-9.257276],[-65.446554,-9.31599],[-65.434254,-9.465947],[-65.596321,-9.413476],[-65.79108,-9.585253],[-65.969866,-9.412766],[-66.408458,-9.406552],[-66.50022,-9.633167],[-66.805966,-9.814127],[-70.368997,-8.141024],[-72.658816,-7.624607],[-73.803699,-7.111057],[-73.644775,-6.761425],[-73.137127,-6.497262],[-73.236244,-6.03117],[-72.96166,-5.653915],[-72.814452,-5.109594],[-71.882947,-4.516117],[-70.942851,-4.385059],[-70.652803,-4.126768],[-70.325613,-4.14608],[-70.198758,-4.365906],[-69.963656,-4.300192],[-69.395245,-1.132138],[-69.625743,-0.749224],[-69.614233,-0.505595],[-70.05706,-0.186323],[-70.042718,0.559422],[-69.480791,0.735938],[-69.358015,0.612602],[-69.114365,0.650391],[-69.264789,1.064718],[-69.843846,1.085633],[-69.841504,1.720918],[-68.156176,1.73211],[-68.266269,1.82776],[-68.207987,1.962003],[-67.940565,1.831186],[-67.406873,2.246621]]]}},{"type":"Feature","properties":{"sigla":"AP","nome":"Amap\u00e1"},"geometry":{"type":"Polygon","coordinates":[[[-51.181678,4.008887],[-50.702067,2.13866],[-50.445945,2.199662],[-50.237715,1.803558],[-49.9213,1.70426],[-49.893209,1.193334],[-50.093461,0.702404],[-50.409404,0.62366],[-50.667739,0.185354],[-51.2159,-0.11829],[-51.67874,-0.784922],[-51.703871,-1.067409],[-52.06999,-1.235651],[-52.426566,-1.050463],[-52.522704,-0.588746],[-52.639535,-0.584576],[-52.689648,-0.302593],[-52.933229,-0.139195],[-53.174834,0.382038],[-53.105819,0.6843],[-53.411014,0.92966],[-53.42604,1.243034],[-54.08598,1.488609],[-54.308816,1.74136],[-54.744288,1.776109],[-54.875756,2.426999],[-54.684358,2.44719],[-54.436022,2.210262],[-53.97432,2.232816],[-53.766666,2.379297],[-53.540102,2.257596],[-53.337633,2.353968],[-53.266912,2.169116],[-52.943625,2.169207],[-52.55407,2.516693],[-52.332621,3.172676],[-51.645939,4.044961],[-51.549021,4.424777],[-51.181678,4.008887]]]}},{"type":"Feature","properties":{"sigla":"BA","nome":"Bahia"},"geometry":{"type":"Polygon","coordinates":[[[-39.288197,-8.562901],[-39.233395,-8.705363],[-38.798427,-8.792369],[-38.670581,-8.974455],[-38.551072,-8.822309],[-38.483023,-9.001073],[-38.295991,-9.02249],[-38.202893,-9.418237],[-37.998505,-9.497317],[-37.99726,-9.916292],[-37.831385,-10.0005],[-37.736156,-10.331607],[-37.858716,-10.426042],[-37.813529,-10.690617],[-38.211549,-10.708731],[-38.229144,-10.915496],[-37.81335,-11.513874],[-37.342503,-11.443448],[-38.049109,-12.634461],[-38.347479,-12.950453],[-38.615855,-12.930842],[-38.96459,-13.283183],[-38.888232,-13.642959],[-38.997504,-13.74407],[-38.927587,-13.938912],[-39.065244,-14.705098],[-38.856339,-15.860115],[-39.212599,-17.168154],[-39.135396,-17.687681],[-39.567193,-18.089973],[-39.670192,-18.348743],[-40.222017,-17.979948],[-40.223543,-17.733587],[-40.623079,-17.405503],[-40.490807,-16.884017],[-40.281248,-16.900711],[-40.275115,-16.573557],[-40.159458,-16.579837],[-39.856434,-16.113361],[-40.230469,-15.80329],[-40.561657,-15.802818],[-40.815248,-15.648014],[-41.330809,-15.744212],[-41.356026,-15.499831],[-41.800314,-15.100642],[-42.091227,-15.186151],[-43.175946,-14.650098],[-43.530985,-14.814849],[-43.883097,-14.652781],[-43.782789,-14.338799],[-44.214657,-14.232851],[-46.076651,-15.264229],[-45.965653,-14.965196],[-46.016355,-14.418867],[-45.906861,-14.352935],[-46.265352,-14.097523],[-46.161537,-13.590492],[-46.242457,-13.429489],[-46.041136,-13.280447],[-46.315491,-13.302738],[-46.322236,-13.097851],[-46.113889,-12.917537],[-46.304358,-12.949443],[-46.279515,-12.584471],[-46.153544,-12.482796],[-46.351964,-12.336976],[-46.397437,-12.039917],[-46.170841,-11.900564],[-46.374156,-11.868178],[-46.314531,-11.631832],[-46.082769,-11.635703],[-46.478886,-11.515971],[-46.616668,-11.289032],[-46.210548,-10.649255],[-45.827299,-10.435545],[-45.602765,-10.107574],[-45.247635,-10.821551],[-44.930806,-10.928339],[-44.577371,-10.626353],[-44.335243,-10.548554],[-44.134086,-10.635817],[-43.661876,-10.003925],[-43.849292,-9.547644],[-43.485058,-9.26488],[-43.278369,-9.424166],[-42.971497,-9.407654],[-42.764775,-9.616339],[-42.24334,-9.28851],[-41.837579,-9.241864],[-41.38196,-8.708455],[-41.113256,-8.703597],[-40.667025,-9.158669],[-40.776329,-9.454027],[-40.622789,-9.482496],[-40.334654,-9.353473],[-40.250327,-9.060099],[-39.957648,-9.048202],[-39.894253,-8.831304],[-39.674206,-8.786663],[-39.690755,-8.661922],[-39.288197,-8.562901]],[[-39.581198,-18.082542],[-39.57204,-18.091149],[-39.573559,-18.080663],[-39.581198,-18.082542]]]}},{"type":"Feature","properties":{"sigla":"CE","nome":"Cear\u00e1"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-40.018043,-2.836985],[-38.471724,-3.707322],[-38.013328,-4.246088],[-37.251574,-4.832043],[-37.639945,-4.926029],[-38.164332,-5.945699],[-38.578217,-6.279809],[-38.613774,-6.782794],[-38.76462,-6.993504],[-38.534205,-7.293397],[-38.965739,-7.84459],[-39.090918,-7.857785],[-39.662188,-7.310208],[-40.548081,-7.392315],[-40.37021,-6.802665],[-40.731554,-6.653683],[-40.906727,-6.041363],[-40.925133,-5.181109],[-41.248798,-4.868725],[-41.090514,-4.169968],[-41.114012,-4.040281],[-41.254308,-4.035393],[-41.239101,-3.712209],[-41.423139,-3.367652],[-41.256275,-3.087663],[-41.322306,-2.920971],[-40.499423,-2.784096],[-40.018043,-2.836985]]],[[[-40.024638,-2.834113],[-40.018043,-2.836985],[-40.027137,-2.835738],[-40.024638,-2.834113]]]]}},{"type":"Feature","properties":{"sigla":"ES","nome":"Esp\u00edrito Santo"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-40.723829,-20.841778],[-40.957184,-21.302959],[-41.717586,-21.123331],[-41.711998,-20.871073],[-41.878559,-20.760272],[-41.858371,-20.372478],[-41.756348,-20.206372],[-41.381706,-20.188318],[-41.168069,-19.671731],[-40.948926,-19.472666],[-41.017966,-18.973054],[-41.241972,-18.853949],[-40.916547,-18.814972],[-41.158438,-18.308275],[-41.055643,-18.166124],[-40.771099,-18.155441],[-40.902196,-17.986994],[-40.882317,-17.97007],[-40.70415,-18.022872],[-40.52664,-17.891464],[-39.666461,-18.331853],[-39.688553,-19.305828],[-39.807,-19.64766],[-40.139262,-19.948668],[-40.423668,-20.63522],[-40.460722,-20.623091],[-40.627279,-20.840849],[-40.723829,-20.841778]],[[-40.524447,-20.663454],[-40.528092,-20.668621],[-40.504742,-20.670503],[-40.524447,-20.663454]],[[-40.540506,-20.674362],[-40.519806,-20.690528],[-40.516552,-20.685316],[-40.540506,-20.674362]]],[[[-40.46751,-20.659813],[-40.472407,-20.654176],[-40.464705,-20.652118],[-40.46751,-20.659813]]],[[[-40.724437,-20.846641],[-40.723829,-20.841778],[-40.718565,-20.845484],[-40.724437,-20.846641]]]]}},{"type":"Feature","properties":{"sigla":"GO","nome":"Goi\u00e1s"},"geometry":{"type":"Polygon","coordinates":[[[-50.157762,-12.411952],[-50.292184,-12.839493],[-49.369037,-13.274169],[-49.118631,-12.789931],[-48.975176,-12.956771],[-48.846318,-12.809378],[-48.601652,-13.059894],[-48.58596,-13.317182],[-48.508419,-13.128422],[-48.441266,-13.291938],[-48.173492,-13.147675],[-48.164957,-13.305356],[-47.823547,-13.311435],[-47.678542,-13.46728],[-47.63434,-13.104065],[-47.426534,-13.289007],[-46.750177,-12.968724],[-46.45422,-12.970722],[-46.417186,-12.823042],[-46.363444,-12.990788],[-46.113889,-12.917537],[-46.322236,-13.097851],[-46.278959,-13.347464],[-46.041136,-13.280447],[-46.242457,-13.429489],[-46.161537,-13.590492],[-46.265352,-14.097523],[-45.906861,-14.352935],[-46.016355,-14.418867],[-46.087711,-14.935946],[-46.286411,-14.9277],[-46.502907,-14.703965],[-46.50217,-15.05181],[-46.924283,-15.057868],[-46.836466,-15.322149],[-46.948659,-15.554148],[-46.811723,-15.885109],[-47.31868,-16.036235],[-47.31543,-15.593974],[-47.416906,-15.499863],[-48.197192,-15.500511],[-48.278674,-16.051101],[-47.30395,-16.060226],[-47.458136,-16.501765],[-47.126161,-16.980106],[-47.540735,-17.453844],[-47.266424,-17.608627],[-47.37261,-17.829485],[-47.282756,-18.057769],[-47.954481,-18.499815],[-48.261949,-18.331418],[-48.93631,-18.305744],[-49.378284,-18.641881],[-49.53537,-18.493183],[-50.30888,-18.697987],[-50.53704,-19.098939],[-50.816638,-19.289363],[-50.841692,-19.498685],[-52.44862,-18.690507],[-52.916123,-18.638707],[-52.961848,-18.540364],[-52.758375,-18.348349],[-53.100667,-18.309687],[-53.069568,-17.986086],[-53.246158,-17.531946],[-53.010827,-16.85757],[-52.625653,-16.533003],[-52.681097,-16.303429],[-52.252232,-15.892651],[-51.87912,-15.824951],[-51.535482,-15.069251],[-51.085531,-14.917279],[-50.833177,-14.089412],[-50.871321,-13.73266],[-50.606737,-13.310428],[-50.477597,-12.709527],[-50.157762,-12.411952]]]}},{"type":"Feature","properties":{"sigla":"MA","nome":"Maranh\u00e3o"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-46.762939,-9.40855],[-47.021131,-8.987369],[-47.01494,-8.975916],[-47.017851,-8.952537],[-46.969859,-8.914093],[-46.992123,-8.879003],[-46.913022,-8.847427],[-46.806408,-8.398576],[-46.54421,-8.318931],[-46.46619,-8.065802],[-46.604246,-7.895787],[-47.043074,-8.053196],[-47.590437,-7.439154],[-47.499355,-7.293472],[-47.745785,-7.200837],[-47.529477,-6.976146],[-47.378389,-6.270479],[-47.49969,-5.525235],[-47.885136,-5.260332],[-48.36347,-5.168012],[-48.754713,-5.348801],[-47.610681,-4.555974],[-47.08769,-3.855094],[-47.037359,-3.562529],[-46.575388,-2.841041],[-46.663524,-2.69385],[-46.415968,-2.529057],[-46.431918,-2.239473],[-46.280222,-2.152558],[-46.20959,-1.833459],[-46.32356,-1.765203],[-46.153206,-1.675556],[-46.150725,-1.224448],[-45.964677,-1.046262],[-45.948063,-1.238292],[-45.845856,-1.045085],[-45.907908,-1.176264],[-45.861357,-1.151206],[-45.90432,-1.222575],[-45.859776,-1.283629],[-45.814136,-1.166235],[-45.795179,-1.221759],[-45.839126,-1.283542],[-45.776082,-1.274833],[-45.736033,-1.134408],[-45.679563,-1.13781],[-45.745584,-1.237005],[-45.718669,-1.403679],[-45.628712,-1.365428],[-45.579919,-1.257056],[-45.551043,-1.3508],[-45.500622,-1.293634],[-45.521926,-1.358123],[-45.507364,-1.377623],[-45.526756,-1.404023],[-45.518507,-1.411757],[-45.409746,-1.289303],[-45.488071,-1.431251],[-45.487252,-1.529979],[-45.443181,-1.542735],[-45.448062,-1.44855],[-45.404808,-1.486914],[-45.355059,-1.314168],[-45.317094,-1.317757],[-45.352397,-1.736272],[-45.128603,-1.529149],[-45.129699,-1.459079],[-45.101489,-1.408602],[-45.103678,-1.402188],[-45.10648,-1.393977],[-45.110573,-1.383936],[-45.113557,-1.385351],[-45.101025,-1.360215],[-45.092691,-1.369094],[-45.103538,-1.426335],[-45.102751,-1.491354],[-45.091467,-1.503087],[-45.098093,-1.511703],[-45.095125,-1.51325],[-45.091467,-1.503087],[-45.090161,-1.496197],[-45.099882,-1.478884],[-45.077929,-1.486976],[-45.068716,-1.476156],[-45.06805,-1.457577],[-45.070153,-1.453052],[-45.06708,-1.448598],[-45.065643,-1.454768],[-45.064788,-1.502232],[-45.07831,-1.518439],[-44.815556,-1.417989],[-44.897584,-1.613394],[-44.642346,-1.623917],[-44.783855,-1.670586],[-44.696758,-1.737646],[-44.81366,-1.814537],[-44.593409,-1.743669],[-44.636446,-1.7952],[-44.632776,-1.828773],[-44.595522,-1.849685],[-44.639096,-1.8574],[-44.583374,-1.859488],[-44.56983,-1.797126],[-44.529463,-1.837879],[-44.599249,-1.897009],[-44.48747,-1.944881],[-44.499196,-2.141422],[-44.325584,-2.499677],[-44.022443,-2.397911],[-44.101168,-2.4643],[-43.958428,-2.481912],[-43.980142,-2.572756],[-43.614769,-2.219012],[-43.491542,-2.371156],[-43.184776,-2.373164],[-42.478749,-2.711717],[-41.823449,-2.718938],[-41.796411,-2.966204],[-41.938667,-3.187008],[-42.20399,-3.435414],[-42.497976,-3.447375],[-42.988804,-4.233691],[-42.85005,-4.480991],[-42.949395,-4.790325],[-42.797558,-5.182848],[-43.098607,-5.632817],[-43.074595,-6.054348],[-42.828943,-6.337041],[-42.919385,-6.669924],[-43.419644,-6.843448],[-43.715621,-6.698807],[-44.032993,-6.76002],[-44.687572,-7.394145],[-45.455584,-7.670276],[-45.765218,-8.609179],[-45.993873,-8.926466],[-45.783406,-9.479703],[-45.945953,-10.258155],[-46.367463,-10.168403],[-46.646991,-9.729945],[-46.560548,-9.483629],[-46.762939,-9.40855]],[[-44.813378,-1.802112],[-44.807013,-1.806953],[-44.810086,-1.801529],[-44.813378,-1.802112]],[[-44.569338,-1.919747],[-44.561008,-1.922738],[-44.566296,-1.917726],[-44.569338,-1.919747]],[[-45.74672,-1.37203],[-45.753933,-1.3783],[-45.744017,-1.374396],[-45.74672,-1.37203]],[[-45.887523,-1.18035],[-45.884711,-1.183372],[-45.877871,-1.178064],[-45.887523,-1.18035]],[[-45.820304,-1.30174],[-45.819922,-1.312316],[-45.819364,-1.297861],[-45.820304,-1.30174]],[[-44.693307,-1.816271],[-44.687702,-1.807552],[-44.692319,-1.807529],[-44.693307,-1.816271]],[[-45.389812,-1.68975],[-45.396502,-1.693982],[-45.387416,-1.679941],[-45.389812,-1.68975]],[[-44.800955,-1.626302],[-44.794239,-1.625919],[-44.790448,-1.618091],[-44.800955,-1.626302]],[[-45.126759,-1.539613],[-45.12258,-1.546307],[-45.112674,-1.544013],[-45.126759,-1.539613]],[[-45.822986,-1.248629],[-45.813911,-1.227213],[-45.822537,-1.241371],[-45.822986,-1.248629]],[[-45.573574,-1.329346],[-45.572389,-1.339989],[-45.570679,-1.329556],[-45.573574,-1.329346]],[[-45.795946,-1.322872],[-45.802308,-1.338317],[-45.80076,-1.344098],[-45.795946,-1.322872]],[[-44.834212,-1.822641],[-44.845667,-1.82836],[-44.82021,-1.822201],[-44.834212,-1.822641]],[[-45.37052,-1.426192],[-45.361591,-1.424943],[-45.377492,-1.421933],[-45.37052,-1.426192]],[[-45.897039,-1.23946],[-45.902308,-1.242535],[-45.906619,-1.249699],[-45.903055,-1.259635],[-45.897039,-1.23946]],[[-45.588706,-1.328217],[-45.584576,-1.324918],[-45.588166,-1.311739],[-45.588706,-1.328217]],[[-45.39837,-1.574532],[-45.379399,-1.539821],[-45.383801,-1.537106],[-45.39837,-1.574532]]],[[[-44.98279,-1.409302],[-44.963442,-1.277598],[-44.881646,-1.284792],[-44.842263,-1.333955],[-44.901002,-1.331033],[-44.98279,-1.409302]],[[-44.924278,-1.339253],[-44.924183,-1.345755],[-44.92188,-1.34317],[-44.924278,-1.339253]],[[-44.915723,-1.303713],[-44.899988,-1.311822],[-44.905049,-1.304287],[-44.915723,-1.303713]]],[[[-45.677976,-1.300212],[-45.638032,-1.274697],[-45.636121,-1.177922],[-45.615549,-1.115555],[-45.602252,-1.164233],[-45.632321,-1.220041],[-45.621938,-1.239448],[-45.639359,-1.299202],[-45.640329,-1.31059],[-45.632442,-1.348353],[-45.641063,-1.355685],[-45.677976,-1.300212]],[[-45.658271,-1.291052],[-45.654566,-1.308106],[-45.653286,-1.31105],[-45.658271,-1.291052]]],[[[-44.801813,-1.529242],[-44.803524,-1.564718],[-44.828285,-1.540941],[-44.763368,-1.48391],[-44.801813,-1.529242]]],[[[-44.736724,-1.511588],[-44.761015,-1.488541],[-44.7719,-1.46195],[-44.753019,-1.457771],[-44.736724,-1.511588]]],[[[-45.699548,-1.234029],[-45.657943,-1.221714],[-45.683,-1.26168],[-45.699548,-1.234029]]],[[[-45.570006,-1.189753],[-45.524058,-1.223378],[-45.592885,-1.246324],[-45.570006,-1.189753]]],[[[-44.602467,-1.81622],[-44.593113,-1.768414],[-44.575974,-1.779582],[-44.602467,-1.81622]]],[[[-44.728811,-1.562094],[-44.755527,-1.582919],[-44.742613,-1.5376],[-44.728811,-1.562094]]],[[[-45.816647,-1.121357],[-45.803778,-1.15084],[-45.816613,-1.147622],[-45.816647,-1.121357]]],[[[-45.795853,-1.213396],[-45.776356,-1.196193],[-45.785854,-1.227598],[-45.795853,-1.213396]]],[[[-45.533858,-1.326903],[-45.549957,-1.310047],[-45.53515,-1.30262],[-45.533858,-1.326903]]],[[[-45.068567,-1.367478],[-45.093048,-1.43153],[-45.096723,-1.418621],[-45.068567,-1.367478]]],[[[-45.073408,-1.476067],[-45.088878,-1.450677],[-45.068669,-1.466032],[-45.073408,-1.476067]]],[[[-45.032798,-1.386283],[-45.04881,-1.349034],[-45.043098,-1.342634],[-45.032798,-1.386283]]],[[[-44.740815,-1.70102],[-44.734841,-1.682156],[-44.725832,-1.691997],[-44.740815,-1.70102]]],[[[-45.690592,-1.287999],[-45.676027,-1.313762],[-45.682592,-1.316737],[-45.690592,-1.287999]]],[[[-44.451295,-2.070384],[-44.482172,-2.07513],[-44.444024,-2.057457],[-44.451295,-2.070384]]],[[[-44.485364,-2.113355],[-44.463409,-2.100845],[-44.472332,-2.124924],[-44.485364,-2.113355]]],[[[-45.412623,-1.408674],[-45.39717,-1.406608],[-45.406363,-1.418294],[-45.412623,-1.408674]]],[[[-45.061485,-1.439578],[-45.078594,-1.439548],[-45.070382,-1.424016],[-45.061485,-1.439578]]],[[[-44.734797,-1.666376],[-44.722692,-1.676865],[-44.737366,-1.672636],[-44.734797,-1.666376]]],[[[-44.438566,-2.018512],[-44.457059,-2.029743],[-44.445805,-2.00761],[-44.438566,-2.018512]]],[[[-44.622231,-1.797852],[-44.622714,-1.818384],[-44.630378,-1.788128],[-44.622231,-1.797852]]],[[[-45.082184,-1.44137],[-45.087112,-1.421671],[-45.079107,-1.418958],[-45.082184,-1.44137]]],[[[-45.506733,-1.390557],[-45.522618,-1.400949],[-45.511364,-1.388808],[-45.506733,-1.390557]]],[[[-45.054479,-1.329774],[-45.043278,-1.339077],[-45.05001,-1.344179],[-45.054479,-1.329774]]],[[[-45.787918,-1.235114],[-45.801481,-1.241909],[-45.794227,-1.234515],[-45.787918,-1.235114]]],[[[-45.010895,-1.396852],[-44.997834,-1.410183],[-45.015456,-1.395525],[-45.010895,-1.396852]]],[[[-44.605908,-1.831436],[-44.607661,-1.820636],[-44.602321,-1.833682],[-44.605908,-1.831436]]],[[[-45.631407,-1.314726],[-45.623706,-1.327185],[-45.628121,-1.339402],[-45.631407,-1.314726]]],[[[-44.823958,-1.570094],[-44.819476,-1.562051],[-44.816594,-1.570823],[-44.823958,-1.570094]]],[[[-45.567082,-1.268345],[-45.55731,-1.263829],[-45.566802,-1.27332],[-45.567082,-1.268345]]],[[[-42.755219,-2.546268],[-42.744241,-2.557435],[-42.760451,-2.557712],[-42.755219,-2.546268]]],[[[-44.00926,-2.399591],[-44.00304,-2.39306],[-43.99997,-2.390526],[-43.996992,-2.400908],[-44.00926,-2.399591]]],[[[-44.611386,-1.784215],[-44.616687,-1.781501],[-44.602929,-1.775101],[-44.611386,-1.784215]]],[[[-45.635912,-1.31984],[-45.637822,-1.304379],[-45.636274,-1.29977],[-45.635912,-1.31984]]],[[[-45.646866,-1.364225],[-45.643066,-1.35836],[-45.639085,-1.362132],[-45.646866,-1.364225]]],[[[-45.639076,-1.244803],[-45.646757,-1.250046],[-45.649132,-1.244951],[-45.639076,-1.244803]]],[[[-44.016082,-2.403412],[-44.00926,-2.399591],[-44.014749,-2.407207],[-44.016082,-2.403412]]],[[[-45.138294,-1.470739],[-45.136402,-1.464649],[-45.136275,-1.476072],[-45.138294,-1.470739]]],[[[-44.775734,-1.568849],[-44.783352,-1.571855],[-44.772085,-1.563757],[-44.775734,-1.568849]]],[[[-44.87554,-1.3394],[-44.876943,-1.344688],[-44.881552,-1.339683],[-44.87554,-1.3394]]],[[[-45.040618,-1.392734],[-45.036117,-1.390365],[-45.039709,-1.398268],[-45.040618,-1.392734]]],[[[-45.135795,-1.488631],[-45.13291,-1.485202],[-45.134789,-1.494033],[-45.135795,-1.488631]]],[[[-44.45765,-2.13373],[-44.453432,-2.130236],[-44.45113,-2.133003],[-44.45765,-2.13373]]],[[[-45.815989,-1.258576],[-45.81443,-1.254715],[-45.812678,-1.259956],[-45.815989,-1.258576]]],[[[-47.031325,-8.98013],[-47.031021,-8.98549],[-47.035272,-8.978543],[-47.031325,-8.98013]]],[[[-45.1083,-1.4003],[-45.103678,-1.402188],[-45.106269,-1.406017],[-45.1083,-1.4003]]],[[[-45.11103,-1.390738],[-45.10648,-1.393977],[-45.108271,-1.396702],[-45.11103,-1.390738]]],[[[-45.558671,-1.2604],[-45.555963,-1.257209],[-45.555095,-1.26079],[-45.558671,-1.2604]]],[[[-44.756861,-1.592813],[-44.755316,-1.58709],[-44.754158,-1.590024],[-44.756861,-1.592813]]],[[[-45.76409,-1.187979],[-45.761794,-1.185552],[-45.760822,-1.189251],[-45.76409,-1.187979]]]]}},{"type":"Feature","properties":{"sigla":"MG","nome":"Minas Gerais"},"geometry":{"type":"Polygon","coordinates":[[[-44.208858,-14.244127],[-43.782789,-14.338799],[-43.883097,-14.652781],[-43.530985,-14.814849],[-43.175946,-14.650098],[-42.091227,-15.186151],[-41.800314,-15.100642],[-41.356026,-15.499831],[-41.330809,-15.744212],[-40.706817,-15.665945],[-40.561657,-15.802818],[-40.230469,-15.80329],[-39.856434,-16.113361],[-40.159458,-16.579837],[-40.275115,-16.573557],[-40.281248,-16.900711],[-40.479596,-16.876351],[-40.569629,-17.06143],[-40.623079,-17.405503],[-40.223543,-17.733587],[-40.222017,-17.979948],[-40.52664,-17.891464],[-40.70415,-18.022872],[-40.882317,-17.97007],[-40.771099,-18.155441],[-41.055643,-18.166124],[-41.158438,-18.308275],[-40.916547,-18.814972],[-41.241972,-18.853949],[-41.017966,-18.973054],[-40.94447,-19.459626],[-41.168069,-19.671731],[-41.381706,-20.188318],[-41.756348,-20.206372],[-41.846733,-20.328993],[-41.808382,-20.643747],[-41.976257,-20.935011],[-42.151261,-20.973889],[-42.080057,-21.035198],[-42.368575,-21.619118],[-42.271127,-21.714706],[-43.072998,-22.093352],[-43.76557,-22.062424],[-45.394893,-22.651422],[-45.716467,-22.5781],[-45.790825,-22.857636],[-46.344771,-22.904182],[-46.334763,-22.759699],[-46.477479,-22.698898],[-46.406688,-22.540048],[-46.722804,-22.306125],[-46.600063,-22.134254],[-46.722808,-22.07652],[-46.613023,-22.009113],[-46.690506,-21.836456],[-46.508802,-21.469408],[-46.665248,-21.36116],[-47.010779,-21.421805],[-47.239588,-20.884798],[-47.096922,-20.643854],[-47.291328,-20.448829],[-47.256588,-20.165722],[-47.465923,-19.963742],[-47.859325,-19.992516],[-47.893921,-20.123355],[-48.240484,-20.028873],[-48.24591,-20.140474],[-48.822743,-20.161432],[-48.898861,-20.440723],[-48.991778,-20.164918],[-49.217187,-20.303227],[-49.25025,-19.97033],[-49.550991,-19.905373],[-49.890804,-19.94325],[-50.471424,-19.779185],[-50.999985,-20.084914],[-50.96198,-19.484409],[-50.826205,-19.487001],[-50.816638,-19.289363],[-50.53704,-19.098939],[-50.30888,-18.697987],[-49.53537,-18.493183],[-49.378284,-18.641881],[-48.93631,-18.305744],[-48.261949,-18.331418],[-47.954481,-18.499815],[-47.282756,-18.057769],[-47.37261,-17.829485],[-47.266424,-17.608627],[-47.538375,-17.388339],[-47.126161,-16.980106],[-47.458136,-16.501765],[-47.300057,-16.0166],[-46.811723,-15.885109],[-46.948659,-15.554148],[-46.836466,-15.322149],[-46.918317,-15.049421],[-46.50217,-15.05181],[-46.565456,-14.785928],[-46.47447,-14.704739],[-46.286411,-14.9277],[-46.003447,-14.901848],[-46.118815,-15.191776],[-46.052203,-15.258742],[-44.56515,-14.339617],[-44.208858,-14.244127]]]}},{"type":"Feature","properties":{"sigla":"MS","nome":"Mato Grosso do Sul"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-53.874059,-17.921778],[-53.071484,-18.039018],[-53.069433,-18.342428],[-52.758375,-18.348349],[-52.961848,-18.540364],[-52.916123,-18.638707],[-52.530758,-18.657565],[-52.015101,-18.98232],[-51.057341,-19.32898],[-50.923679,-19.558151],[-51.045455,-19.728584],[-51.001363,-20.095808],[-51.586467,-20.63433],[-51.61849,-20.93195],[-51.875362,-21.135676],[-51.867191,-21.351186],[-52.077285,-21.514747],[-52.075978,-21.714378],[-52.407678,-22.141158],[-53.6069,-22.950856],[-53.730098,-23.317225],[-53.982333,-23.459527],[-54.129176,-23.981628],[-54.287104,-24.06951],[-54.670806,-23.811711],[-55.347445,-23.994038],[-55.536545,-23.625473],[-55.614791,-22.655694],[-55.848721,-22.283705],[-56.209411,-22.276399],[-56.392318,-22.074254],[-56.841153,-22.302007],[-57.991276,-22.090252],[-57.818828,-20.942133],[-57.927699,-20.897513],[-57.862474,-20.741218],[-57.984592,-20.701208],[-58.166806,-20.171292],[-57.858701,-19.969935],[-58.131162,-19.757998],[-57.693622,-19.010418],[-57.766025,-18.89879],[-57.557122,-18.239851],[-57.453292,-18.230674],[-57.794963,-17.559944],[-57.451931,-17.902203],[-57.04438,-17.729882],[-56.733322,-17.309422],[-56.442799,-17.330273],[-56.112591,-17.166756],[-55.126737,-17.652278],[-54.581152,-17.467562],[-54.301909,-17.661214],[-54.076527,-17.614564],[-53.70815,-17.227724],[-53.705649,-17.661944],[-53.887873,-17.748545],[-53.955241,-17.882572],[-53.874059,-17.921778]]],[[[-53.872177,-17.916416],[-53.87182,-17.921417],[-53.874961,-17.918378],[-53.872177,-17.916416]]]]}},{"type":"Feature","properties":{"sigla":"MT","nome":"Mato Grosso"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-60.360833,-13.299324],[-60.085994,-12.8983],[-60.068196,-12.615595],[-59.773813,-12.340553],[-60.108231,-11.839182],[-60.114345,-11.591064],[-59.920097,-11.397613],[-59.976238,-11.121993],[-60.347429,-11.108644],[-60.459516,-10.989463],[-61.549712,-10.985703],[-61.461237,-10.41952],[-61.59965,-10.154439],[-61.477057,-9.626913],[-61.632006,-9.266243],[-61.525876,-9.243674],[-61.468111,-8.917145],[-61.582423,-8.79831],[-58.415355,-8.792461],[-58.286495,-8.128132],[-58.382425,-7.838707],[-58.137919,-7.34866],[-57.642751,-8.213293],[-57.592418,-8.756092],[-57.192341,-8.929666],[-56.760595,-9.404609],[-50.224346,-9.840752],[-50.602989,-10.660528],[-50.738781,-11.43495],[-50.617789,-12.428571],[-50.706022,-12.609279],[-50.501768,-12.88391],[-50.871321,-13.73266],[-50.833177,-14.089412],[-51.085531,-14.917279],[-51.535482,-15.069251],[-51.87912,-15.824951],[-52.252232,-15.892651],[-52.681097,-16.303429],[-52.635262,-16.551188],[-53.010827,-16.85757],[-53.218139,-17.298858],[-53.246376,-17.690234],[-53.071484,-18.039018],[-53.948407,-17.922976],[-53.855399,-17.702269],[-53.705649,-17.661944],[-53.70815,-17.227724],[-54.084184,-17.618589],[-54.335071,-17.661278],[-54.581152,-17.467562],[-55.126737,-17.652278],[-56.112591,-17.166756],[-56.442799,-17.330273],[-56.733322,-17.309422],[-57.04438,-17.729882],[-57.451931,-17.902203],[-57.727517,-17.529311],[-58.042741,-17.492183],[-58.394895,-17.183657],[-58.469858,-16.703149],[-58.320661,-16.264235],[-60.171006,-16.265216],[-60.237945,-15.473381],[-60.564259,-15.108196],[-60.243662,-15.0963],[-60.271537,-14.619837],[-60.48944,-14.188363],[-60.381385,-13.986968],[-60.466579,-13.795243],[-60.716263,-13.68181],[-60.387376,-13.454285],[-60.360833,-13.299324]]],[[[-60.362687,-13.296129],[-60.360833,-13.299324],[-60.36443,-13.299534],[-60.362687,-13.296129]]]]}},{"type":"Feature","properties":{"sigla":"PA","nome":"Par\u00e1"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-47.057276,-0.805873],[-46.979561,-0.777007],[-46.955423,-0.86079],[-46.845166,-0.735447],[-46.745884,-0.920073],[-46.72107,-0.826716],[-46.63769,-0.787938],[-46.674917,-0.975897],[-46.426579,-0.857578],[-46.499647,-0.972936],[-46.42833,-1.065057],[-46.390025,-0.986811],[-46.374938,-1.051964],[-46.305111,-1.083947],[-46.189691,-0.894066],[-46.251867,-0.997336],[-46.272384,-1.171592],[-46.17117,-0.992504],[-46.204924,-1.131187],[-46.172298,-1.155121],[-46.072494,-1.018516],[-46.100304,-1.070623],[-46.097751,-1.195725],[-46.162483,-1.277969],[-46.153206,-1.675556],[-46.32356,-1.765203],[-46.20959,-1.833459],[-46.280222,-2.152558],[-46.431918,-2.239473],[-46.415968,-2.529057],[-46.663524,-2.69385],[-46.575388,-2.841041],[-47.037359,-3.562529],[-47.08769,-3.855094],[-47.581044,-4.519572],[-48.754713,-5.348801],[-48.384303,-5.393838],[-48.137715,-5.60232],[-48.294112,-5.756302],[-48.231193,-5.945764],[-48.431498,-6.176918],[-48.382239,-6.379232],[-48.612713,-6.453351],[-48.664412,-6.662383],[-49.20905,-6.92502],[-49.184836,-7.234789],[-49.383604,-7.543108],[-49.150136,-7.80181],[-49.215405,-8.193821],[-49.591958,-8.839096],[-50.03733,-9.289006],[-50.224346,-9.840752],[-56.753757,-9.405974],[-57.192341,-8.929666],[-57.592418,-8.756092],[-57.642751,-8.213293],[-58.477949,-6.699242],[-58.262031,-6.468555],[-56.46509,-2.422775],[-56.098136,-2.026721],[-56.678565,-2.212225],[-56.734026,-2.021675],[-57.036699,-1.911216],[-57.16439,-1.720534],[-57.392176,-1.722738],[-57.959836,-1.40124],[-58.01703,-1.105819],[-58.162129,-1.229325],[-58.429563,-1.026786],[-58.871545,-0.342665],[-58.894945,1.228228],[-58.495734,1.26844],[-58.508204,1.463278],[-58.321878,1.597452],[-58.003746,1.503541],[-57.989467,1.659704],[-57.537135,1.70097],[-57.304317,1.999631],[-57.08611,2.028142],[-56.790787,1.852932],[-56.450686,1.956653],[-55.955976,1.845104],[-55.90252,2.041604],[-56.13831,2.266264],[-55.977581,2.527837],[-55.384796,2.418866],[-54.953708,2.584086],[-54.76262,2.202624],[-54.744288,1.776109],[-54.308816,1.74136],[-54.08598,1.488609],[-53.42604,1.243034],[-53.411014,0.92966],[-53.105819,0.6843],[-53.174834,0.382038],[-52.933229,-0.139195],[-52.689648,-0.302593],[-52.639535,-0.584576],[-52.522704,-0.588746],[-52.426566,-1.050463],[-52.099932,-1.226163],[-51.703871,-1.067409],[-51.67874,-0.784922],[-51.2159,-0.11829],[-50.667739,0.185354],[-50.436091,0.600423],[-50.156987,0.70543],[-50.0608,0.338753],[-49.677186,0.366293],[-49.396517,0.016074],[-48.930268,-0.225598],[-48.411823,-0.25691],[-48.472118,-0.498754],[-47.989322,-0.705722],[-47.897163,-0.552474],[-47.840546,-0.679886],[-47.70349,-0.534923],[-47.487638,-0.764604],[-47.443907,-0.588893],[-47.160609,-0.667422],[-47.16969,-0.776182],[-47.088272,-0.662312],[-47.057276,-0.805873]]],[[[-46.415942,-0.932222],[-46.411643,-0.970087],[-46.437021,-0.986082],[-46.415942,-0.932222]]],[[[-46.090328,-1.068593],[-46.06053,-1.094368],[-46.066208,-1.104784],[-46.090328,-1.068593]]],[[[-47.033167,-0.70786],[-47.023853,-0.691486],[-47.005058,-0.700323],[-47.033167,-0.70786]]],[[[-46.374138,-0.987214],[-46.374913,-1.011076],[-46.380828,-1.012994],[-46.374138,-0.987214]]],[[[-47.836915,-0.666395],[-47.841213,-0.657675],[-47.83305,-0.653774],[-47.836915,-0.666395]]],[[[-46.435704,-1.009207],[-46.450461,-1.009052],[-46.437249,-1.001111],[-46.435704,-1.009207]]],[[[-46.323167,-0.956256],[-46.322638,-0.944943],[-46.3154,-0.950014],[-46.323167,-0.956256]]],[[[-46.600328,-0.830136],[-46.606069,-0.825219],[-46.600921,-0.826208],[-46.600328,-0.830136]]],[[[-46.600713,-0.858223],[-46.606451,-0.853306],[-46.601308,-0.854295],[-46.600713,-0.858223]]],[[[-47.032222,-0.71799],[-47.042967,-0.72202],[-47.044168,-0.719306],[-47.032222,-0.71799]]],[[[-46.467967,-0.963936],[-46.474997,-0.96422],[-46.468828,-0.957717],[-46.467967,-0.963936]]],[[[-46.20639,-0.940794],[-46.202712,-0.936364],[-46.198958,-0.940309],[-46.20639,-0.940794]]],[[[-46.954245,-0.740374],[-46.951454,-0.73406],[-46.949257,-0.738724],[-46.954245,-0.740374]]],[[[-47.021708,-0.715428],[-47.016829,-0.713164],[-47.018746,-0.717506],[-47.021708,-0.715428]]],[[[-46.270059,-0.933488],[-46.265775,-0.93288],[-46.267082,-0.936436],[-46.270059,-0.933488]]]]}},{"type":"Feature","properties":{"sigla":"PB","nome":"Para\u00edba"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-37.226774,-6.034636],[-37.156526,-6.152054],[-37.37692,-6.343988],[-37.4843,-6.709643],[-37.283311,-6.69352],[-37.234195,-6.82424],[-36.834611,-6.730674],[-36.718142,-6.982333],[-36.506515,-6.812625],[-36.524114,-6.599256],[-36.435425,-6.625481],[-36.52875,-6.446724],[-36.39413,-6.29358],[-35.977186,-6.488506],[-34.970505,-6.484991],[-34.938369,-6.752708],[-34.853084,-6.899946],[-34.850244,-6.964183],[-34.86832,-6.978973],[-34.867145,-7.008005],[-34.793112,-7.154081],[-34.825666,-7.547367],[-35.079369,-7.396621],[-35.478965,-7.444647],[-35.532311,-7.654416],[-36.42361,-7.81537],[-36.62817,-8.110641],[-36.99074,-8.302552],[-37.192267,-7.960197],[-37.355461,-7.974525],[-37.151544,-7.779445],[-37.167536,-7.581462],[-36.983824,-7.481724],[-37.23253,-7.274732],[-38.076734,-7.830163],[-38.286401,-7.829822],[-38.357099,-7.676781],[-38.593231,-7.753951],[-38.717917,-7.608957],[-38.534205,-7.293397],[-38.76462,-6.993504],[-38.613774,-6.782794],[-38.517528,-6.408346],[-38.601666,-6.389237],[-38.45723,-6.329322],[-38.115253,-6.521298],[-37.74881,-6.193441],[-37.226774,-6.034636]]],[[[-34.867212,-6.991403],[-34.847013,-6.985548],[-34.859892,-7.013618],[-34.867212,-6.991403]]]]}},{"type":"Feature","properties":{"sigla":"PE","nome":"Pernambuco"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-37.176537,-7.309168],[-36.983824,-7.481724],[-37.167536,-7.581462],[-37.151544,-7.779445],[-37.355461,-7.974525],[-37.192267,-7.960197],[-36.99074,-8.302552],[-36.62817,-8.110641],[-36.42361,-7.81537],[-35.532311,-7.654416],[-35.478965,-7.444647],[-35.079369,-7.396621],[-34.839815,-7.54331],[-34.837298,-8.00571],[-35.152043,-8.912951],[-35.895731,-8.853841],[-36.126455,-8.955591],[-36.224498,-9.170589],[-36.603786,-9.340622],[-36.867795,-9.268107],[-36.952008,-9.38212],[-37.759906,-8.857214],[-38.237084,-9.329271],[-38.295991,-9.02249],[-38.483023,-9.001073],[-38.47945,-8.849688],[-38.640324,-8.986867],[-38.798427,-8.792369],[-39.22347,-8.710925],[-39.383353,-8.533223],[-39.894253,-8.831304],[-39.957648,-9.048202],[-40.250327,-9.060099],[-40.334654,-9.353473],[-40.622789,-9.482496],[-40.776329,-9.454027],[-40.667025,-9.158669],[-40.920958,-8.835043],[-41.357936,-8.707229],[-40.589405,-8.137576],[-40.54336,-7.835174],[-40.673179,-7.761288],[-40.712873,-7.472851],[-40.548081,-7.392315],[-39.662188,-7.310208],[-39.090918,-7.857785],[-38.714717,-7.62152],[-38.593231,-7.753951],[-38.357099,-7.676781],[-38.286401,-7.829822],[-38.076734,-7.830163],[-37.496522,-7.367137],[-37.176537,-7.309168]]],[[[-32.442593,-3.850523],[-32.424411,-3.878278],[-32.467645,-3.87736],[-32.442593,-3.850523]]],[[[-32.397345,-3.833368],[-32.399979,-3.831928],[-32.398484,-3.830606],[-32.397345,-3.833368]]]]}},{"type":"Feature","properties":{"sigla":"PI","nome":"Piau\u00ed"},"geometry":{"type":"Polygon","coordinates":[[[-41.848666,-2.773167],[-41.25675,-3.004292],[-41.423139,-3.367652],[-41.239101,-3.712209],[-41.254308,-4.035393],[-41.114012,-4.040281],[-41.090514,-4.169968],[-41.248798,-4.868725],[-40.925133,-5.181109],[-40.906727,-6.041363],[-40.731554,-6.653683],[-40.37021,-6.802665],[-40.548081,-7.392315],[-40.712873,-7.472851],[-40.673179,-7.761288],[-40.54336,-7.835174],[-40.589405,-8.137576],[-41.38196,-8.708455],[-41.837579,-9.241864],[-42.24334,-9.28851],[-42.764775,-9.616339],[-42.971497,-9.407654],[-43.278369,-9.424166],[-43.485058,-9.26488],[-43.849292,-9.547644],[-43.661876,-10.003925],[-44.129818,-10.632552],[-44.335243,-10.548554],[-44.577371,-10.626353],[-44.930806,-10.928339],[-45.247635,-10.821551],[-45.435502,-10.61946],[-45.396019,-10.446486],[-45.578933,-10.121524],[-45.793325,-10.267263],[-45.954872,-10.218032],[-45.783406,-9.479703],[-45.993873,-8.926466],[-45.765218,-8.609179],[-45.496078,-7.749908],[-45.339354,-7.579855],[-44.687572,-7.394145],[-44.052969,-6.767926],[-43.715621,-6.698807],[-43.419644,-6.843448],[-42.919385,-6.669924],[-42.828943,-6.337041],[-43.074595,-6.054348],[-43.098607,-5.632817],[-42.797558,-5.182848],[-42.949395,-4.790325],[-42.85005,-4.480991],[-42.988804,-4.233691],[-42.497976,-3.447375],[-42.20399,-3.435414],[-41.823894,-3.024143],[-41.848666,-2.773167]]]}},{"type":"Feature","properties":{"sigla":"PR","nome":"Paran\u00e1"},"geometry":{"type":"Polygon","coordinates":[[[-52.064157,-22.533836],[-51.263287,-22.66857],[-50.741095,-22.960908],[-49.985672,-22.897021],[-49.726584,-23.107902],[-49.566613,-23.426741],[-49.610245,-23.851198],[-49.200279,-24.343974],[-49.304824,-24.672141],[-48.581366,-24.671118],[-48.555859,-25.083793],[-48.251197,-24.978246],[-48.186718,-25.198397],[-48.02308,-25.230467],[-48.590417,-25.976436],[-49.174795,-26.001348],[-49.554595,-26.236831],[-49.941727,-26.008382],[-50.323111,-26.134443],[-50.571305,-26.0033],[-50.718005,-26.244286],[-51.242771,-26.32357],[-51.228168,-26.615517],[-51.411026,-26.71679],[-51.509564,-26.581689],[-51.873106,-26.599744],[-52.185149,-26.444918],[-53.551168,-26.292261],[-53.833534,-25.970366],[-53.892053,-25.622098],[-54.098311,-25.618256],[-54.099163,-25.494904],[-54.429093,-25.694822],[-54.593079,-25.591815],[-54.257592,-24.36236],[-54.340948,-24.128722],[-54.099323,-23.945986],[-53.982333,-23.459527],[-53.730098,-23.317225],[-53.6069,-22.950856],[-52.971909,-22.570007],[-52.222989,-22.673825],[-52.064157,-22.533836]]]}},{"type":"Feature","properties":{"sigla":"RJ","nome":"Rio de Janeiro"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-44.512726,-23.292935],[-44.723999,-23.367601],[-44.874618,-23.248662],[-44.802203,-22.998642],[-44.269527,-22.829798],[-44.160514,-22.677824],[-44.633017,-22.60873],[-44.79328,-22.386588],[-43.76557,-22.062424],[-43.072998,-22.093352],[-42.271127,-21.714706],[-42.368575,-21.619118],[-42.080057,-21.035198],[-42.151261,-20.973889],[-41.874501,-20.766324],[-41.711998,-20.871073],[-41.717586,-21.123331],[-40.957184,-21.302959],[-41.073653,-21.514831],[-40.984671,-21.999235],[-41.960365,-22.534191],[-41.984635,-22.717287],[-41.863681,-22.754041],[-42.030855,-22.904252],[-42.012857,-22.997335],[-43.0515,-22.982245],[-43.085418,-22.677155],[-43.277663,-22.780391],[-43.237512,-22.876664],[-43.150045,-22.950033],[-43.285904,-23.016048],[-43.44352,-23.021716],[-43.55311,-23.075581],[-43.711437,-23.055581],[-43.572647,-23.050221],[-43.855638,-22.901618],[-44.193734,-23.054365],[-44.350348,-23.030045],[-44.344366,-22.921608],[-44.667646,-23.053639],[-44.717078,-23.184794],[-44.71216,-23.233387],[-44.512726,-23.292935]],[[-43.412473,-22.985408],[-43.323771,-22.995756],[-43.301464,-23.008986],[-43.323257,-22.990189],[-43.363477,-22.973616],[-43.412473,-22.985408]]],[[[-44.233217,-23.089435],[-44.095011,-23.174667],[-44.348763,-23.226125],[-44.377253,-23.171793],[-44.233217,-23.089435]]],[[[-43.907112,-23.026079],[-43.777995,-23.060451],[-44.012122,-23.077813],[-43.907112,-23.026079]]],[[[-43.228902,-22.782686],[-43.172105,-22.830299],[-43.263556,-22.810152],[-43.228902,-22.782686]]],[[[-43.913351,-22.93897],[-43.881871,-22.923852],[-43.867707,-22.925566],[-43.896254,-22.95779],[-43.913351,-22.93897]]],[[[-43.214119,-22.866225],[-43.242566,-22.837137],[-43.229021,-22.836474],[-43.214119,-22.866225]]],[[[-43.916896,-22.9933],[-43.936714,-22.997796],[-43.920048,-22.987259],[-43.916896,-22.9933]]],[[[-44.593695,-23.202173],[-44.602603,-23.222559],[-44.619277,-23.222556],[-44.593695,-23.202173]]],[[[-44.047052,-23.010665],[-44.034458,-22.995913],[-44.029526,-23.00689],[-44.047052,-23.010665]]],[[[-44.681724,-23.157219],[-44.694141,-23.155953],[-44.683615,-23.151634],[-44.681724,-23.157219]]],[[[-41.697103,-22.402875],[-41.694879,-22.416666],[-41.70541,-22.407224],[-41.697103,-22.402875]]],[[[-44.512726,-23.292935],[-44.50518,-23.291396],[-44.502444,-23.29635],[-44.50933,-23.301351],[-44.512726,-23.292935]]],[[[-43.108429,-22.769262],[-43.10855,-22.758473],[-43.102821,-22.764684],[-43.108429,-22.769262]]],[[[-43.102875,-22.75266],[-43.111782,-22.753285],[-43.104397,-22.748391],[-43.102875,-22.75266]]],[[[-43.171695,-22.897727],[-43.174609,-22.892784],[-43.166958,-22.895035],[-43.171695,-22.897727]]],[[[-44.641607,-23.074504],[-44.642328,-23.067874],[-44.635569,-23.067957],[-44.641607,-23.074504]]],[[[-43.863357,-22.955275],[-43.860183,-22.949594],[-43.855924,-22.949816],[-43.863357,-22.955275]]],[[[-41.685683,-22.396626],[-41.690366,-22.402326],[-41.691219,-22.398672],[-41.685683,-22.396626]]],[[[-44.579133,-23.203001],[-44.583711,-23.200515],[-44.580463,-23.198522],[-44.579133,-23.203001]]],[[[-44.576376,-23.189839],[-44.573066,-23.18351],[-44.57284,-23.18893],[-44.576376,-23.189839]]],[[[-43.908054,-22.979438],[-43.912946,-22.98303],[-43.914255,-22.979799],[-43.908054,-22.979438]]],[[[-44.64635,-23.226778],[-44.639698,-23.228174],[-44.649005,-23.23063],[-44.64635,-23.226778]]],[[[-41.884995,-22.784346],[-41.883796,-22.780103],[-41.881836,-22.783893],[-41.884995,-22.784346]]],[[[-44.129227,-23.035366],[-44.123726,-23.039621],[-44.128785,-23.040825],[-44.129227,-23.035366]]],[[[-43.920054,-22.941608],[-43.913351,-22.93897],[-43.920396,-22.944507],[-43.920054,-22.941608]]],[[[-43.514413,-23.065268],[-43.511404,-23.060728],[-43.508372,-23.064533],[-43.514413,-23.065268]]],[[[-43.148184,-23.059917],[-43.142212,-23.065399],[-43.146738,-23.065053],[-43.148184,-23.059917]]],[[[-44.639698,-23.228174],[-44.636513,-23.223835],[-44.633615,-23.225338],[-44.639698,-23.228174]]],[[[-43.943721,-23.023293],[-43.946962,-23.023859],[-43.943681,-23.019612],[-43.943721,-23.023293]]],[[[-44.692811,-23.215421],[-44.689403,-23.214393],[-44.69085,-23.217979],[-44.692811,-23.215421]]],[[[-43.953848,-23.004999],[-43.950219,-23.005693],[-43.951708,-23.008218],[-43.953848,-23.004999]]],[[[-43.207898,-23.040543],[-43.206316,-23.037953],[-43.202163,-23.037408],[-43.207898,-23.040543]]],[[[-44.672432,-23.099449],[-44.671866,-23.09621],[-44.669117,-23.097726],[-44.672432,-23.099449]]],[[[-43.953679,-23.025037],[-43.952735,-23.022101],[-43.950736,-23.024879],[-43.953679,-23.025037]]],[[[-43.861226,-22.946858],[-43.860183,-22.949594],[-43.863235,-22.949314],[-43.861226,-22.946858]]],[[[-44.675081,-23.111113],[-44.672353,-23.111869],[-44.674697,-23.11399],[-44.675081,-23.111113]]]]}},{"type":"Feature","properties":{"sigla":"RN","nome":"Rio Grande do Norte"},"geometry":{"type":"Polygon","coordinates":[[[-37.251574,-4.832043],[-36.689467,-5.091868],[-35.974274,-5.04165],[-35.488629,-5.157973],[-35.260708,-5.480447],[-34.969063,-6.487837],[-35.977186,-6.488506],[-36.39413,-6.29358],[-36.52875,-6.446724],[-36.435425,-6.625481],[-36.524114,-6.599256],[-36.506515,-6.812625],[-36.718142,-6.982333],[-36.834611,-6.730674],[-37.234195,-6.82424],[-37.283311,-6.69352],[-37.4843,-6.709643],[-37.173524,-6.047629],[-37.74881,-6.193441],[-38.115253,-6.521298],[-38.576694,-6.347042],[-38.446934,-6.084893],[-38.124554,-5.887229],[-37.639945,-4.926029],[-37.251574,-4.832043]]]}},{"type":"Feature","properties":{"sigla":"RO","nome":"Rond\u00f4nia"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-66.458886,-9.87524],[-66.805966,-9.814127],[-66.50022,-9.633167],[-66.408458,-9.406552],[-65.969866,-9.412766],[-65.79108,-9.585253],[-65.596321,-9.413476],[-65.434254,-9.465947],[-65.446554,-9.31599],[-65.246189,-9.257276],[-65.097373,-9.43213],[-64.838837,-8.993728],[-64.142924,-8.953151],[-64.142558,-8.742652],[-63.924056,-8.575147],[-63.943608,-8.330811],[-63.77299,-8.320355],[-63.620267,-7.968921],[-62.866087,-7.975496],[-62.525603,-8.382677],[-62.366551,-8.389222],[-62.340551,-8.602451],[-62.187856,-8.590182],[-62.124437,-8.801291],[-61.905349,-8.874129],[-61.712737,-8.687474],[-61.468111,-8.917145],[-61.525876,-9.243674],[-61.632006,-9.266243],[-61.477057,-9.626913],[-61.59965,-10.154439],[-61.461237,-10.41952],[-61.549712,-10.985703],[-60.459516,-10.989463],[-60.347429,-11.108644],[-59.986314,-11.11412],[-59.920097,-11.397613],[-60.114345,-11.591064],[-60.108231,-11.839182],[-59.773813,-12.340553],[-60.068196,-12.615595],[-60.078571,-12.880736],[-60.282449,-13.080147],[-60.387376,-13.454285],[-60.70778,-13.692483],[-61.014275,-13.487077],[-61.840376,-13.54837],[-62.169835,-13.113468],[-62.778397,-13.009093],[-63.15717,-12.613427],[-63.294905,-12.681404],[-63.785671,-12.427493],[-64.290809,-12.500246],[-64.707966,-12.086389],[-64.757142,-12.155758],[-64.837946,-12.010891],[-65.031394,-11.994531],[-65.0851,-11.712257],[-65.260048,-11.706421],[-65.211262,-11.530012],[-65.360678,-11.250879],[-65.250873,-10.986505],[-65.428905,-10.480558],[-65.288236,-10.219427],[-65.374165,-9.698908],[-65.558636,-9.843299],[-65.773854,-9.734197],[-66.458886,-9.87524]]],[[[-66.458886,-9.87524],[-66.454072,-9.877268],[-66.456774,-9.878479],[-66.458886,-9.87524]]]]}},{"type":"Feature","properties":{"sigla":"RR","nome":"Roraima"},"geometry":{"type":"Polygon","coordinates":[[[-59.806231,3.354814],[-59.98963,2.68657],[-59.896016,2.363334],[-59.721919,2.27679],[-59.751241,1.861686],[-59.252367,1.388596],[-58.886303,1.260595],[-58.89489,0.263852],[-60.037434,0.263837],[-60.399423,-0.509759],[-60.303101,-0.71094],[-60.530535,-0.874748],[-60.752194,-0.860857],[-60.920256,-0.555036],[-61.086925,-0.499759],[-61.428315,-0.633915],[-61.628317,-1.301136],[-61.482203,-1.5803],[-61.896094,-1.395022],[-62.039147,-1.118076],[-62.509707,-0.75864],[-62.290344,-0.64633],[-62.18784,-0.330494],[-62.53248,0.509141],[-62.471089,1.086598],[-62.803914,1.590666],[-62.705501,1.940031],[-63.359285,2.197405],[-63.406197,2.436114],[-63.708401,2.380613],[-64.055483,2.498056],[-63.993487,2.770078],[-64.233756,3.114075],[-64.185123,3.560054],[-64.824229,4.243664],[-64.559816,4.102308],[-64.163735,4.126716],[-63.963752,3.868478],[-63.681981,3.9079],[-63.680225,4.017368],[-63.498192,3.843075],[-63.428172,3.977551],[-63.205667,3.951764],[-63.225946,3.835884],[-62.959555,3.608111],[-62.736219,3.689501],[-62.747222,4.034892],[-62.556391,4.018108],[-62.437095,4.183369],[-61.93003,4.103728],[-61.559075,4.254601],[-61.321408,4.535125],[-60.995552,4.518033],[-60.59128,4.927245],[-60.722588,5.220316],[-60.209706,5.270855],[-59.989703,4.986605],[-60.161946,4.508342],[-59.675067,4.37276],[-59.724047,4.182787],[-59.517455,3.943488],[-59.865229,3.577268],[-59.806231,3.354814]]]}},{"type":"Feature","properties":{"sigla":"RS","nome":"Rio Grande do Sul"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-52.043669,-31.57374],[-52.256169,-31.848617],[-52.067883,-32.029634],[-52.098151,-32.161508],[-52.30639,-32.361007],[-52.62867,-33.115653],[-53.415977,-33.748346],[-53.535302,-33.613258],[-53.430421,-33.155555],[-53.255673,-33.102124],[-53.123145,-32.790994],[-52.982168,-32.734131],[-52.894167,-32.892195],[-52.750015,-32.86162],[-52.585617,-32.52622],[-52.693135,-32.317625],[-52.621861,-32.143311],[-52.794787,-32.27079],[-52.723777,-32.387112],[-53.07578,-32.656163],[-53.38786,-32.586268],[-53.643716,-32.38316],[-53.745262,-32.078282],[-54.099898,-31.927319],[-54.5849,-31.457696],[-55.237892,-31.259963],[-55.576558,-30.833231],[-56.009416,-31.080787],[-56.02236,-30.786057],[-56.806614,-30.103732],[-57.068388,-30.086379],[-57.221324,-30.289849],[-57.642721,-30.188407],[-56.967514,-29.638603],[-56.588854,-29.119621],[-56.413467,-29.07074],[-55.871644,-28.358517],[-55.699503,-28.425576],[-55.773346,-28.244754],[-55.031327,-27.854935],[-55.080343,-27.779097],[-54.93608,-27.772063],[-54.811594,-27.529241],[-54.27993,-27.445471],[-54.172071,-27.25439],[-53.874341,-27.127249],[-53.641969,-27.220393],[-53.371984,-27.090481],[-53.309484,-27.216853],[-53.028462,-27.080097],[-52.977166,-27.220689],[-52.166017,-27.273406],[-51.889038,-27.519828],[-51.631122,-27.488751],[-51.081595,-27.834384],[-50.624625,-28.390978],[-49.764685,-28.45966],[-49.691131,-28.618444],[-49.934882,-28.727607],[-50.006982,-29.071638],[-49.953998,-29.085019],[-50.165967,-29.247338],[-50.036938,-29.350757],[-50.114169,-29.258757],[-49.946316,-29.199966],[-49.711305,-29.325448],[-50.768792,-31.109558],[-52.081144,-32.15693],[-52.013322,-31.938848],[-52.097628,-31.835423],[-51.851719,-31.867023],[-51.435788,-31.624347],[-51.428865,-31.48027],[-51.237768,-31.457622],[-51.168123,-31.066838],[-50.980022,-31.040525],[-50.96623,-30.895583],[-50.701455,-30.745804],[-50.717009,-30.351462],[-50.574356,-30.48144],[-50.596896,-30.194067],[-50.929504,-30.435251],[-51.054701,-30.391404],[-51.03023,-30.273953],[-51.085925,-30.241006],[-51.133438,-30.268883],[-51.157841,-30.261959],[-51.197667,-30.193927],[-51.248058,-30.185762],[-51.229866,-30.043224],[-51.295152,-30.001162],[-51.293126,-30.303492],[-51.21019,-30.297398],[-51.094761,-30.381112],[-51.257951,-30.466327],[-51.295483,-30.750499],[-51.386426,-30.6545],[-51.440199,-31.087194],[-51.61757,-31.139188],[-51.616175,-31.267165],[-51.918857,-31.310252],[-52.032213,-31.694637],[-52.043669,-31.57374]]],[[[-51.323411,-30.780352],[-51.280603,-30.801143],[-51.289814,-30.817001],[-51.323411,-30.780352]]],[[[-50.08347,-29.227521],[-50.092698,-29.221853],[-50.084947,-29.215208],[-50.08347,-29.227521]]],[[[-51.156551,-30.498394],[-51.142259,-30.470535],[-51.152054,-30.499744],[-51.156551,-30.498394]]],[[[-49.947693,-29.069242],[-49.956259,-29.061676],[-49.939556,-29.056687],[-49.947693,-29.069242]]],[[[-51.291824,-30.064346],[-51.289229,-30.056898],[-51.268429,-30.055382],[-51.291824,-30.064346]]],[[[-52.093481,-31.792672],[-52.106174,-31.801589],[-52.11047,-31.792739],[-52.093481,-31.792672]]],[[[-53.412778,-33.117996],[-53.416696,-33.118232],[-53.406056,-33.107528],[-53.412778,-33.117996]]],[[[-49.962354,-29.117466],[-49.967653,-29.115559],[-49.963833,-29.114166],[-49.962354,-29.117466]]],[[[-51.466018,-31.554164],[-51.462109,-31.543858],[-51.463926,-31.55728],[-51.466018,-31.554164]]],[[[-51.169024,-30.264125],[-51.157841,-30.261959],[-51.163465,-30.266056],[-51.169024,-30.264125]]],[[[-51.104953,-30.259277],[-51.102128,-30.253869],[-51.100292,-30.258867],[-51.104953,-30.259277]]],[[[-52.044462,-31.567576],[-52.043669,-31.57374],[-52.046969,-31.571849],[-52.044462,-31.567576]]],[[[-51.191486,-30.234579],[-51.187793,-30.233682],[-51.190905,-30.238349],[-51.191486,-30.234579]]]]}},{"type":"Feature","properties":{"sigla":"SC","nome":"Santa Catarina"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-53.670212,-26.94138],[-53.642566,-26.252258],[-53.280969,-26.246701],[-53.090101,-26.390009],[-52.737252,-26.341682],[-51.873106,-26.599744],[-51.509564,-26.581689],[-51.411026,-26.71679],[-51.228168,-26.615517],[-51.242771,-26.32357],[-50.718005,-26.244286],[-50.571305,-26.0033],[-50.323111,-26.134443],[-49.941727,-26.008382],[-49.554595,-26.236831],[-49.174795,-26.001348],[-48.642921,-25.955779],[-48.492428,-26.218684],[-48.679779,-26.726406],[-48.584956,-26.783022],[-48.602145,-27.124613],[-48.465152,-27.14468],[-48.616132,-27.250717],[-48.52382,-27.333604],[-48.646663,-27.482517],[-48.573511,-27.889596],[-48.742512,-28.507569],[-49.711305,-29.325448],[-49.962461,-29.198392],[-50.114169,-29.258757],[-50.034925,-29.347035],[-50.064516,-29.340854],[-50.151448,-29.202579],[-49.962354,-29.117466],[-49.934882,-28.727607],[-49.691757,-28.624663],[-49.764685,-28.45966],[-50.624625,-28.390978],[-51.081595,-27.834384],[-51.631122,-27.488751],[-51.889038,-27.519828],[-52.166017,-27.273406],[-52.977166,-27.220689],[-53.028462,-27.080097],[-53.309484,-27.216853],[-53.371984,-27.090481],[-53.491541,-27.201654],[-53.833833,-27.16934],[-53.670212,-26.94138]]],[[[-48.547171,-27.458378],[-48.359389,-27.44819],[-48.569631,-27.835713],[-48.547171,-27.458378]]],[[[-48.565368,-27.477238],[-48.562149,-27.473866],[-48.563643,-27.479519],[-48.565368,-27.477238]]]]}},{"type":"Feature","properties":{"sigla":"SE","nome":"Sergipe"},"geometry":{"type":"Polygon","coordinates":[[[-37.960063,-9.532816],[-36.991601,-9.976776],[-36.393427,-10.498067],[-36.85376,-10.743138],[-37.517548,-11.547579],[-37.977461,-11.39315],[-37.973964,-11.194839],[-38.240408,-10.876258],[-38.211549,-10.708731],[-37.813529,-10.690617],[-37.858716,-10.426042],[-37.736156,-10.331607],[-37.831385,-10.0005],[-37.99726,-9.916292],[-37.960063,-9.532816]]]}},{"type":"Feature","properties":{"sigla":"SP","nome":"S\u00e3o Paulo"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-46.137723,-23.858882],[-46.181376,-23.990014],[-46.384232,-23.969873],[-46.940406,-24.280038],[-47.841466,-24.974503],[-47.912517,-25.158046],[-48.09852,-25.310889],[-48.02308,-25.230467],[-48.186718,-25.198397],[-48.251197,-24.978246],[-48.582178,-25.051061],[-48.498829,-24.73846],[-48.581366,-24.671118],[-49.304824,-24.672141],[-49.200279,-24.343974],[-49.610245,-23.851198],[-49.566613,-23.426741],[-49.67783,-23.164573],[-49.985672,-22.897021],[-50.741095,-22.960908],[-51.263287,-22.66857],[-51.717664,-22.668533],[-52.107133,-22.516211],[-52.222989,-22.673825],[-53.107751,-22.596822],[-52.407678,-22.141158],[-52.075978,-21.714378],[-52.077285,-21.514747],[-51.867191,-21.351186],[-51.875362,-21.135676],[-51.61849,-20.93195],[-51.586467,-20.63433],[-50.575501,-19.815551],[-49.264697,-19.961567],[-49.238354,-20.286567],[-48.991778,-20.164918],[-48.898861,-20.440723],[-48.822743,-20.161432],[-48.24591,-20.140474],[-48.240484,-20.028873],[-47.893921,-20.123355],[-47.859325,-19.992516],[-47.473251,-19.961547],[-47.230652,-20.218623],[-47.291328,-20.448829],[-47.096057,-20.658585],[-47.239588,-20.884798],[-47.010779,-21.421805],[-46.665248,-21.36116],[-46.508802,-21.469408],[-46.690506,-21.836456],[-46.613023,-22.009113],[-46.722808,-22.07652],[-46.600063,-22.134254],[-46.722804,-22.306125],[-46.406688,-22.540048],[-46.477479,-22.698898],[-46.334763,-22.759699],[-46.359178,-22.895635],[-45.790825,-22.857636],[-45.716467,-22.5781],[-45.399546,-22.65263],[-44.808797,-22.404772],[-44.633017,-22.60873],[-44.161749,-22.674135],[-44.269527,-22.829798],[-44.792039,-22.981663],[-44.888492,-23.223999],[-44.723999,-23.367601],[-44.907363,-23.333195],[-45.406128,-23.622848],[-45.404629,-23.819589],[-45.844005,-23.757598],[-46.137723,-23.858882]]],[[[-45.290183,-23.910201],[-45.461657,-23.887757],[-45.365934,-23.809647],[-45.328825,-23.720992],[-45.229593,-23.77629],[-45.289743,-23.865889],[-45.226769,-23.940793],[-45.267292,-23.963257],[-45.290183,-23.910201]]],[[[-45.079198,-23.563836],[-45.059144,-23.526232],[-45.039396,-23.534384],[-45.079198,-23.563836]]],[[[-45.15639,-23.812895],[-45.114916,-23.807171],[-45.119681,-23.817279],[-45.15639,-23.812895]]],[[[-45.15762,-23.572813],[-45.156313,-23.559269],[-45.145799,-23.57018],[-45.15762,-23.572813]]],[[[-45.015913,-23.765323],[-45.018595,-23.754241],[-45.009291,-23.752207],[-45.015913,-23.765323]]],[[[-45.775499,-23.858661],[-45.786864,-23.867287],[-45.784601,-23.858372],[-45.775499,-23.858661]]],[[[-45.282815,-23.601086],[-45.292307,-23.593246],[-45.28083,-23.593071],[-45.282815,-23.601086]]],[[[-45.014631,-23.746732],[-45.024286,-23.751931],[-45.022745,-23.743563],[-45.014631,-23.746732]]],[[[-45.724011,-23.802953],[-45.719123,-23.797829],[-45.714548,-23.80298],[-45.724011,-23.802953]]],[[[-45.525207,-23.854021],[-45.520239,-23.84863],[-45.522206,-23.854422],[-45.525207,-23.854021]]],[[[-46.90626,-24.394412],[-46.903123,-24.387248],[-46.903396,-24.396626],[-46.90626,-24.394412]]],[[[-46.910651,-24.377446],[-46.904537,-24.373831],[-46.90859,-24.380528],[-46.910651,-24.377446]]],[[[-45.025823,-23.549256],[-45.028011,-23.545078],[-45.024654,-23.54396],[-45.025823,-23.549256]]],[[[-44.851379,-23.399177],[-44.853381,-23.403232],[-44.849429,-23.39494],[-44.851379,-23.399177]]],[[[-44.9445,-23.387351],[-44.945046,-23.383382],[-44.940537,-23.383518],[-44.9445,-23.387351]]],[[[-46.977016,-24.372281],[-46.978996,-24.367896],[-46.974882,-24.369621],[-46.977016,-24.372281]]],[[[-47.913506,-25.166847],[-47.911411,-25.162919],[-47.908408,-25.166948],[-47.913506,-25.166847]]],[[[-45.228607,-23.813211],[-45.225242,-23.813678],[-45.228225,-23.817086],[-45.228607,-23.813211]]],[[[-45.325172,-23.915907],[-45.320935,-23.914938],[-45.324072,-23.918626],[-45.325172,-23.915907]]],[[[-45.714043,-23.790181],[-45.712564,-23.787262],[-45.709084,-23.788211],[-45.714043,-23.790181]]],[[[-45.276129,-23.852416],[-45.278635,-23.854947],[-45.279758,-23.852083],[-45.276129,-23.852416]]],[[[-45.297189,-23.920585],[-45.297003,-23.916967],[-45.294481,-23.918756],[-45.297189,-23.920585]]],[[[-45.156356,-23.830774],[-45.153855,-23.828627],[-45.153078,-23.831627],[-45.156356,-23.830774]]],[[[-45.671725,-23.804677],[-45.670327,-23.802003],[-45.668829,-23.804942],[-45.671725,-23.804677]]]]}},{"type":"Feature","properties":{"sigla":"TO","nome":"Tocantins"},"geometry":{"type":"Polygon","coordinates":[[[-46.806408,-8.398576],[-47.068303,-9.063475],[-46.92223,-9.0663],[-46.762939,-9.40855],[-46.560548,-9.483629],[-46.646991,-9.729945],[-46.367463,-10.168403],[-45.793325,-10.267263],[-45.698859,-10.16644],[-45.827299,-10.435545],[-46.210548,-10.649255],[-46.616668,-11.289032],[-46.478886,-11.515971],[-46.08625,-11.621714],[-46.314531,-11.631832],[-46.374156,-11.868178],[-46.170841,-11.900564],[-46.397437,-12.039917],[-46.351964,-12.336976],[-46.153544,-12.482796],[-46.279515,-12.584471],[-46.304358,-12.949443],[-46.119495,-12.925407],[-46.363444,-12.990788],[-46.417186,-12.823042],[-46.45422,-12.970722],[-46.750177,-12.968724],[-47.426534,-13.289007],[-47.63434,-13.104065],[-47.678542,-13.46728],[-47.823547,-13.311435],[-48.164957,-13.305356],[-48.173492,-13.147675],[-48.441266,-13.291938],[-48.508419,-13.128422],[-48.58596,-13.317182],[-48.601652,-13.059894],[-48.857053,-12.804994],[-48.975176,-12.956771],[-49.118631,-12.789931],[-49.236963,-12.883541],[-49.369037,-13.274169],[-50.292184,-12.839493],[-50.142216,-12.39551],[-50.36546,-12.545645],[-50.510606,-12.860278],[-50.622263,-12.819312],[-50.741594,-11.454492],[-50.602989,-10.660528],[-50.03733,-9.289006],[-49.282871,-8.379166],[-49.150136,-7.80181],[-49.383604,-7.543108],[-49.184836,-7.234789],[-49.20905,-6.92502],[-48.664412,-6.662383],[-48.507179,-6.354583],[-48.382239,-6.379232],[-48.431498,-6.176918],[-48.231193,-5.945764],[-48.294112,-5.756302],[-48.131813,-5.617758],[-48.384303,-5.393838],[-48.745052,-5.369352],[-48.519021,-5.191768],[-47.933553,-5.240579],[-47.49969,-5.525235],[-47.378389,-6.270479],[-47.529477,-6.976146],[-47.745785,-7.200837],[-47.499355,-7.293472],[-47.590437,-7.439154],[-47.043074,-8.053196],[-46.604246,-7.895787],[-46.476536,-8.011824],[-46.507164,-8.270375],[-46.806408,-8.398576]]]}},{"type":"Feature","properties":{"sigla":"DF","nome":"Distrito Federal"},"geometry":{"type":"Polygon","coordinates":[[[-47.31543,-15.593974],[-47.308367,-16.050078],[-48.278674,-16.051101],[-48.197192,-15.500511],[-47.416906,-15.499863],[-47.31543,-15.593974]]]}}]};
+const UF_DATA = {"SC":{"total":66,"atrasado":11,"insucesso":9,"atrasado_mov":5,"sem_mov":0,"em_devolucao":4,"no_prazo":51,"last_mile":0,"alerta":14,"pct_alerta":22.6,"pct_atrasado":17.7},"SP":{"total":245,"atrasado":35,"insucesso":14,"atrasado_mov":15,"sem_mov":4,"em_devolucao":27,"no_prazo":163,"last_mile":13,"alerta":33,"pct_alerta":15.1,"pct_atrasado":16.1},"PB":{"total":70,"atrasado":4,"insucesso":4,"atrasado_mov":3,"sem_mov":0,"em_devolucao":5,"no_prazo":61,"last_mile":0,"alerta":7,"pct_alerta":10.8,"pct_atrasado":6.2},"RJ":{"total":106,"atrasado":9,"insucesso":10,"atrasado_mov":4,"sem_mov":0,"em_devolucao":18,"no_prazo":75,"last_mile":1,"alerta":14,"pct_alerta":15.9,"pct_atrasado":10.2},"PR":{"total":68,"atrasado":3,"insucesso":3,"atrasado_mov":3,"sem_mov":0,"em_devolucao":5,"no_prazo":59,"last_mile":1,"alerta":6,"pct_alerta":9.5,"pct_atrasado":4.8},"AL":{"total":39,"atrasado":1,"insucesso":1,"atrasado_mov":1,"sem_mov":0,"em_devolucao":1,"no_prazo":37,"last_mile":0,"alerta":2,"pct_alerta":5.3,"pct_atrasado":2.6},"MT":{"total":45,"atrasado":0,"insucesso":1,"atrasado_mov":4,"sem_mov":0,"em_devolucao":7,"no_prazo":38,"last_mile":0,"alerta":5,"pct_alerta":13.2,"pct_atrasado":0.0},"AM":{"total":39,"atrasado":3,"insucesso":2,"atrasado_mov":5,"sem_mov":0,"em_devolucao":13,"no_prazo":23,"last_mile":0,"alerta":7,"pct_alerta":26.9,"pct_atrasado":11.5},"RS":{"total":58,"atrasado":2,"insucesso":2,"atrasado_mov":1,"sem_mov":0,"em_devolucao":1,"no_prazo":49,"last_mile":0,"alerta":3,"pct_alerta":5.3,"pct_atrasado":3.5},"BA":{"total":122,"atrasado":5,"insucesso":6,"atrasado_mov":11,"sem_mov":0,"em_devolucao":11,"no_prazo":105,"last_mile":0,"alerta":17,"pct_alerta":15.3,"pct_atrasado":4.5},"RN":{"total":57,"atrasado":2,"insucesso":2,"atrasado_mov":3,"sem_mov":0,"em_devolucao":5,"no_prazo":50,"last_mile":0,"alerta":5,"pct_alerta":9.6,"pct_atrasado":3.8},"PI":{"total":33,"atrasado":3,"insucesso":0,"atrasado_mov":3,"sem_mov":0,"em_devolucao":5,"no_prazo":25,"last_mile":1,"alerta":3,"pct_alerta":10.7,"pct_atrasado":10.7},"MA":{"total":55,"atrasado":2,"insucesso":3,"atrasado_mov":2,"sem_mov":0,"em_devolucao":3,"no_prazo":50,"last_mile":0,"alerta":5,"pct_alerta":9.6,"pct_atrasado":3.8},"CE":{"total":140,"atrasado":1,"insucesso":1,"atrasado_mov":9,"sem_mov":0,"em_devolucao":15,"no_prazo":124,"last_mile":0,"alerta":10,"pct_alerta":8.0,"pct_atrasado":0.8},"MG":{"total":174,"atrasado":3,"insucesso":9,"atrasado_mov":15,"sem_mov":0,"em_devolucao":14,"no_prazo":153,"last_mile":0,"alerta":24,"pct_alerta":15.0,"pct_atrasado":1.9},"SE":{"total":25,"atrasado":0,"insucesso":0,"atrasado_mov":1,"sem_mov":0,"em_devolucao":3,"no_prazo":22,"last_mile":0,"alerta":1,"pct_alerta":4.5,"pct_atrasado":0.0},"RO":{"total":17,"atrasado":1,"insucesso":0,"atrasado_mov":2,"sem_mov":0,"em_devolucao":2,"no_prazo":14,"last_mile":0,"alerta":2,"pct_alerta":13.3,"pct_atrasado":6.7},"ES":{"total":30,"atrasado":1,"insucesso":0,"atrasado_mov":0,"sem_mov":0,"em_devolucao":2,"no_prazo":27,"last_mile":0,"alerta":0,"pct_alerta":0.0,"pct_atrasado":3.6},"PA":{"total":104,"atrasado":2,"insucesso":4,"atrasado_mov":4,"sem_mov":0,"em_devolucao":8,"no_prazo":94,"last_mile":2,"alerta":8,"pct_alerta":8.3,"pct_atrasado":2.1},"PE":{"total":107,"atrasado":2,"insucesso":1,"atrasado_mov":5,"sem_mov":1,"em_devolucao":4,"no_prazo":100,"last_mile":1,"alerta":7,"pct_alerta":6.8,"pct_atrasado":1.9},"AP":{"total":12,"atrasado":1,"insucesso":0,"atrasado_mov":1,"sem_mov":0,"em_devolucao":2,"no_prazo":9,"last_mile":0,"alerta":1,"pct_alerta":10.0,"pct_atrasado":10.0},"RR":{"total":5,"atrasado":0,"insucesso":0,"atrasado_mov":1,"sem_mov":0,"em_devolucao":1,"no_prazo":4,"last_mile":0,"alerta":1,"pct_alerta":25.0,"pct_atrasado":0.0},"DF":{"total":22,"atrasado":1,"insucesso":1,"atrasado_mov":0,"sem_mov":0,"em_devolucao":2,"no_prazo":17,"last_mile":0,"alerta":1,"pct_alerta":5.0,"pct_atrasado":5.0},"GO":{"total":50,"atrasado":0,"insucesso":0,"atrasado_mov":0,"sem_mov":0,"em_devolucao":1,"no_prazo":48,"last_mile":0,"alerta":0,"pct_alerta":0.0,"pct_atrasado":0.0},"TO":{"total":12,"atrasado":0,"insucesso":0,"atrasado_mov":0,"sem_mov":0,"em_devolucao":1,"no_prazo":11,"last_mile":0,"alerta":0,"pct_alerta":0.0,"pct_atrasado":0.0},"AC":{"total":8,"atrasado":0,"insucesso":0,"atrasado_mov":0,"sem_mov":0,"em_devolucao":0,"no_prazo":8,"last_mile":0,"alerta":0,"pct_alerta":0.0,"pct_atrasado":0.0},"MS":{"total":17,"atrasado":0,"insucesso":0,"atrasado_mov":2,"sem_mov":0,"em_devolucao":0,"no_prazo":16,"last_mile":0,"alerta":2,"pct_alerta":11.8,"pct_atrasado":0.0}};
+
+const REGIONS = [
+  {name:'Norte',      color:'#0ea5e9', ufs:['AC','AM','AP','PA','RO','RR','TO']},
+  {name:'Nordeste',   color:'#a78bfa', ufs:['AL','BA','CE','MA','PB','PE','PI','RN','SE']},
+  {name:'Centro-Oeste',color:'#34d399',ufs:['DF','GO','MS','MT']},
+  {name:'Sudeste',    color:'#f97316', ufs:['ES','MG','RJ','SP']},
+  {name:'Sul',        color:'#60a5fa', ufs:['PR','RS','SC']}
+];
+
+const REGION_BY_UF = {};
+REGIONS.forEach(r => r.ufs.forEach(u => REGION_BY_UF[u] = r));
+
+const METRICS = {
+  pct_alerta:   {label:'% em Alerta por UF',       fmt:v=>v.toFixed(1)+'%', key:'pct_alerta',  fromColor:'#ede9fe', toColor:'#4c1d95'},
+  last_mile:    {label:'Last Mile por UF',           fmt:v=>v,                key:'last_mile',   fromColor:'#ede9fe', toColor:'#4c1d95'},
+  insucesso:    {label:'Insucessos por UF',          fmt:v=>v,                key:'insucesso',   fromColor:'#ede9fe', toColor:'#4c1d95'},
+  atrasado_mov: {label:'Atrasado Movim. por UF',    fmt:v=>v,                key:'atrasado_mov',fromColor:'#ede9fe', toColor:'#4c1d95'},
+  atrasado:     {label:'Atrasado Entrega por UF',   fmt:v=>v,                key:'atrasado',    fromColor:'#ede9fe', toColor:'#4c1d95'},
+};
+
+let currentMetric = 'pct_alerta';
+
+// ── Map setup — viewBox fixo, CSS escala responsivamente ──
+const VW = 700, VH = 620;
+const svg = d3.select('#map-svg')
+  .attr('viewBox', `0 0 ${VW} ${VH}`)
+  .attr('preserveAspectRatio', 'xMidYMid meet');
+
+const projection = d3.geoMercator()
+  .fitSize([VW, VH], GEO);
+
+const path = d3.geoPath().projection(projection);
+const g = svg.append('g');
+
+// Draw states
+const paths = g.selectAll('path')
+  .data(GEO.features)
+  .join('path')
+  .attr('d', path)
+  .attr('stroke', '#ffffff')
+  .attr('stroke-width', 1.2)
+  .style('cursor','pointer')
+  .on('mousemove', onHover)
+  .on('mouseleave', hideTooltip);
+
+function getColor(uf, metric) {
+  const d = UF_DATA[uf];
+  if (!d) return '#e5e7eb';
+  const m = METRICS[metric];
+  const vals = Object.values(UF_DATA).map(x => x[m.key]);
+  const mn = d3.min(vals), mx = d3.max(vals);
+  const scale = d3.scaleSequential()
+    .domain([mn, mx])
+    .interpolator(d3.interpolateRgb(m.fromColor, m.toColor));
+  return scale(d[m.key]);
+}
+
+function updateMap(metric) {
+  const m = METRICS[metric];
+  document.getElementById('map-title').textContent = m.label;
+
+  const vals = Object.values(UF_DATA).map(x => x[m.key]);
+  const mn = d3.min(vals), mx = d3.max(vals);
+  document.getElementById('leg-min').textContent = m.fmt(mn);
+  document.getElementById('leg-max').textContent = m.fmt(mx);
+  document.getElementById('leg-bar').style.setProperty('--l-from', m.fromColor);
+  document.getElementById('leg-bar').style.setProperty('--l-to', m.toColor);
+
+  paths.transition().duration(400)
+    .attr('fill', d => getColor(d.properties.sigla, metric));
+}
+
+// ── Tooltip ──
+const tip = document.getElementById('tooltip');
+function onHover(event, d) {
+  const uf = d.properties.sigla;
+  const nome = d.properties.nome;
+  const dat = UF_DATA[uf];
+  if (!dat) { hideTooltip(); return; }
+  const reg = REGION_BY_UF[uf];
+  tip.innerHTML = `
+    <div class="tt-uf">${uf} — ${nome}</div>
+    <div style="font-size:.68rem;color:${reg?.color||'#94a3b8'};margin-bottom:6px;font-weight:600">${reg?.name||''}</div>
+    <div class="tt-row"><span class="tt-key">Total Pedidos</span><span class="tt-val">${dat.total}</span></div>
+    <div class="tt-row"><span class="tt-key">Em Alerta</span><span class="tt-val tt-alerta">${dat.alerta} <span class="tt-pct" style="background:#431407;color:#f97316">${dat.pct_alerta}%</span></span></div>
+    <div class="tt-row"><span class="tt-key">Insucessos</span><span class="tt-val" style="color:#ef4444">${dat.insucesso}</span></div>
+    <div class="tt-row"><span class="tt-key">Atrasado Mov.</span><span class="tt-val" style="color:#f59e0b">${dat.atrasado_mov}</span></div>
+    <div class="tt-row"><span class="tt-key">Sem Movim. D2+</span><span class="tt-val" style="color:#f59e0b">${dat.sem_mov}</span></div>
+    <div class="tt-row"><span class="tt-key">Atrasado Entrega</span><span class="tt-val" style="color:#fb7185">${dat.atrasado}</span></div>
+    <div class="tt-row"><span class="tt-key">No Prazo</span><span class="tt-val" style="color:#22c55e">${dat.no_prazo}</span></div>
+    <div class="tt-row"><span class="tt-key">Em Devolução</span><span class="tt-val" style="color:#14b8a6">${dat.em_devolucao}</span></div>
+  `;
+  tip.classList.remove('hidden');
+  positionTip(event);
+}
+function positionTip(event) {
+  const x = event.clientX + 16, y = event.clientY - 10;
+  tip.style.left = Math.min(x, window.innerWidth - 230) + 'px';
+  tip.style.top = Math.max(y, 10) + 'px';
+}
+function hideTooltip() { tip.classList.add('hidden'); }
+document.addEventListener('mousemove', e => { if (!tip.classList.contains('hidden')) positionTip(e); });
+
+// ── Region cards ──
+function buildRegions() {
+  const col = document.getElementById('right-col');
+  col.innerHTML = '';
+
+  // Region cards
+  REGIONS.forEach(r => {
+    const agg = {total:0,alerta:0,insucesso:0,atrasado_mov:0,atrasado:0,no_prazo:0,em_devolucao:0};
+    r.ufs.forEach(u => {
+      const d = UF_DATA[u]; if (!d) return;
+      agg.total += d.total; agg.alerta += d.alerta; agg.insucesso += d.insucesso;
+      agg.atrasado_mov += d.atrasado_mov; agg.atrasado += d.atrasado;
+      agg.no_prazo += d.no_prazo; agg.em_devolucao += d.em_devolucao;
+    });
+    const pct = agg.total ? (agg.alerta/agg.total*100).toFixed(1) : 0;
+    const badgeColor = pct > 25 ? '#ef4444' : pct > 15 ? '#f97316' : '#22c55e';
+    const card = document.createElement('div');
+    card.className = 'region-card';
+    card.style.borderLeft = `3px solid ${r.color}`;
+    card.innerHTML = `
+      <div class="region-name" style="color:${r.color}">
+        ${r.name}
+        <span class="region-badge" style="background:${badgeColor}22;color:${badgeColor}">${pct}% alerta</span>
+      </div>
+      <div class="region-stats">
+        <div class="rs"><div class="rs-v">${agg.total}</div><div class="rs-l">Total</div></div>
+        <div class="rs"><div class="rs-v" style="color:#f97316">${agg.alerta}</div><div class="rs-l">Alertas</div></div>
+        <div class="rs"><div class="rs-v" style="color:#ef4444">${agg.insucesso}</div><div class="rs-l">Insucesso</div></div>
+        <div class="rs"><div class="rs-v" style="color:#f59e0b">${agg.atrasado_mov}</div><div class="rs-l">Atr.Mov</div></div>
+        <div class="rs"><div class="rs-v" style="color:#fb7185">${agg.atrasado}</div><div class="rs-l">Atr.Entrega</div></div>
+        <div class="rs"><div class="rs-v" style="color:#22c55e">${agg.no_prazo}</div><div class="rs-l">No Prazo</div></div>
+      </div>
+    `;
+    col.appendChild(card);
+  });
+}
+
+
+// ── Metric buttons ──
+const BTNS = Array.from(document.querySelectorAll('.metric-btn'));
+let rotateIdx = 0;
+let rotateTimer = null;
+let progressTimer = null;
+const ROTATE_MS = 10000;
+
+function activateBtn(btn) {
+  BTNS.forEach(b => { b.classList.remove('active'); b.style.setProperty('--progress','0%'); });
+  btn.classList.add('active');
+  currentMetric = btn.dataset.metric;
+  updateMap(currentMetric);
+}
+
+function startProgress(btn) {
+  clearInterval(progressTimer);
+  let elapsed = 0;
+  const STEP = 80;
+  progressTimer = setInterval(() => {
+    elapsed += STEP;
+    const pct = Math.min((elapsed / ROTATE_MS) * 100, 100).toFixed(1) + '%';
+    btn.style.setProperty('--progress', pct);
+  }, STEP);
+}
+
+function rotate() {
+  rotateIdx = (rotateIdx + 1) % BTNS.length;
+  activateBtn(BTNS[rotateIdx]);
+  startProgress(BTNS[rotateIdx]);
+}
+
+function resetTimer() {
+  clearInterval(rotateTimer);
+  clearInterval(progressTimer);
+  BTNS.forEach(b => b.style.setProperty('--progress','0%'));
+  rotateTimer = setInterval(rotate, ROTATE_MS);
+  startProgress(BTNS[rotateIdx]);
+}
+
+BTNS.forEach((btn, i) => {
+  btn.addEventListener('click', () => {
+    rotateIdx = i;
+    activateBtn(btn);
+    resetTimer();
+  });
+});
+
+// ── Init ──
+updateMap('pct_alerta');
+buildRegions();
+resetTimer();
+
+
+// ── Sync: maxHeight do right-map = offsetHeight do left-kpi ──
+function syncMapHeight() {
+  var lk = document.querySelector('.left-kpi');
+  var rm = document.getElementById('right-map');
+  if (!lk || !rm) return;
+  rm.style.maxHeight = lk.offsetHeight + 'px';
+}
+window.addEventListener('load', syncMapHeight);
+window.addEventListener('resize', syncMapHeight);
+
+// ── Fix: rotação completa por TODOS os botões de métrica (v19) ──
+// Cancela o interval original (que pode estar com módulo fixo menor que o total de botões)
+// e reinstancia um novo que cicla corretamente por todos os .metric-btn disponíveis.
+(function() {
+  function iniciarRotacaoCompleta() {
+    var btns = Array.from(document.querySelectorAll('.metric-btn'));
+    if (!btns.length) {
+      // Mapa ainda não inicializou — tentar novamente em 500ms
+      setTimeout(iniciarRotacaoCompleta, 500);
+      return;
+    }
+    // Cancelar TODOS os intervals ativos (inclui o de rotação original com módulo errado)
+    var _dummyId = setInterval(function(){}, 999999);
+    for (var _id = 1; _id <= _dummyId; _id++) {
+      try { clearInterval(_id); } catch(e) {}
+    }
+    clearInterval(_dummyId);
+
+    // Nova rotação: cicla por todos os botões (quantidade real, não hardcoded)
+    var _midx = 0;
+    setInterval(function() {
+      _midx = (_midx + 1) % btns.length;
+      btns[_midx].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    }, 4000);
+
+    // Sincronizar altura após reativar mapa
+    syncMapHeight();
+  }
+  // Aguarda D3 inicializar o mapa completamente antes de aplicar o fix
+  setTimeout(iniciarRotacaoCompleta, 3000);
+})();
+
+
+// ══ SISTEMA DE ABAS ══════════════════════════════════════════════════════════
+function switchTabOuter(n) {
+  document.querySelectorAll('.tab-panel-outer').forEach(function(p) {
+    p.classList.remove('tab-panel-active');
+  });
+  document.querySelectorAll('.tab-btn-outer').forEach(function(b) {
+    b.classList.remove('tab-active');
+  });
+  document.getElementById('tab-outer-' + n).classList.add('tab-panel-active');
+  document.getElementById('tab-obtn-' + n).classList.add('tab-active');
+}
+
+// ══ TABELA 2 — ATRASADOS TORRE TRATATIVAS ════════════════════════════════════
+const ATRAS_ROWS = [{"pedido": "RLX.B2C-15024012", "nf": "3614.0", "tracking": "11398174", "cliente": "RENATO CARVALHO", "transp": "DISSUDES RESIDENCE TRANSPORTES E LOGISTICA INTEGRADA LTDA", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "09/03/2026", "previsao": "11/03/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/15024012", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0370548-022", "nf": "389315.0", "tracking": "SELS104185020tx", "cliente": "ADAUTO GUIMARAES DE CARVALHO JUNIOR", "transp": "TEX COURIER S.A", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "04/07/2026", "previsao": "21/07/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/18788842", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "28/08/2026", "trat_prazo": "28/08/2026"}, {"pedido": "JBL0371203-022", "nf": "390170.0", "tracking": "SELS104192612tx", "cliente": "JOAO BATISTA CEZAR FERREIRA", "transp": "TEX COURIER S.A", "uf": "BA", "sit_mov": "NO_PRAZO_MOV", "despacho": "07/07/2026", "previsao": "22/07/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/18866393", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "28/08/2026", "trat_prazo": "28/08/2026"}, {"pedido": "RLX.B2C-19094393", "nf": "19684.0", "tracking": "14129823", "cliente": "LAUTER FERREIRA", "transp": "R3", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "13/07/2026", "previsao": "13/07/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/19094393", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-19083953", "nf": "19682.0", "tracking": "14124858", "cliente": "IVAN DE LIMA", "transp": "R3", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "13/07/2026", "previsao": "13/07/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/19083953", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-19238978", "nf": "20246.0", "tracking": "14249565", "cliente": "MICHELE APARECIDA", "transp": "R3", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "16/07/2026", "previsao": "17/07/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/19238978", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-19268887", "nf": "20395.0", "tracking": "14273764", "cliente": "LEONARDO CIASCA", "transp": "R3", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "17/07/2026", "previsao": "17/07/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/19268887", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-19260498", "nf": "20329.0", "tracking": "14263335", "cliente": "CÉSAR BARBOSA", "transp": "R3", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "17/07/2026", "previsao": "17/07/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/19260498", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0378295-022", "nf": "396797.0", "tracking": "SELS104230602tx", "cliente": "LUCILENE LIMA MOARES", "transp": "TEX COURIER S.A", "uf": "AP", "sit_mov": "NO_PRAZO_MOV", "despacho": "27/07/2026", "previsao": "20/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/19588750", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "28/08/2026", "trat_prazo": "28/08/2026"}, {"pedido": "JBL0378152-022", "nf": "396804.0", "tracking": "SELS104230651tx", "cliente": "DANIELLE DE OLUVEIRA COSTA CORREIA", "transp": "TEX COURIER S.A", "uf": "BA", "sit_mov": "ATRASADO_MOV", "despacho": "27/07/2026", "previsao": "24/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/19579734", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "28/08/2026", "trat_prazo": "28/08/2026"}, {"pedido": "RLX.B2C-19664193", "nf": "22027.0", "tracking": "14543360", "cliente": "ROBSON CARENZIO", "transp": "DISSUDES RESIDENCE TRANSPORTES E LOGISTICA INTEGRADA LTDA", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "29/07/2026", "previsao": "30/07/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/19664193", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0379207-022", "nf": "398102.0", "tracking": "14560410", "cliente": "MAYRA CRISTINA DOS SANTOS BRAGA", "transp": "GFL", "uf": "ES", "sit_mov": "NO_PRAZO_MOV", "despacho": "29/07/2026", "previsao": "11/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/19685145", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0379260-022", "nf": "398261.0", "tracking": "14565089", "cliente": "MARCELA FERREIRA", "transp": "TRANSPORTES TRANSLOVATO LTDA", "uf": "PI", "sit_mov": "NO_PRAZO_MOV", "despacho": "30/07/2026", "previsao": "24/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/19691531", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "08/09/2026", "trat_prazo": "08/09/2026"}, {"pedido": "JBL0379298-022", "nf": "398232.0", "tracking": "SELS104239967tx", "cliente": "LOURIVALDO ALVES DA SILVA", "transp": "TEX COURIER S.A", "uf": "MA", "sit_mov": "NO_PRAZO_MOV", "despacho": "30/07/2026", "previsao": "20/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/19695782", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-19744399", "nf": "22404.0", "tracking": "14601104", "cliente": "PEDRO PERICO", "transp": "R3", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "31/07/2026", "previsao": "31/07/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/19744399", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "LON-19772456", "nf": "1225.0", "tracking": "14624149", "cliente": "ANA MARIA PARENTE", "transp": "GFL", "uf": "CE", "sit_mov": "NO_PRAZO_MOV", "despacho": "03/08/2026", "previsao": "21/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/londoncosmeticos/19772456", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0380256-022", "nf": "399529.0", "tracking": "14687436", "cliente": "LEONARDO MEIRELES DA SILVA", "transp": "TRANSPORTES TRANSLOVATO LTDA", "uf": "PE", "sit_mov": "ATRASADO_MOV", "despacho": "03/08/2026", "previsao": "26/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/19797475", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "28/08/2026", "trat_prazo": "28/08/2026"}, {"pedido": "RLX.B2C-19849588", "nf": "22777.0", "tracking": "14671483", "cliente": "FLAVIW ANTUNES", "transp": "R3", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "03/08/2026", "previsao": "03/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/19849588", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0381139-022", "nf": "400155.0", "tracking": "14712413", "cliente": "PHORLAN TALSENY DANTAS DE MELO", "transp": "GFL", "uf": "RN", "sit_mov": "ATRASADO_MOV", "despacho": "05/08/2026", "previsao": "20/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/19906617", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "28/08/2026", "trat_prazo": "28/08/2026"}, {"pedido": "JBL0381396-022", "nf": "400368.0", "tracking": "SELS104250923tx", "cliente": "JANIEL DA SILVA FERREIRA", "transp": "TOTAL EXPRESS", "uf": "PI", "sit_mov": "NO_PRAZO_MOV", "despacho": "05/08/2026", "previsao": "25/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/19939848", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "01/09/2026"}, {"pedido": "RLX.B2C-19947199", "nf": "23335.0", "tracking": "14742279", "cliente": "FABIANA DOURADO", "transp": "R3", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "06/08/2026", "previsao": "06/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/19947199", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0381775-022", "nf": "400681.0", "tracking": "14765221", "cliente": "REINALDO HENRIQUE", "transp": "DISSUDES RESIDENCE TRANSPORTES E LOGISTICA INTEGRADA LTDA", "uf": "PR", "sit_mov": "ATRASADO_MOV", "despacho": "06/08/2026", "previsao": "11/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/19978454", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "28/08/2026", "trat_prazo": "28/08/2026"}, {"pedido": "JBL0382635-022", "nf": "401818.0", "tracking": "SELS104259171tx", "cliente": "RAFAEL NUNES DE SOUZA LIMA", "transp": "TOTAL EXPRESS", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "10/08/2026", "previsao": "21/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20095185", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "28/08/2026", "trat_prazo": "28/08/2026"}, {"pedido": "RLX.B2C-20150333", "nf": "24269.0", "tracking": "14876567", "cliente": "LIVIA A MARTINS", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "11/08/2026", "previsao": "13/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20150333", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-20154591", "nf": "24106.0", "tracking": "14884285", "cliente": "SOLANGE FERES", "transp": "R3", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "10/08/2026", "previsao": "08/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20154591", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-20186848", "nf": "24358.0", "tracking": "14910190", "cliente": "FABIO SCALON MEIRELES", "transp": "R3", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "11/08/2026", "previsao": "11/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20186848", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0383162-022", "nf": "402188.0", "tracking": "14900867", "cliente": "FLAVIANA LIMA BEZERRA", "transp": "FAVORITA TRANSPORTES LTDA", "uf": "RO", "sit_mov": "NO_PRAZO_MOV", "despacho": "17/08/2026", "previsao": "27/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20178785", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "01/09/2026"}, {"pedido": "JBL0383378-022", "nf": "402385.0", "tracking": "14930112", "cliente": "FERNANDA M SILVA DIAS", "transp": "GFL", "uf": "SC", "sit_mov": "ATRASADO_MOV", "despacho": "12/08/2026", "previsao": "24/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20213794", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "28/08/2026", "trat_prazo": "28/08/2026"}, {"pedido": "RLX.B2C-20224910", "nf": "24462.0", "tracking": "AD786616825BR", "cliente": "FRANCINE JELALETI RINALDI", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "AM", "sit_mov": "NO_PRAZO_MOV", "despacho": "12/08/2026", "previsao": "24/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20224910", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0383808-022", "nf": "403009.0", "tracking": "AD798151324BR", "cliente": "EMANUELE ANDREZA DA COSTA MOTA", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "AM", "sit_mov": "NO_PRAZO_MOV", "despacho": "14/08/2026", "previsao": "19/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20283452", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20274480", "nf": "24781.0", "tracking": "14977532", "cliente": "CLAUDIA GUEBERT", "transp": "GFL", "uf": "SC", "sit_mov": "ATRASADO_MOV", "despacho": "14/08/2026", "previsao": "24/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20274480", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0384164-022", "nf": "403227.0", "tracking": "AD801447644BR", "cliente": "ZIGOMAR DA SILVA MUNIZ", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "AM", "sit_mov": "ATRASADO_MOV", "despacho": "17/08/2026", "previsao": "27/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20336910", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "17/09/2026", "trat_prazo": "17/09/2026"}, {"pedido": "RLX.B2C-20387869", "nf": "25165.0", "tracking": "15045121", "cliente": "STEPHAN DE PAULA ROSA", "transp": "GFL", "uf": "SC", "sit_mov": "ATRASADO_MOV", "despacho": "17/08/2026", "previsao": "24/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20387869", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-20394768", "nf": "25103.0", "tracking": "15048375", "cliente": "STEFANIA FRACASSO", "transp": "GFL", "uf": "SC", "sit_mov": "NO_PRAZO_MOV", "despacho": "17/08/2026", "previsao": "26/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20394768", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-20411578", "nf": "25306.0", "tracking": "15066711", "cliente": "ANDREA ZINI", "transp": "GFL", "uf": "SC", "sit_mov": "NO_PRAZO_MOV", "despacho": "17/08/2026", "previsao": "26/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20411578", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-20396719", "nf": "25189.0", "tracking": "15049392", "cliente": "JOÃO CLOVIS DA SILVA FILHO", "transp": "GFL", "uf": "SC", "sit_mov": "NO_PRAZO_MOV", "despacho": "17/08/2026", "previsao": "26/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20396719", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0384948-022", "nf": "404010.0", "tracking": "AD814892667BR", "cliente": "JOAO CARLOS SIQUEIRA VIEIRA", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "PA", "sit_mov": "NO_PRAZO_MOV", "despacho": "19/08/2026", "previsao": "28/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20469776", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-20474278", "nf": "25599.0", "tracking": "15115494", "cliente": "MARCELO AMARAL", "transp": "GFL", "uf": "RS", "sit_mov": "ATRASADO_MOV", "despacho": "19/08/2026", "previsao": "28/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20474278", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0384911-022", "nf": "404000.0", "tracking": "15109474", "cliente": "PRISCILA  GRANADO", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "19/08/2026", "previsao": "27/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20463839", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "01/09/2026"}, {"pedido": "JBL0385212-022", "nf": "404359.0", "tracking": "15136060", "cliente": "GABRIELLA", "transp": "GFL", "uf": "MG", "sit_mov": "NO_PRAZO_MOV", "despacho": "20/08/2026", "previsao": "25/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20497951", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "28/08/2026", "trat_prazo": "28/08/2026"}, {"pedido": "JBL0385270-022", "nf": "404322.0", "tracking": "15140517", "cliente": "ANDERSON CHELI VERTELIO", "transp": "GFL", "uf": "RJ", "sit_mov": "STATUS_NAO_MAPEADO", "despacho": "20/08/2026", "previsao": "26/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20504357", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0385607-022", "nf": "404658.0", "tracking": "15171908", "cliente": "FABIANO PEREIRA DA SILVA", "transp": "AEX LOG", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "21/08/2026", "previsao": "27/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20544189", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20556144", "nf": "26050.0", "tracking": "AD825977213BR", "cliente": "ANDRÉA MARIA", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "PI", "sit_mov": "NO_PRAZO_MOV", "despacho": "21/08/2026", "previsao": "27/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20556144", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0386470-022", "nf": "405309.0", "tracking": "15240170", "cliente": "MAISA SOARES BRITO", "transp": "GFL", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "24/08/2026", "previsao": "27/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20652015", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0386663-022", "nf": "405708.0", "tracking": "15262058", "cliente": "GABRIEL CAMARGO LISBOA", "transp": "GFL", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "25/08/2026", "previsao": "28/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20673717", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "JBL0386712-022", "nf": "405875.0", "tracking": "15265328", "cliente": "RENAN VIEIRA GUIMARAES", "transp": "DISSUDES RESIDENCE TRANSPORTES E LOGISTICA INTEGRADA LTDA", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "25/08/2026", "previsao": "26/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20678565", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "31/08/2026", "trat_prazo": "31/08/2026"}, {"pedido": "RLX.B2C-20714466", "nf": "26797.0", "tracking": "AD847399772BR", "cliente": "ANA DE ALENCAR", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "PE", "sit_mov": "ATRASADO_MOV", "despacho": "26/08/2026", "previsao": "13/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20714466", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-20839944", "nf": "27160.0", "tracking": "15397060", "cliente": "HENRIQUE SOUZA DOS  SANTOS", "transp": "R3", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "29/08/2026", "previsao": "29/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20839944", "trat": "TRANSPORTADORA", "atuacao": "31/08/2026", "informada": "", "trat_prazo": "02/09/2026"}, {"pedido": "RLX.B2C-20865413", "nf": "nan", "tracking": "nan", "cliente": "EDUARDO REICHENHEIM", "transp": "R3", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "31/08/2026", "previsao": "29/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20865413", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20860809", "nf": "nan", "tracking": "nan", "cliente": "CLAUDIA ACLARO", "transp": "GFL", "uf": "RJ", "sit_mov": "AGUARD_MOV", "despacho": "31/08/2026", "previsao": "05/05/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20860809", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}];
+const TODAY_T2   = '01/09/2026';
+
+function t2ParseDate(s) {
+  if (!s) return 0;
+  var p = s.split('/');
+  if (p.length !== 3) return 0;
+  return new Date(+p[2], +p[1]-1, +p[0]).getTime();
+}
+
+function t2IsVencida(s) {
+  if (!s) return false;
+  return t2ParseDate(s) < t2ParseDate(TODAY_T2);
+}
+
+var t2Filter = 'todos';
+var t2SortCol = '';
+var t2SortAsc = true;
+var t2Rows = ATRAS_ROWS.slice();
+
+function t2SetFilter(f) {
+  t2Filter = f;
+  ['todos','trat','sem'].forEach(function(x) {
+    var btn = document.getElementById('tf-' + x);
+    if (!btn) return;
+    btn.className = 'trat-filter-btn';
+    if (x === f) {
+      if (f === 'sem')  btn.className += ' tf-red';
+      else if (f === 'trat') btn.className += ' tf-amb';
+      else btn.className += ' tf-active';
+    }
+  });
+  t2Filtrar();
+}
+
+function t2Filtrar() {
+  var q = (document.getElementById('trat-search').value || '').toLowerCase();
+  var rows = t2Rows.filter(function(r) {
+    if (t2Filter === 'trat' && !r.trat) return false;
+    if (t2Filter === 'sem'  &&  r.trat) return false;
+    if (q) {
+      var hay = (r.pedido + r.cliente + r.transp + r.uf + r.nf + r.tracking).toLowerCase();
+      if (hay.indexOf(q) < 0) return false;
+    }
+    return true;
+  });
+  t2Render(rows);
+  document.getElementById('t2-rowcount').textContent = 'Exibindo ' + rows.length + ' de ' + t2Rows.length + ' pedidos';
+}
+
+var SIT_MOV_LABELS = {
+  ATRASADO_MOV:       ['tb-atm', 'Atrasado Mov.'],
+  NO_PRAZO_MOV:       ['tb-npm', 'No Prazo Mov.'],
+  STATUS_NAO_MAPEADO: ['tb-smn', 'Não Mapeado'],
+  SEM_MOV:            ['tb-smn', 'Sem Movim.'],
+  AGUARD_MOV:         ['tb-smn', 'Aguard. Mov.'],
+};
+
+var TRANSP_SHORT = {
+  'EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS': 'Correios',
+  'TEX COURIER S.A': 'Tex Courier',
+  'DISSUDES RESIDENCE TRANSPORTES E LOGISTICA INTEGRADA LTDA': 'Dissudes',
+  'TRANSPORTES TRANSLOVATO LTDA': 'Translovato',
+  'TOTAL EXPRESS': 'Total Express',
+};
+
+function t2Render(rows) {
+  var tbody = document.getElementById('trat-tbody');
+  var empty = document.getElementById('trat-empty');
+  if (!rows.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  tbody.innerHTML = rows.map(function(r) {
+    var hasTrat = !!r.trat;
+    var trCls = hasTrat ? 'tr-amb' : 'tr-red';
+
+    var smInfo = SIT_MOV_LABELS[r.sit_mov] || ['tb-smn', r.sit_mov];
+    var smBadge = '<span class="trat-badge ' + smInfo[0] + '">' + smInfo[1] + '</span>';
+
+    var tratBadge = hasTrat
+      ? '<span class="trat-badge tb-em">🟡 ' + r.trat + '</span>'
+      : '<span class="trat-badge tb-sem">— sem trat.</span>';
+
+    var prevIsVenc = t2IsVencida(r.previsao);
+    var solIsVenc  = t2IsVencida(r.informada);
+
+    var atuarNov = '';
+    if (!hasTrat) {
+      atuarNov = '<span style="color:#475569">—</span>';
+    } else if (t2IsVencida(r.trat_prazo)) {
+      atuarNov = '<span class="atuar-sim">⚠ Sim</span>';
+    } else {
+      atuarNov = '<span class="atuar-nao">✓ Não</span>';
+    }
+
+    var tShort = TRANSP_SHORT[r.transp] || r.transp.substring(0, 22) + (r.transp.length > 22 ? '…' : '');
+    var cShort = r.cliente.substring(0, 22) + (r.cliente.length > 22 ? '…' : '');
+
+    return '<tr class="' + trCls + '">'
+      + '<td class="tc-pedido"><strong>' + r.pedido + '</strong></td>'
+      + '<td class="tc-mono">' + r.nf + '</td>'
+      + '<td class="tc-mono">' + (r.tracking || '—') + '</td>'
+      + '<td class="tc-cliente" title="' + r.cliente + '">' + cShort + '</td>'
+      + '<td title="' + r.transp + '">' + tShort + '</td>'
+      + '<td><strong>' + r.uf + '</strong></td>'
+      + '<td>' + smBadge + '</td>'
+      + '<td class="tc-date">' + (r.despacho || '—') + '</td>'
+      + '<td class="' + (prevIsVenc ? 'tc-venc' : 'tc-date') + '">' + (r.previsao || '—') + '</td>'
+      + '<td>' + tratBadge + '</td>'
+      + '<td class="tc-date">' + (r.atuacao || '—') + '</td>'
+      + '<td class="' + (solIsVenc ? 'tc-venc' : 'tc-date') + '">' + (r.informada || '—') + '</td>'
+      + '<td>' + atuarNov + '</td>'
+      + '<td>' + (r.rastreio ? '<a class="trat-link" href="' + r.rastreio + '" target="_blank">🔗 Ver</a>' : '—') + '</td>'
+      + '</tr>';
+  }).join('');
+}
+
+var T2_DATE_COLS = new Set(['despacho','previsao','atuacao','informada','trat_prazo']);
+function t2Sort(col) {
+  if (t2SortCol === col) t2SortAsc = !t2SortAsc;
+  else { t2SortCol = col; t2SortAsc = true; }
+  t2Rows.sort(function(a, b) {
+    var va = a[col] || '', vb = b[col] || '';
+    if (T2_DATE_COLS.has(col)) {
+      return t2SortAsc ? t2ParseDate(va) - t2ParseDate(vb) : t2ParseDate(vb) - t2ParseDate(va);
+    }
+    return t2SortAsc ? va.localeCompare(vb, 'pt-BR') : vb.localeCompare(va, 'pt-BR');
+  });
+  t2Filtrar();
+}
+
+// inicializar tab 2
+t2Filtrar();
+
 </script>
 </body>
 </html>
