@@ -105,6 +105,185 @@ a.rastreio:hover{text-decoration:underline}
 .dist-pct{font-size:.7rem;font-weight:700;background:#f1f5f9;color:#475569;padding:3px 7px;border-radius:8px;white-space:nowrap;flex-shrink:0;align-self:center;border:1px solid #e2e8f0}
 .dist-check{background:#f8fafc;padding:3px 16px;font-size:.6rem;border-bottom:1px solid #e2e8f0}
 @media print{.filter-bar,.btn-pdf{display:none!important}body{background:#fff;color:#000}}
+
+/* ── SISTEMA DE ABAS ── */
+.tab-section-wrap {
+  background: #111827;
+  border-bottom: 1px solid #1e293b;
+}
+.tab-strip-outer {
+  display: flex;
+  gap: 0;
+  padding: 0;
+  border-bottom: 1px solid #1e293b;
+  background: #0f172a;
+}
+.tab-btn-outer {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 11px 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color .15s, border-color .15s;
+  white-space: nowrap;
+}
+.tab-btn-outer:hover { color: #94a3b8; }
+.tab-btn-outer.tab-active {
+  color: #60a5fa;
+  border-bottom-color: #3b82f6;
+}
+.tab-badge-outer {
+  background: rgba(239,68,68,.15);
+  color: #f87171;
+  border: 1px solid rgba(239,68,68,.3);
+  font-size: .68rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+.tab-panel-outer { display: none; }
+.tab-panel-outer.tab-panel-active { display: block; }
+
+/* ── TAB 2 — Atrasados Tratativas ── */
+.trat-summary-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 24px;
+  background: #1a2640;
+  border-bottom: 1px solid #1e293b;
+  flex-wrap: wrap;
+}
+.trat-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .78rem;
+  font-weight: 600;
+  padding: 5px 13px;
+  border-radius: 20px;
+}
+.tc-total  { background: rgba(99,102,241,.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,.25); }
+.tc-trat   { background: rgba(245,158,11,.12); color: #fbbf24; border: 1px solid rgba(245,158,11,.3); }
+.tc-sem    { background: rgba(239,68,68,.10);  color: #f87171; border: 1px solid rgba(239,68,68,.28); }
+.trat-summary-bar .sep { width:1px; height:22px; background:#334155; }
+
+.trat-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  background: #1e293b;
+  border-bottom: 1px solid #1e293b;
+  flex-wrap: wrap;
+}
+.trat-search {
+  flex: 1; min-width: 200px; max-width: 320px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 6px 12px 6px 30px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: .82rem;
+  color: #e2e8f0;
+  outline: none;
+}
+.trat-search::placeholder { color: #4b5563; }
+.trat-search:focus { border-color: #3b82f6; }
+.trat-filter-wrap { display: flex; gap: 6px; }
+.trat-filter-btn {
+  background: rgba(255,255,255,.04);
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 5px 13px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all .15s;
+}
+.trat-filter-btn:hover { background: rgba(255,255,255,.07); color: #94a3b8; }
+.trat-filter-btn.tf-active { background: rgba(59,130,246,.15); border-color: rgba(59,130,246,.4); color: #60a5fa; }
+.trat-filter-btn.tf-amb    { background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.3); color: #fbbf24; }
+.trat-filter-btn.tf-red    { background: rgba(239,68,68,.10);  border-color: rgba(239,68,68,.28); color: #f87171; }
+.trat-rowcount { margin-left: auto; font-size: .75rem; color: #475569; }
+
+.trat-legend {
+  display: flex; gap: 18px; align-items: center;
+  padding: 8px 24px;
+  background: #0f172a;
+}
+.trat-leg-item { display: flex; align-items: center; gap: 6px; font-size: .72rem; color: #64748b; }
+.trat-leg-stripe { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+.leg-amb { background: rgba(245,158,11,.25); border-left: 3px solid #f59e0b; }
+.leg-red { background: rgba(239,68,68,.15);  border-left: 3px solid #ef4444; }
+
+.trat-table-wrap { overflow-x: auto; padding: 0 0 32px; }
+.trat-table { width: 100%; border-collapse: collapse; font-size: .78rem; }
+.trat-table thead th {
+  background: #0f172a;
+  color: #64748b;
+  font-weight: 600;
+  padding: 9px 12px;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid #1e293b;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.trat-table thead th:hover { color: #94a3b8; }
+.trat-table tbody tr { border-top: 1px solid #0f172a22; transition: background .1s; }
+.trat-table tbody tr:hover { background: rgba(255,255,255,.02); }
+.trat-table tbody tr.tr-amb {
+  border-left: 3px solid #f59e0b;
+  background: rgba(245,158,11,.03);
+}
+.trat-table tbody tr.tr-amb:hover { background: rgba(245,158,11,.07); }
+.trat-table tbody tr.tr-red {
+  border-left: 3px solid #ef4444;
+  background: rgba(239,68,68,.02);
+}
+.trat-table tbody tr.tr-red:hover { background: rgba(239,68,68,.06); }
+.trat-table td {
+  padding: 8px 12px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255,255,255,.03);
+  color: #e2e8f0;
+  white-space: nowrap;
+}
+.trat-table td.tc-pedido { color: #60a5fa; font-size: .75rem; }
+.trat-table td.tc-mono   { color: #94a3b8; font-size: .73rem; font-family: monospace; }
+.trat-table td.tc-date   { color: #94a3b8; }
+.trat-table td.tc-venc   { color: #f87171; font-weight: 600; }
+.trat-table td.tc-cliente { max-width: 160px; overflow: hidden; text-overflow: ellipsis; }
+.trat-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: .7rem; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px;
+}
+.tb-em     { background: rgba(245,158,11,.15); color: #fbbf24; border: 1px solid rgba(245,158,11,.3); }
+.tb-sem    { background: rgba(100,116,139,.1);  color: #475569; border: 1px solid rgba(100,116,139,.2); }
+.tb-atm    { background: rgba(249,115,22,.18);  color: #fb923c; }
+.tb-npm    { background: rgba(34,197,94,.12);   color: #4ade80; }
+.tb-smn    { background: rgba(100,116,139,.15); color: #94a3b8; }
+.atuar-sim { background: rgba(239,68,68,.15); color: #f87171; border: 1px solid rgba(239,68,68,.3); font-size:.7rem; font-weight:700; padding:2px 8px; border-radius:4px; }
+.atuar-nao { background: rgba(34,197,94,.1);  color: #4ade80; border: 1px solid rgba(34,197,94,.25); font-size:.7rem; font-weight:700; padding:2px 8px; border-radius:4px; }
+.trat-link { color: #60a5fa; text-decoration: none; font-size: .73rem; padding: 2px 8px; border: 1px solid rgba(59,130,246,.25); border-radius: 5px; }
+.trat-link:hover { background: rgba(59,130,246,.1); }
+.trat-empty { text-align: center; padding: 40px; color: #475569; font-size: .82rem; }
+
 </style>
 </head>
 <script>if(!sessionStorage.getItem("farol_auth")||sessionStorage.getItem("farol_token")!=="sf_20260825b"){sessionStorage.clear();window.location.href="index.html";}</script>
@@ -272,6 +451,22 @@ a.rastreio:hover{text-decoration:underline}
   <div id="nao-mapeadas-list"></div>
 </div>
 
+
+<div class="tab-section-wrap">
+  <div style="padding:8px 24px 0">
+    <div class="section-title" style="margin-bottom:10px">📋 Tabela de Pedidos</div>
+    <div class="tab-strip-outer">
+      <button class="tab-btn-outer tab-active" id="tab-obtn-1" onclick="switchTabOuter(1)">
+        Tabela de Pedidos
+      </button>
+      <button class="tab-btn-outer" id="tab-obtn-2" onclick="switchTabOuter(2)">
+        Pedidos Atrasados · Tratativas <span class="tab-badge-outer">62 sem tratativa</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="tab-panel-outer tab-panel-active" id="tab-outer-1">
 <div class="section-title">📋 Tabela de Pedidos</div>
 <div class="filter-bar" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px">
   <select id="filtro-select" onchange="filtrarSelect(this.value)"
@@ -355,6 +550,65 @@ a.rastreio:hover{text-decoration:underline}
 </div>
 
 
+
+</div>
+
+<div class="tab-panel-outer" id="tab-outer-2">
+
+<div class="trat-summary-bar">
+  <div class="trat-chip tc-total">🚨 <span id="t2-cnt-total">88</span> atrasados torre</div>
+  <div class="sep"></div>
+  <div class="trat-chip tc-trat">🟡 <span id="t2-cnt-trat">26</span> em tratativa</div>
+  <div class="trat-chip tc-sem">🔴 <span id="t2-cnt-sem">62</span> sem tratativa</div>
+  <span style="margin-left:auto;font-size:.72rem;color:#475569">
+    Atrasados Torre = situacao=ATRASADO excl. INSUCESSO e SEM_MOV
+  </span>
+</div>
+
+<div class="trat-toolbar">
+  <div style="position:relative">
+    <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#4b5563;font-size:.75rem">🔍</span>
+    <input class="trat-search" type="text" id="trat-search" placeholder="Buscar pedido, cliente, transportadora…" oninput="t2Filtrar()">
+  </div>
+  <div class="trat-filter-wrap">
+    <button class="trat-filter-btn tf-active" id="tf-todos"   onclick="t2SetFilter('todos')">Todos (88)</button>
+    <button class="trat-filter-btn"           id="tf-trat"    onclick="t2SetFilter('trat')">🟡 Em tratativa (26)</button>
+    <button class="trat-filter-btn"           id="tf-sem"     onclick="t2SetFilter('sem')">🔴 Sem tratativa (62)</button>
+  </div>
+  <div class="trat-rowcount" id="t2-rowcount">Exibindo 88 pedidos</div>
+</div>
+
+<div class="trat-legend">
+  <div class="trat-leg-item"><div class="trat-leg-stripe leg-amb"></div>Em tratativa — time acompanhando</div>
+  <div class="trat-leg-item"><div class="trat-leg-stripe leg-red"></div>Sem tratativa registrada</div>
+</div>
+
+<div class="trat-table-wrap">
+  <table class="trat-table" id="trat-table">
+    <thead>
+      <tr>
+        <th onclick="t2Sort('pedido')">Pedido ↕</th>
+        <th onclick="t2Sort('nf')">NF ↕</th>
+        <th onclick="t2Sort('tracking')">Tracking ↕</th>
+        <th onclick="t2Sort('cliente')">Cliente ↕</th>
+        <th onclick="t2Sort('transp')">Transportadora ↕</th>
+        <th onclick="t2Sort('uf')">UF ↕</th>
+        <th onclick="t2Sort('sit_mov')">Sit. Movim. ↕</th>
+        <th onclick="t2Sort('despacho')">Despacho ↕</th>
+        <th onclick="t2Sort('previsao')">Prev. Entrega ↕</th>
+        <th onclick="t2Sort('trat')">🚦 Tratativa ↕</th>
+        <th onclick="t2Sort('atuacao')">Data Atuação ↕</th>
+        <th onclick="t2Sort('informada')">Prev. Solução ↕</th>
+        <th onclick="t2Sort('trat_prazo')">Atuar Novamente ↕</th>
+        <th>Rastreio</th>
+      </tr>
+    </thead>
+    <tbody id="trat-tbody"></tbody>
+  </table>
+  <div class="trat-empty" id="trat-empty" style="display:none">Nenhum pedido encontrado.</div>
+</div>
+
+</div>
 </main>
 
 <footer style="background:#0f172a;border-top:1px solid #1e293b;padding:24px 32px;margin-top:8px;color:#475569;font-size:.72rem;line-height:1.7">
@@ -625,6 +879,157 @@ aplicarFiltros();
 renderTranspAlerts();
 renderDevolucoes();
 renderNaoMapeadas();
+
+// ══ SISTEMA DE ABAS ══════════════════════════════════════════════════════════
+function switchTabOuter(n) {
+  document.querySelectorAll('.tab-panel-outer').forEach(function(p) {
+    p.classList.remove('tab-panel-active');
+  });
+  document.querySelectorAll('.tab-btn-outer').forEach(function(b) {
+    b.classList.remove('tab-active');
+  });
+  document.getElementById('tab-outer-' + n).classList.add('tab-panel-active');
+  document.getElementById('tab-obtn-' + n).classList.add('tab-active');
+}
+
+// ══ TABELA 2 — ATRASADOS TORRE TRATATIVAS ════════════════════════════════════
+const ATRAS_ROWS = [{"pedido": "RLX.B2C-15024012", "nf": "3614.0", "tracking": "nan", "cliente": "RENATO CARVALHO", "transp": "DISSUDES RESIDENCE TRANSPORTES E LOGISTICA INTEGRADA LTDA", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "09/03/2026", "previsao": "11/03/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/15024012", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0381595-022", "nf": "400605.0", "tracking": "14749826", "cliente": "ADRIANO JOSE OLIVEIRA CAMPOS", "transp": "TRANSPORTES TRANSLOVATO LTDA", "uf": "PI", "sit_mov": "ATRASADO_MOV", "despacho": "06/08/2026", "previsao": "03/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/19960047", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0383429-022", "nf": "402461.0", "tracking": "14933685", "cliente": "RICARDO PAULO RODRIGUES DA SILVA", "transp": "GFL", "uf": "CE", "sit_mov": "ATRASADO_MOV", "despacho": "12/08/2026", "previsao": "31/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20220256", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "04/09/2026"}, {"pedido": "JBL0383857-022", "nf": "402823.0", "tracking": "SELS104266762tx", "cliente": "LUCIANA FIORAMONTE", "transp": "TOTAL EXPRESS", "uf": "MT", "sit_mov": "NO_PRAZO_MOV", "despacho": "14/08/2026", "previsao": "01/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20289710", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0383378-022", "nf": "402385.0", "tracking": "14930112", "cliente": "FERNANDA M SILVA DIAS", "transp": "GFL", "uf": "SC", "sit_mov": "ATRASADO_MOV", "despacho": "12/08/2026", "previsao": "24/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20213794", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20300629", "nf": "27896.0", "tracking": "SELS104307723tx", "cliente": "ELDER DA SILVA", "transp": "TEX COURIER S.A", "uf": "PA", "sit_mov": "NO_PRAZO_MOV", "despacho": "03/09/2026", "previsao": "02/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20300629", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0384027-022", "nf": "403228.0", "tracking": "15009168", "cliente": "GABRIEL BARBOSA", "transp": "GFL", "uf": "CE", "sit_mov": "ATRASADO_MOV", "despacho": "15/08/2026", "previsao": "02/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20317815", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0384271-022", "nf": "403569.0", "tracking": "15029567", "cliente": "MARIVALDA GOMES APINAGES", "transp": "GFL", "uf": "PA", "sit_mov": "ATRASADO_MOV", "despacho": "17/08/2026", "previsao": "04/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20355512", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "RLX.B2C-20521553", "nf": "25991.0", "tracking": "15155369", "cliente": "NAYARA GONÇALVES", "transp": "GFL", "uf": "MS", "sit_mov": "ATRASADO_MOV", "despacho": "03/09/2026", "previsao": "31/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20521553", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0385460-022", "nf": "404685.0", "tracking": "15162167,15192872", "cliente": "DYEGO RIVANDO LIMA DE MELO", "transp": "GFL", "uf": "CE", "sit_mov": "ATRASADO_MOV", "despacho": "21/08/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20530371", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20522173", "nf": "25965.0", "tracking": "15155837", "cliente": "BRUNA DAGA", "transp": "GFL", "uf": "SC", "sit_mov": "ATRASADO_MOV", "despacho": "21/08/2026", "previsao": "31/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20522173", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "04/09/2026"}, {"pedido": "JBL0386072-022", "nf": "405519.0", "tracking": "SELS104284989tx", "cliente": "FELIPE FRAGA DE ASSIS", "transp": "TOTAL EXPRESS", "uf": "MT", "sit_mov": "NO_PRAZO_MOV", "despacho": "24/08/2026", "previsao": "01/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20600950", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "04/09/2026"}, {"pedido": "JBL0386084-022", "nf": "405669.0", "tracking": "15214048", "cliente": "REGINALDO ALVES COSTA", "transp": "GFL", "uf": "BA", "sit_mov": "ATRASADO_MOV", "despacho": "24/08/2026", "previsao": "09/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20600930", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0386399-022", "nf": "405280.0", "tracking": "SELS104284112tx", "cliente": "JULIANA ALINE PENASSO CARLETTO CARVALHO", "transp": "TOTAL EXPRESS", "uf": "MT", "sit_mov": "NO_PRAZO_MOV", "despacho": "24/08/2026", "previsao": "02/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20647015", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0386328-022", "nf": "405332.0", "tracking": "15231832", "cliente": "LEIVYS HENRIQUE SILVA SANTO", "transp": "GFL", "uf": "AL", "sit_mov": "ATRASADO_MOV", "despacho": "24/08/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20636016", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0386663-022", "nf": "405708.0", "tracking": "15262058", "cliente": "GABRIEL CAMARGO LISBOA", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "25/08/2026", "previsao": "28/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20673717", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "03/09/2026"}, {"pedido": "JBL0386759-022", "nf": "405779.0", "tracking": "SELS104287784tx", "cliente": "MARIA DE FATIMA(CONHECIDA COMO PRETA ) OU KENIA", "transp": "TOTAL EXPRESS", "uf": "GO", "sit_mov": "ATRASADO_MOV", "despacho": "25/08/2026", "previsao": "09/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20686162", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "RLX.B2C-20698317", "nf": "26553.0", "tracking": "15281009", "cliente": "SÁVIO NOBRE", "transp": "GFL", "uf": "CE", "sit_mov": "ATRASADO_MOV", "despacho": "25/08/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20698317", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0386970-022", "nf": "406060.0", "tracking": "AD845709732BR", "cliente": "IARLLE DOS SANTOS PEDROZO", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "RR", "sit_mov": "ATRASADO_MOV", "despacho": "26/08/2026", "previsao": "03/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20715045", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "24/09/2026", "trat_prazo": "24/09/2026"}, {"pedido": "JBL0386914-022", "nf": "406029.0", "tracking": "15322415", "cliente": "KELITON HENRIQUE LIMA JALES", "transp": "AEX LOG", "uf": "RN", "sit_mov": "ATRASADO_MOV", "despacho": "26/08/2026", "previsao": "10/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20705518", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0387058-022", "nf": "406188.0", "tracking": "SELS104291000tx", "cliente": "MIKAELY SHUQUEL", "transp": "TOTAL EXPRESS", "uf": "RR", "sit_mov": "ATRASADO_MOV", "despacho": "26/08/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20724719", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RV-20756438", "nf": "2753.0", "tracking": "15372025", "cliente": "ADRIANA ANDRADE ASSUNÇÃO", "transp": "GFL", "uf": "PI", "sit_mov": "NO_PRAZO_MOV", "despacho": "04/09/2026", "previsao": "22/07/2026", "rastreio": "https://rastreioo.com.br/#/tracking/londoncosmeticos/20756438", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "RLX.B2C-20759888", "nf": "26894.0", "tracking": "AD849592331BR,AD849592345BR", "cliente": "LUCAS DIAS", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "MG", "sit_mov": "ATRASADO_MOV", "despacho": "03/09/2026", "previsao": "01/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20759888", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0387387-022", "nf": "406515.0", "tracking": "15337548", "cliente": "GUILHERME ALEIXO SOUZA", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "27/08/2026", "previsao": "01/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20767435", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "04/09/2026"}, {"pedido": "JBL0387899-022", "nf": "406959.0", "tracking": "15380145", "cliente": "TIARA SUNDERHUS PEREIRA", "transp": "GFL", "uf": "ES", "sit_mov": "ATRASADO_MOV", "despacho": "28/08/2026", "previsao": "09/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20823165", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0387822-022", "nf": "406742.0", "tracking": "AD854920278BR", "cliente": "VALMIR SOUZA MENDES", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "RJ", "sit_mov": "STATUS_NAO_MAPEADO", "despacho": "28/08/2026", "previsao": "02/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20808227", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0387976-022", "nf": "407036.0", "tracking": "15390263", "cliente": "TACILA AZEVEDO", "transp": "AEX LOG", "uf": "BA", "sit_mov": "ATRASADO_MOV", "despacho": "28/08/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20831522", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20851972", "nf": "27359.0", "tracking": "SELS104299748tx", "cliente": "JOICE OLIVEIRA", "transp": "TEX COURIER S.A", "uf": "SC", "sit_mov": "NO_PRAZO_MOV", "despacho": "31/08/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20851972", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20829452", "nf": "27073.0", "tracking": "15388472", "cliente": "DIEGO V R SALAMANCA", "transp": "GFL", "uf": "PR", "sit_mov": "ATRASADO_MOV", "despacho": "03/09/2026", "previsao": "09/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20829452", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0387962-022", "nf": "406960.0", "tracking": "15390283", "cliente": "CECILIA CRUZ VIEIRA TEIXEIRA DE SOUZA", "transp": "AEX LOG", "uf": "BA", "sit_mov": "ATRASADO_MOV", "despacho": "28/08/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20831548", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20868424", "nf": "27420.0", "tracking": "15418058", "cliente": "JOSE BARTHOLOMEU", "transp": "GFL", "uf": "MG", "sit_mov": "ATRASADO_MOV", "despacho": "31/08/2026", "previsao": "10/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20868424", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20891236", "nf": "27292.0", "tracking": "15432175", "cliente": "FRANCIELLE SIMAO", "transp": "GFL", "uf": "MG", "sit_mov": "ATRASADO_MOV", "despacho": "31/08/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20891236", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20896980", "nf": "27358.0", "tracking": "15435404", "cliente": "LAIS GADELHA", "transp": "GFL", "uf": "PB", "sit_mov": "ATRASADO_MOV", "despacho": "31/08/2026", "previsao": "10/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20896980", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20886647", "nf": "27245.0", "tracking": "AD859909288BR", "cliente": "MARCELO JAVORNIK", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "RS", "sit_mov": "ATRASADO_MOV", "despacho": "31/08/2026", "previsao": "04/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20886647", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "RLX.B2C-20904305", "nf": "27356.0", "tracking": "SELS104299730tx", "cliente": "GIOVANE ESSER", "transp": "TEX COURIER S.A", "uf": "SC", "sit_mov": "ATRASADO_MOV", "despacho": "31/08/2026", "previsao": "10/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20904305", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20934394", "nf": "27651.0", "tracking": "15468505,15512609", "cliente": "PATRICK RIBAS", "transp": "GFL", "uf": "RS", "sit_mov": "ATRASADO_MOV", "despacho": "01/09/2026", "previsao": "10/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20934394", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "LON-20959123", "nf": "2822.0", "tracking": "15502023", "cliente": "FERNANDA LUISA ALMEIDA MENDES", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "09/09/2026", "previsao": "04/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/londoncosmeticos/20959123", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0388303-022", "nf": "407532.0", "tracking": "AD868105540BR", "cliente": "DAYANNE AMARAL BESERRA", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "RR", "sit_mov": "ATRASADO_MOV", "despacho": "01/09/2026", "previsao": "08/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20967831", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "RLX.B2C-20965303", "nf": "27630.0", "tracking": "AD866853227BR", "cliente": "FERNANDA PINHEIRO", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "01/09/2026", "previsao": "08/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20965303", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0388753-022", "nf": "407500.0", "tracking": "TXAQ553233024tx", "cliente": "JULIA B C FARIAS", "transp": "TOTAL EXPRESS", "uf": "RJ", "sit_mov": "STATUS_NAO_MAPEADO", "despacho": "01/09/2026", "previsao": "10/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20972147", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-20974281", "nf": "27667.0", "tracking": "15504094", "cliente": "BRUNA FERRARI PAGLIARIN", "transp": "GFL", "uf": "RS", "sit_mov": "ATRASADO_MOV", "despacho": "01/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/20974281", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0388799-022", "nf": "407267.0", "tracking": "15502985", "cliente": "HIAGO LOPES PINHEIRO", "transp": "AEX LOG", "uf": "MG", "sit_mov": "ATRASADO_MOV", "despacho": "01/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20972928", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0388976-022", "nf": "408224.0", "tracking": "AD872651436BR", "cliente": "RUANA MEDEIROS RODRIGUES", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "PA", "sit_mov": "ATRASADO_MOV", "despacho": "02/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20976806", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0389059-022", "nf": "408230.0", "tracking": "15516532", "cliente": "ANA CLARA ARZE TEIXEIRA", "transp": "GFL", "uf": "MG", "sit_mov": "ATRASADO_MOV", "despacho": "02/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20989707", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0388859-022", "nf": "408028.0", "tracking": "15503267", "cliente": "KRISTHIAN QUEIROS", "transp": "GFL", "uf": "ES", "sit_mov": "ATRASADO_MOV", "despacho": "01/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/20973278", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21012949", "nf": "27812.0", "tracking": "15536773", "cliente": "LAYANE SOUZA", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "02/09/2026", "previsao": "09/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21012949", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0389314-022", "nf": "408465.0", "tracking": "15544233", "cliente": "GABRIELLA LEITAO MEDEIROS", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "03/09/2026", "previsao": "09/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21022783", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21071360", "nf": "28047.0", "tracking": "AD880278512BR", "cliente": "FRANCISCO ELIEZER VIANA DA SILVA", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "CE", "sit_mov": "ATRASADO_MOV", "despacho": "04/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21071360", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21047411", "nf": "28885.0", "tracking": "AD904817148BR", "cliente": "LEANDRO SEIZO GLOVASKI", "transp": "EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS", "uf": "SP", "sit_mov": "AGUARD_MOV", "despacho": "11/09/2026", "previsao": "10/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21047411", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21068371", "nf": "28056.0", "tracking": "15582267", "cliente": "ASSOC DE PAIS E AMIGOS DOS EXCEPCIONAIS DE ANGATUBA", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "04/09/2026", "previsao": "10/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21068371", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21085696", "nf": "28052.0", "tracking": "SELS104309604tx", "cliente": "NEUSA MARIA RAMPONI", "transp": "TEX COURIER S.A", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "04/09/2026", "previsao": "13/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21085696", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "JBL0389884-022", "nf": "409035.0", "tracking": "15603246", "cliente": "EMILIO PASCHOAL GUARIGLIA", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "04/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21092290", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21093743", "nf": "28085.0", "tracking": "15604426", "cliente": "RAMON VAZQUEZ", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "10/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21093743", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21116760", "nf": "28170.0", "tracking": "15621514", "cliente": "RAÍSSA LÁZARO", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "07/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21116760", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21155354", "nf": "28552.0", "tracking": "15646936", "cliente": "GUSTAVO YU FABRIS HASEGAWA", "transp": "GFL", "uf": "PR", "sit_mov": "NO_PRAZO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21155354", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390183-022", "nf": "410225.0", "tracking": "15631398", "cliente": "LEANDRO ALVES", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21130921", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390420-022", "nf": "409794.0", "tracking": "15648054", "cliente": "WELBER LEOPOLDINO RAMOS TEIXEIRA", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21157076", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390412-022", "nf": "410209.0", "tracking": "15647458", "cliente": "SIDNEI ALMEIDA", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21156142", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390394-022", "nf": "409577.0", "tracking": "15646701", "cliente": "GABRIELA TAVARES DOS SANTOS SILVA", "transp": "GFL", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "07/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21155007", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "LON-21155524", "nf": "2777.0", "tracking": "15647046", "cliente": "LIS CHACON XAVIER", "transp": "GFL", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/londoncosmeticos/21155524", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390309-022", "nf": "410180.0", "tracking": "15639638", "cliente": "LILIAN ANTONIO FUJISE", "transp": "GFL", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21143907", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21151516", "nf": "28329.0", "tracking": "15644412", "cliente": "BEATRIZ MARCHI", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "07/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21151516", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390395-022", "nf": "409511.0", "tracking": "15646694", "cliente": "GEISLER CHBANE BOSSO", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "07/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21154998", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21145388", "nf": "28363.0", "tracking": "15640539,15680458", "cliente": "DANIELA VEIGA", "transp": "GFL", "uf": "SC", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21145388", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390427-022", "nf": "409703.0", "tracking": "15648622", "cliente": "EDUARDO DOS SANTOS DA SILVA", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21158206", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390319-022", "nf": "409665.0", "tracking": "15640816", "cliente": "ANA CHRISTINA GALL DO NASCIMENTO", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21145828", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390453-022", "nf": "409493.0", "tracking": "15652930", "cliente": "LEONIDAS PIETRO DE ALMEIDA", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "07/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21165066", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390354-022", "nf": "409405.0", "tracking": "15643237", "cliente": "HIRAMILTON RODRIGUES", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "07/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21149683", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390443-022", "nf": "410196.0", "tracking": "15651464", "cliente": "JUNIOR FERREIRA ARAUJO", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21162889", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390533-022", "nf": "410236.0", "tracking": "15660310", "cliente": "LUIZ CLAUDIO GUIMARAES ROCHA", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21176880", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390573-022", "nf": "409660.0", "tracking": "15662962", "cliente": "DONIZETTI FALCAO GARCIA", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21181064", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390561-022", "nf": "409654.0", "tracking": "15661654", "cliente": "RAFAEL DOS SANTOS PEDROS", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "07/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21179009", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390537-022", "nf": "409806.0", "tracking": "15660351", "cliente": "GUSTAVO NATHANN LUZ", "transp": "GFL", "uf": "PR", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21176932", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390458-022", "nf": "409691.0", "tracking": "15652912", "cliente": "ROSIMEIRE RIBEIRO DE SOUZA", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21165039", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390649-022", "nf": "409655.0", "tracking": "15667978", "cliente": "JOANA DONIZETI SERAFIM MARTINS", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "07/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21188762", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390642-022", "nf": "409520.0", "tracking": "15668005", "cliente": "DALILA ALMEIDA", "transp": "GFL", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "07/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21188793", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390576-022", "nf": "409598.0", "tracking": "15662924", "cliente": "GUSTAVO GIMENEZ GALLO", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21181005", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390625-022", "nf": "409798.0", "tracking": "15666847", "cliente": "LUIZ RICARDO GARCIA EVANGELISTA", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21186981", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390521-022", "nf": "409407.0", "tracking": "15658900", "cliente": "JULIA RH", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "07/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21174641", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390586-022", "nf": "409666.0", "tracking": "15662930", "cliente": "ROSILANE DE CASTRO NUNES", "transp": "GFL", "uf": "MG", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21181015", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "JBL0390654-022", "nf": "410255.0", "tracking": "15669104", "cliente": "CARLOS BORGES", "transp": "GFL", "uf": "RJ", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/jbl/21190442", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21233538", "nf": "28542.0", "tracking": "15704430", "cliente": "CÉSAR EDUARDO DA SILVA GUILHERME", "transp": "GFL", "uf": "PR", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "13/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21233538", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "RLX.B2C-21233539", "nf": "28435.0", "tracking": "SELS104315098tx", "cliente": "RAQUEL CORREIA LIMA", "transp": "TEX COURIER S.A", "uf": "RO", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "20/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21233539", "trat": "TRANSPORTADORA", "atuacao": "10/09/2026", "informada": "", "trat_prazo": "14/09/2026"}, {"pedido": "RLX.B2C-21239579", "nf": "28513.0", "tracking": "15712476", "cliente": "WARNY MOREIRA SANTANA", "transp": "GFL", "uf": "SP", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21239579", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21239968", "nf": "28515.0", "tracking": "15712837", "cliente": "LUCIANA VELOSO", "transp": "GFL", "uf": "MG", "sit_mov": "ATRASADO_MOV", "despacho": "08/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21239968", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21338834", "nf": "28980.0", "tracking": "15794352", "cliente": "MARIA CRISTINA O CARVALHO", "transp": "GFL", "uf": "SP", "sit_mov": "AGUARD_MOV", "despacho": "11/09/2026", "previsao": "14/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21338834", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21355895", "nf": "28881.0", "tracking": "15808891", "cliente": "GIOVANA ALVARES ANDÓ", "transp": "DISSUDES RESIDENCE TRANSPORTES E LOGISTICA INTEGRADA LTDA", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "11/09/2026", "previsao": "11/09/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21355895", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}, {"pedido": "RLX.B2C-21381708", "nf": "29013.0", "tracking": "15830735", "cliente": "ROBERTO ITIBERÊ", "transp": "DISSUDES RESIDENCE TRANSPORTES E LOGISTICA INTEGRADA LTDA", "uf": "SP", "sit_mov": "NO_PRAZO_MOV", "despacho": "11/09/2026", "previsao": "12/08/2026", "rastreio": "https://rastreioo.com.br/#/tracking/relaxmedic/21381708", "trat": "", "atuacao": "", "informada": "", "trat_prazo": ""}];
+const TODAY_T2   = '14/09/2026';
+
+function t2ParseDate(s) {
+  if (!s) return 0;
+  var p = s.split('/');
+  if (p.length !== 3) return 0;
+  return new Date(+p[2], +p[1]-1, +p[0]).getTime();
+}
+
+function t2IsVencida(s) {
+  if (!s) return false;
+  return t2ParseDate(s) < t2ParseDate(TODAY_T2);
+}
+
+var t2Filter = 'todos';
+var t2SortCol = '';
+var t2SortAsc = true;
+var t2Rows = ATRAS_ROWS.slice();
+
+function t2SetFilter(f) {
+  t2Filter = f;
+  ['todos','trat','sem'].forEach(function(x) {
+    var btn = document.getElementById('tf-' + x);
+    if (!btn) return;
+    btn.className = 'trat-filter-btn';
+    if (x === f) {
+      if (f === 'sem')  btn.className += ' tf-red';
+      else if (f === 'trat') btn.className += ' tf-amb';
+      else btn.className += ' tf-active';
+    }
+  });
+  t2Filtrar();
+}
+
+function t2Filtrar() {
+  var q = (document.getElementById('trat-search').value || '').toLowerCase();
+  var rows = t2Rows.filter(function(r) {
+    if (t2Filter === 'trat' && !r.trat) return false;
+    if (t2Filter === 'sem'  &&  r.trat) return false;
+    if (q) {
+      var hay = (r.pedido + r.cliente + r.transp + r.uf + r.nf + r.tracking).toLowerCase();
+      if (hay.indexOf(q) < 0) return false;
+    }
+    return true;
+  });
+  t2Render(rows);
+  document.getElementById('t2-rowcount').textContent = 'Exibindo ' + rows.length + ' de ' + t2Rows.length + ' pedidos';
+}
+
+var SIT_MOV_LABELS = {
+  ATRASADO_MOV:       ['tb-atm', 'Atrasado Mov.'],
+  NO_PRAZO_MOV:       ['tb-npm', 'No Prazo Mov.'],
+  STATUS_NAO_MAPEADO: ['tb-smn', 'Não Mapeado'],
+  SEM_MOV:            ['tb-smn', 'Sem Movim.'],
+  AGUARD_MOV:         ['tb-smn', 'Aguard. Mov.'],
+};
+
+var TRANSP_SHORT = {
+  'EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS': 'Correios',
+  'TEX COURIER S.A': 'Tex Courier',
+  'DISSUDES RESIDENCE TRANSPORTES E LOGISTICA INTEGRADA LTDA': 'Dissudes',
+  'TRANSPORTES TRANSLOVATO LTDA': 'Translovato',
+  'TOTAL EXPRESS': 'Total Express',
+};
+
+function t2Render(rows) {
+  var tbody = document.getElementById('trat-tbody');
+  var empty = document.getElementById('trat-empty');
+  if (!rows.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  tbody.innerHTML = rows.map(function(r) {
+    var hasTrat = !!r.trat;
+    var trCls = hasTrat ? 'tr-amb' : 'tr-red';
+
+    var smInfo = SIT_MOV_LABELS[r.sit_mov] || ['tb-smn', r.sit_mov];
+    var smBadge = '<span class="trat-badge ' + smInfo[0] + '">' + smInfo[1] + '</span>';
+
+    var tratBadge = hasTrat
+      ? '<span class="trat-badge tb-em">🟡 ' + r.trat + '</span>'
+      : '<span class="trat-badge tb-sem">— sem trat.</span>';
+
+    var prevIsVenc = t2IsVencida(r.previsao);
+    var solIsVenc  = t2IsVencida(r.informada);
+
+    var atuarNov = '';
+    if (!hasTrat) {
+      atuarNov = '<span style="color:#475569">—</span>';
+    } else if (t2IsVencida(r.trat_prazo)) {
+      atuarNov = '<span class="atuar-sim">⚠ Sim</span>';
+    } else {
+      atuarNov = '<span class="atuar-nao">✓ Não</span>';
+    }
+
+    var tShort = TRANSP_SHORT[r.transp] || r.transp.substring(0, 22) + (r.transp.length > 22 ? '…' : '');
+    var cShort = r.cliente.substring(0, 22) + (r.cliente.length > 22 ? '…' : '');
+
+    return '<tr class="' + trCls + '">'
+      + '<td class="tc-pedido"><strong>' + r.pedido + '</strong></td>'
+      + '<td class="tc-mono">' + r.nf + '</td>'
+      + '<td class="tc-mono">' + (r.tracking || '—') + '</td>'
+      + '<td class="tc-cliente" title="' + r.cliente + '">' + cShort + '</td>'
+      + '<td title="' + r.transp + '">' + tShort + '</td>'
+      + '<td><strong>' + r.uf + '</strong></td>'
+      + '<td>' + smBadge + '</td>'
+      + '<td class="tc-date">' + (r.despacho || '—') + '</td>'
+      + '<td class="' + (prevIsVenc ? 'tc-venc' : 'tc-date') + '">' + (r.previsao || '—') + '</td>'
+      + '<td>' + tratBadge + '</td>'
+      + '<td class="tc-date">' + (r.atuacao || '—') + '</td>'
+      + '<td class="' + (solIsVenc ? 'tc-venc' : 'tc-date') + '">' + (r.informada || '—') + '</td>'
+      + '<td>' + atuarNov + '</td>'
+      + '<td>' + (r.rastreio ? '<a class="trat-link" href="' + r.rastreio + '" target="_blank">🔗 Ver</a>' : '—') + '</td>'
+      + '</tr>';
+  }).join('');
+}
+
+var T2_DATE_COLS = new Set(['despacho','previsao','atuacao','informada','trat_prazo']);
+function t2Sort(col) {
+  if (t2SortCol === col) t2SortAsc = !t2SortAsc;
+  else { t2SortCol = col; t2SortAsc = true; }
+  t2Rows.sort(function(a, b) {
+    var va = a[col] || '', vb = b[col] || '';
+    if (T2_DATE_COLS.has(col)) {
+      return t2SortAsc ? t2ParseDate(va) - t2ParseDate(vb) : t2ParseDate(vb) - t2ParseDate(va);
+    }
+    return t2SortAsc ? va.localeCompare(vb, 'pt-BR') : vb.localeCompare(va, 'pt-BR');
+  });
+  t2Filtrar();
+}
+
+// inicializar tab 2
+t2Filtrar();
+
 </script>
 </body>
 </html>
