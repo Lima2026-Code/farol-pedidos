@@ -155,6 +155,7 @@ a.rastreio:hover{text-decoration:underline}
 .tab-pane{display:none}.tab-pane.active{display:block}
 .an-sim{background:#450a0a;color:#fca5a5;border:1px solid #7f1d1d;padding:2px 8px;border-radius:5px;font-weight:700;font-size:.72rem}
 .an-nao{background:#14532d;color:#86efac;border:1px solid #166534;padding:2px 8px;border-radius:5px;font-weight:700;font-size:.72rem}
+.sem-trat{color:#64748b;font-size:.72rem;font-style:italic}
 </style>
 </head>
 <script>if(!sessionStorage.getItem("farol_auth")||sessionStorage.getItem("farol_token")!=="sf_20260825b"){sessionStorage.clear();window.location.href="index.html";}</script>
@@ -1012,8 +1013,8 @@ function renderTab2(){
     <td title="${r.cliente}">${r.cliente.substring(0,25)}${r.cliente.length>25?'…':''}</td>
     <td title="${r.transp}">${r.transp.substring(0,20)}${r.transp.length>20?'…':''}</td><td>${r.uf}</td>
     <td>${badge(r.situacao_mov, r.situacao_mov.replace(/_/g,' '))}</td><td>${r.despacho}</td><td>${r.previsao}</td>
-    <td>${t ? `<span class="farol-trat ${an==='SIM'?'farol-vermelho':'farol-amarelo'}">${t.status||'—'}</span>` : ''}</td>
-    <td>${t ? t.data_atuacao : ''}</td><td>${t ? (t.data_informada || t.prazo) : ''}</td>
+    <td>${t ? `<span class="farol-trat ${an==='SIM'?'farol-vermelho':'farol-amarelo'}">${t.status||'—'}</span>` : '<span class="sem-trat">— Sem tratativa</span>'}</td>
+    <td>${t ? t.data_atuacao : '<span class="sem-trat">—</span>'}</td><td>${t ? (t.data_informada || t.prazo) : '<span class="sem-trat">—</span>'}</td>
     <td>${an==='SIM' ? '<span class="an-sim">⚠ Sim</span>' : an==='NAO' ? '<span class="an-nao">✓ Não</span>' : '—'}</td>
     <td>${r.rastreio ? `<a href="${r.rastreio}" target="_blank" class="rastreio">🔗 Rastrear</a>` : ''}</td></tr>`).join('')
     : '<tr><td colspan="14" style="text-align:center;padding:20px;color:#64748b">Nenhum pedido</td></tr>';
